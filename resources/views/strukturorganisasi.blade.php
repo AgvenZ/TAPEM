@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -197,7 +197,7 @@
         <div class="container mx-auto flex justify-between items-center py-4">
             <div class="flex items-center">
                 <a href="/" onclick="refreshPage(event)">
-                    <img src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
                 </a>
                 <script>
                     function refreshPage(event) {
@@ -282,7 +282,7 @@
             </div>
         </div>
         <div class="flex items-center justify-center min-h-screen relative">
-            <img alt="Background image of a government building with a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="http://localhost/TAPEM/tapem/resources/img/background4.png" width="1920"/>
+            <img alt="Background image of a government building with a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
             <div class="relative z-10 p-10 md:p-20 rounded-lg max-w-5xl">
              <p class="text-xl md:text-3xl arvo-font mb-8 list-decimal list-inside text-justify">
               Bagian Tata Pemerintahan dipimpin oleh Kepala Bagian yang berkedudukan di bawah dan bertanggung jawab kepada Sekretaris Daerah melalui Asisten Pemerintahan. Berdasarkan Peraturan Wali Kota Semarang Nomor 90 Tahun 2021 tentang Kedudukan, Susunan Organisasi, Tugas dan Fungsi serta Sistem Kerja Sekretariat Daerah Kota Semarang.
@@ -308,7 +308,7 @@
                 STRUKTUR ORGANISASI
                </p>
                <div class="flex justify-center">
-                <img alt="Organizational chart showing the structure of the government section, with various sub-coordinators and their respective responsibilities." height="600" src="http://localhost/TAPEM/tapem/resources/img/tabel.png" width="800"/>
+                <img alt="Organizational chart showing the structure of the government section, with various sub-coordinators and their respective responsibilities." height="600" src="img/tabel.png" width="800"/>
                </div>
               </div>
              </div>
@@ -316,16 +316,16 @@
            </div>
             <div class="flex justify-center items-center py-10 bg-black">
              <div class="flex items-center mx-8">
-                <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+                <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
             </div>
             <div class="flex items-center mx-8">
-              <img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+              <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
             </div>
             <div class="flex items-center mx-8 bg-white text-black p-4">
-              <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+              <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
             </div>
             <div class="flex items-center mx-8">
-              <img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+              <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
              </div>
             </div>
             <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">

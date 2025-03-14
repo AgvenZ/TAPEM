@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -195,7 +195,7 @@
         <div class="container mx-auto flex justify-between items-center py-4">
             <div class="flex items-center">
                 <a href="/" onclick="refreshPage(event)">
-                    <img src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
                 </a>
                 <script>
                     function refreshPage(event) {
@@ -282,7 +282,7 @@
         </div>
     </div>
 </div>
-<div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('http://localhost/TAPEM/tapem/resources/img/background4.png');">
+<div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background4.png');">
     <div class="p-35 rounded-lg max-w-6xl text-white">
         <div class="text-center mb-8">
             <br>
@@ -1967,16 +1967,16 @@
 </div>
 <div class="flex justify-center items-center py-10 bg-black">
 <div class="flex items-center mx-8">
-  <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+  <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
 </div>
 <div class="flex items-center mx-8">
-<img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+<img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
 </div>
 <div class="flex items-center mx-8 bg-white text-black p-4">
-<img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+<img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
 </div>
 <div class="flex items-center mx-8">
-<img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+<img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
 </div>
 </div>
 <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">

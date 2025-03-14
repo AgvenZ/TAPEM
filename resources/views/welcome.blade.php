@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -192,7 +192,7 @@
         <div class="container mx-auto flex justify-between items-center py-4">
             <div class="flex items-center">
                 <a href="/" onclick="refreshPage(event)">
-                    <img src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
                 </a>
                 <script>
                     function refreshPage(event) {
@@ -275,24 +275,24 @@
     </header>
 </body>
     <div class="slideshow-container" id="slideshowContainer">
-        <img alt="Slideshow image" class="slideshow-image" id="slideshowImage" src="http://localhost/TAPEM/tapem/resources/img/slideshow1.png"/>
+        <img alt="Slideshow image" class="slideshow-image" id="slideshowImage" src="img/slideshow1.png"/>
         <a class="prev" onclick="changeSlide(-1)">❮</a>
         <a class="next" onclick="changeSlide(1)">❯</a>
     </div>
     <div class="bg-red-900 flex items-center justify-center min-h-screen relative py-20" id="contentContainer">
-        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="http://localhost/TAPEM/tapem/resources/img/background1.png" width="1920"/>
+        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="img/background1.png" width="1920"/>
         <div class="relative z-10 text-center text-white px-6">
             <h1 class="text-5xl font-bold mb-10 arvo-font text-center fade-in">BAGIAN TATA PEMERINTAHAN</h1>
             <div class="inline-block rounded-full overflow-hidden mb-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] zoom-in">
                 <!-- Menghapus border dan border-white -->
-                <img alt="Portrait of Yoga Tamtomo, S.STP" class="w-64 h-80 object-cover" height="400" src="http://localhost/TAPEM/tapem/resources/img/kabag.png" width="300"/>
+                <img alt="Portrait of Yoga Tamtomo, S.STP" class="w-64 h-80 object-cover" height="400" src="img/kabag.png" width="300"/>
             </div>
             <h2 class="text-6xl font-bold mt-8 inconsolata-font slide-in">YOGA TAMTOMO, S.STP</h2>
             <p class="text-2xl inconsolata-font slide-in">Kepala Bagian Tata Pemerintahan</p>
         </div>
     </div>
     <div class="bg-red-600 flex items-center justify-center min-h-screen relative py-16" id="contentContainer">
-        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-1000" src="http://localhost/TAPEM/tapem/resources/img/background5.png"/>
+        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-1000" src="img/background5.png"/>
         <div class="relative z-10 text-center text-white px-4 w-full">
             <h1 class="text-2xl inconsolata-font"></h1>
             <div class="relative container mx-auto py-8 max-w-screen-lg">
@@ -317,7 +317,7 @@
     <body class="bg-black text-white">
         <div class="relative min-h-screen flex items-center justify-center">
             <div class="absolute inset-0 w-full h-full">
-                <img alt="Background image" class="w-full h-full object-cover" src="http://localhost/TAPEM/tapem/resources/img/background3.png"/>
+                <img alt="Background image" class="w-full h-full object-cover" src="img/background3.png"/>
             </div>
             <div class="relative container mx-auto py-8">
                 <h1 class="text-4xl font-bold mb-7 arvo-font text-black-600 text-center zoom-out">
@@ -330,7 +330,7 @@
                 <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                     <!-- Card 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita1'">
-                        <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita1.png"/>
+                        <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita1.png"/>
                         <div class="p-6">
                             <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                             <h2 class="text-xl font-bold mt-3">Doa Bersama Dan Serah Terima Jabatan Wali Kota Dan Wakil Wali Kota Semarang Periode 2025-2030</h2>
@@ -341,7 +341,7 @@
 
                     <!-- Card 2 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita2'">
-                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita2.png"/>
+                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita2.png"/>
                         <div class="p-6">
                             <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                             <h2 class="text-xl font-bold mt-3">Staff Bagian Tata Pemerintahan Setda Kota Semarang Ikuti Bimtek Penulisan Berbasis Kearifan Lokal 2025</h2>
@@ -352,7 +352,7 @@
 
                     <!-- Card 3 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita3'">
-                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita3.png"/>
+                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita3.png"/>
                         <div class="p-6">
                             <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                             <h2 class="text-xl font-bold mt-3">Rapat Sinkronisasi Data Kependudukan: Menuju Administrasi Yang Akurat</h2>
@@ -368,16 +368,16 @@
     </body>
     <div class="flex justify-center items-center py-10 bg-black">
         <div class="flex items-center mx-8">
-          <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+          <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
         </div>
         <div class="flex items-center mx-8">
-          <img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+          <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
         </div>
         <div class="flex items-center mx-8 bg-white text-black p-4">
-          <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+          <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
         </div>
         <div class="flex items-center mx-8">
-          <img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+          <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
         </div>
       </div>
       <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
@@ -388,9 +388,9 @@
         <script>
             var slideIndex = 0;
             var slides = [
-                "http://localhost/TAPEM/tapem/resources/img/slideshow1.png",
-                "http://localhost/TAPEM/tapem/resources/img/slideshow2.jpeg",
-                "http://localhost/TAPEM/tapem/resources/img/slideshow3.jpg"
+                "img/slideshow1.png",
+                "img/slideshow2.jpeg",
+                "img/slideshow3.jpg"
             ];
 
             function changeSlide(n) {

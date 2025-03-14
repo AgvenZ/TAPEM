@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -199,7 +199,7 @@
         <div class="container mx-auto flex justify-between items-center py-4">
             <div class="flex items-center">
                 <a href="/" onclick="refreshPage(event)">
-                    <img src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
                 </a>
                 <script>
                     function refreshPage(event) {
@@ -285,7 +285,7 @@
 <body class="bg-black text-white">
     <div class="relative min-h-screen flex items-center justify-center">
         <div class="absolute inset-0 w-full h-full">
-            <img alt="Background image" class="w-full h-full object-cover" src="http://localhost/TAPEM/tapem/resources/img/background4.png"/>
+            <img alt="Background image" class="w-full h-full object-cover" src="img/background4.png"/>
         </div>
         <div class="relative container mx-auto py-8">
             <br>
@@ -301,7 +301,7 @@
             <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                 <!-- Card 1 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita1'">
-                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita1.png"/>
+                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita1.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Doa Bersama Dan Serah Terima Jabatan Wali Kota Dan Wakil Wali Kota Semarang Periode 2025-2030</h2>
@@ -312,7 +312,7 @@
 
                 <!-- Card 2 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita2'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita2.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita2.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Staff Bagian Tata Pemerintahan Setda Kota Semarang Ikuti Bimtek Penulisan Berbasis Kearifan Lokal 2025</h2>
@@ -323,7 +323,7 @@
 
                 <!-- Card 3 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita3'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita3.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita3.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Rapat Sinkronisasi Data Kependudukan: Menuju Administrasi Yang Akurat</h2>
@@ -337,7 +337,7 @@
             <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                 <!-- Card 4 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita4'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita4.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita4.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">PEMENANG LOMBA DESAIN LOGO 477 KOTA SEMARANG</h2>
@@ -348,7 +348,7 @@
 
                 <!-- Card 5 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita5'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita5.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita5.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Warga Tegalsari Apresiasi Program Mbak Ita Sapa Warga</h2>
@@ -359,7 +359,7 @@
 
                 <!-- Card 6 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita6'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita6.jpg"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita6.jpg"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Kesempatan Magang di Bagian Tata Pemerintahan Setda Kota Semarang</h2>
@@ -373,7 +373,7 @@
             <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                 <!-- Card 7 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita7'">
-                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita7.png"/>
+                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita7.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Bagian Tata Pemerintahan Gelar Pembinaan Kelurahan untuk Meningkatkan Kualitas Kinerja, Data & Informasi</h2>
@@ -384,7 +384,7 @@
 
                 <!-- Card 8 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita8'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita8.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita8.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Pemerintah Kota Semarang Gelar Rapat Koordinasi Kewaspadaan Wilayah terhadap Bencana Kebakaran</h2>
@@ -395,7 +395,7 @@
 
                 <!-- Card 9 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita9'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="http://localhost/TAPEM/tapem/resources/img/berita9.png"/>
+                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita9.png"/>
                     <div class="p-6">
                         <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
                         <h2 class="text-xl font-bold mt-3">Bagian Tata Pemerintahan Gelar Bimtek Penelaahan Nama Rupabumi Kota Semarang</h2>
@@ -412,16 +412,16 @@
 </body>
 <div class="flex justify-center items-center py-10 bg-black">
     <div class="flex items-center mx-8">
-      <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+      <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
     </div>
     <div class="flex items-center mx-8">
-      <img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+      <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
     </div>
     <div class="flex items-center mx-8 bg-white text-black p-4">
-      <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+      <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
     </div>
     <div class="flex items-center mx-8">
-      <img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+      <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
     </div>
   </div>
   <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
@@ -432,9 +432,9 @@
   <script>
     var slideIndex = 0;
     var slides = [
-        "http://localhost/TAPEM/tapem/resources/img/slideshow1.png",
-        "http://localhost/TAPEM/tapem/resources/img/slideshow2.jpeg",
-        "http://localhost/TAPEM/tapem/resources/img/slideshow3.jpg"
+        "img/slideshow1.png",
+        "img/slideshow2.jpeg",
+        "img/slideshow3.jpg"
     ];
 
     function changeSlide(n) {

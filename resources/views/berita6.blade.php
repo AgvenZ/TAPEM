@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -245,7 +245,7 @@
         <div class="container mx-auto flex justify-between items-center py-4">
             <div class="flex items-center">
                 <a href="/" onclick="refreshPage(event)">
-                    <img src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
                 </a>
                 <script>
                     function refreshPage(event) {
@@ -331,7 +331,7 @@
         </div>
         <body class="bg-gray-100">
             <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="http://localhost/TAPEM/tapem/resources/img/background4.png" width="1920"/>
+             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
              <main class="container mx-auto py-8 relative z-10 rounded-lg">
               <div class="flex flex-col md:flex-row">
                <div class="md:w-2/3 mx-auto p-4">
@@ -353,19 +353,19 @@
                 <div class="carousel mt-4">
                  <div class="carousel-inner">
                   <div class="carousel-item active">
-                   <img alt="Wali Kota dan Wakil Wali Kota Semarang sedang memberikan pidato" class="w-full" height="300" src="http://localhost/TAPEM/tapem/resources/img/berita6.jpg" width="600"/>
+                   <img alt="Wali Kota dan Wakil Wali Kota Semarang sedang memberikan pidato" class="w-full" height="300" src="img/berita6.jpg" width="600"/>
                   </div>
                   <div class="carousel-item">
-                   <img alt="Wali Kota dan Wakil Wali Kota Semarang sedang berjabat tangan" class="w-full" height="300" src="http://localhost/TAPEM/tapem/resources/img/berita6-2.png" width="600"/>
+                   <img alt="Wali Kota dan Wakil Wali Kota Semarang sedang berjabat tangan" class="w-full" height="300" src="img/berita6-2.png" width="600"/>
                   </div>
                   <div class="carousel-item">
-                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="http://localhost/TAPEM/tapem/resources/img/berita6-3.png" width="600"/>
+                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="img/berita6-3.png" width="600"/>
                   </div>
                   <div class="carousel-item">
-                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="http://localhost/TAPEM/tapem/resources/img/berita6-4.jpg" width="600"/>
+                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="img/berita6-4.jpg" width="600"/>
                   </div>
                   <div class="carousel-item">
-                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="http://localhost/TAPEM/tapem/resources/img/berita6-5.png" width="600"/>
+                   <img alt="Wali Kota dan Wakil Wali Kota Semarang bersama tamu undangan" class="w-full" height="300" src="img/berita6-5.png" width="600"/>
                   </div>
                  </div>
                  <div class="carousel-control-prev" onclick="prevSlide()">
@@ -433,16 +433,16 @@
      </div>
       <div class="flex justify-center items-center py-10 bg-black">
        <div class="flex items-center mx-8">
-          <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+          <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
       </div>
       <div class="flex items-center mx-8">
-        <img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+        <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
       </div>
       <div class="flex items-center mx-8 bg-white text-black p-4">
-        <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+        <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
       </div>
       <div class="flex items-center mx-8">
-        <img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+        <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
        </div>
       </div>
       <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">

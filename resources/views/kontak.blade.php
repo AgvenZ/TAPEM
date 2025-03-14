@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -33,7 +33,7 @@
             transition: all 0.5s ease-in-out;
         }
         body {
-            background-image: url('http://localhost/TAPEM/tapem/resources/img/background2.png'); /* Placeholder for the background image */
+            background-image: url('img/background2.png'); /* Placeholder for the background image */
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -204,7 +204,7 @@
      <div class="container mx-auto flex justify-between items-center py-4">
       <div class="flex items-center">
        <a href="/" onclick="refreshPage(event)">
-        <img alt="Logo of TAPEM with city emblem" class="h-20 w-80 mr-4" height="80" src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png" width="320"/>
+        <img alt="Logo of TAPEM with city emblem" class="h-20 w-80 mr-4" height="80" src="img/logo-pemkot.png" width="320"/>
        </a>
        <script>
         function refreshPage(event) {
@@ -376,7 +376,7 @@
      </div>
     </div>
     <div class="relative flex items-center justify-center min-h-screen">
-     <img alt="Background image of a cityscape" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="http://localhost/TAPEM/tapem/resources/img/background2.png" width="1920"/>
+     <img alt="Background image of a cityscape" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background2.png" width="1920"/>
      <div class="container mx-auto py-12 relative z-10">
       <div class="text-white text-center">
        <h1 class="andika-font text-4xl font-bold mb-8">
@@ -393,37 +393,37 @@
        </div>
        <div class="space-y-4 text-left text-xl text-custom">
         <div class="flex items-center space-x-4">
-         <img alt="Instagram logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed1.png" width="48"/>
+         <img alt="Instagram logo" class="w-12 h-12" height="48" src="img/sosmed1.png" width="48"/>
          <a href="https://www.instagram.com/bagtapemkotasmg" target="_blank">
           @bagtapemkotasmg
          </a>
         </div>
         <div class="flex items-center space-x-4">
-         <img alt="Twitter logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed2.png" width="48"/>
+         <img alt="Twitter logo" class="w-12 h-12" height="48" src="img/sosmed2.png" width="48"/>
          <a href="https://twitter.com/bagtapemkotasmg" target="_blank">
           @bagtapemkotasmg
          </a>
         </div>
         <div class="flex items-center space-x-4">
-         <img alt="TikTok logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed3.png" width="48"/>
+         <img alt="TikTok logo" class="w-12 h-12" height="48" src="img/sosmed3.png" width="48"/>
          <a href="https://www.tiktok.com/@bagtapemkotasmg" target="_blank">
           @bagtapemkotasmg
          </a>
         </div>
         <div class="flex items-center space-x-4">
-         <img alt="Facebook logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed4.png" width="48"/>
+         <img alt="Facebook logo" class="w-12 h-12" height="48" src="img/sosmed4.png" width="48"/>
          <a href="https://www.facebook.com/profile.php?id=100085015884271" target="_blank">
           Bagian Tata Pemerintahan Setda Kota Semarang
          </a>
         </div>
         <div class="flex items-center space-x-4">
-         <img alt="YouTube logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed5.png" width="48"/>
+         <img alt="YouTube logo" class="w-12 h-12" height="48" src="img/sosmed5.png" width="48"/>
          <a href="https://youtube.com/@bagiantatapemerintahansetd2949?si=CL0zivLNQYl37FEr" target="_blank">
           Bagian Tapem Setda Kota Semarang
          </a>
         </div>
         <div class="flex items-center space-x-4">
-         <img alt="Envelope logo" class="w-12 h-12" height="48" src="http://localhost/TAPEM/tapem/resources/img/sosmed6.png" width="48"/>
+         <img alt="Envelope logo" class="w-12 h-12" height="48" src="img/sosmed6.png" width="48"/>
          <a href="mailto:bagtapem@semarangkota.go.id">
           bagtapem@semarangkota.go.id
          </a>
@@ -434,16 +434,16 @@
     </div>
     <div class="flex justify-center items-center py-10 bg-black">
      <div class="flex items-center mx-8">
-      <img alt="Semarang Kota logo and text" class="h-20" height="80" src="http://localhost/TAPEM/tapem/resources/img/logo1.png" width="200"/>
+      <img alt="Semarang Kota logo and text" class="h-20" height="80" src="img/logo1.png" width="200"/>
      </div>
      <div class="flex items-center mx-8">
-      <img alt="Semarang Smart City logo and text" class="h-20" height="80" src="http://localhost/TAPEM/tapem/resources/img/logo2.png" width="200"/>
+      <img alt="Semarang Smart City logo and text" class="h-20" height="80" src="img/logo2.png" width="200"/>
      </div>
      <div class="flex items-center mx-8 bg-white text-black p-4">
-      <img alt="Satu Data Kota Semarang logo and text" class="h-20" height="80" src="http://localhost/TAPEM/tapem/resources/img/logo3.png" width="200"/>
+      <img alt="Satu Data Kota Semarang logo and text" class="h-20" height="80" src="img/logo3.png" width="200"/>
      </div>
      <div class="flex items-center mx-8">
-      <img alt="PPID logo and text" class="h-20" height="80" src="http://localhost/TAPEM/tapem/resources/img/logo4.png" width="200"/>
+      <img alt="PPID logo and text" class="h-20" height="80" src="img/logo4.png" width="200"/>
      </div>
     </div>
     <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">

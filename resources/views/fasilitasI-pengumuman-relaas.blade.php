@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="http://localhost/TAPEM/tapem/resources/img/rel.png">
+    <link rel="icon" type="image/png" href="img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
@@ -207,7 +207,7 @@
      <div class="container mx-auto flex justify-between items-center py-4">
       <div class="flex items-center">
        <a href="/" onclick="refreshPage(event)">
-        <img alt="Logo TAPEM" class="h-20 w-80 mr-4" src="http://localhost/TAPEM/tapem/resources/img/logo-pemkot.png"/>
+        <img alt="Logo TAPEM" class="h-20 w-80 mr-4" src="img/logo-pemkot.png"/>
        </a>
       </div>
       <div class="hidden md:flex items-center space-x-6 inconsolata-font">
@@ -374,7 +374,7 @@
      </div>
     </div>
     <div class="relative flex items-center justify-center min-h-screen bg-cover bg-center">
-     <img alt="Background image of a scenic view with mountains and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="http://localhost/TAPEM/tapem/resources/img/background4.png" width="1920"/>
+     <img alt="Background image of a scenic view with mountains and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
      <div class="relative p-20 rounded-lg max-w-6xl text-white z-10">
       <p class="text-2xl arvo-font mb-8 text-justify">
        Relaas/surat panggilan merupakan penyampaian secara resmi (official) dan patut (properly) kepada pihak-pihak yang terlibat dalam suatu perkara di pengadilan. Tujuan relaas adalah agar para pihak memenuhi dan melaksanakan hal-hal yang diminta dan diperintahkan pengadilan.
@@ -382,21 +382,21 @@
       <p class="text-2xl arvo-font mb-8 text-justify">
        Relaas panggilan harus dalam bentuk tertulis, tidak dibenarkan dalam bentuk lisan, isi relaas panggilan meliputi nama yang dipanggil, hari dan jam serta tempat sidang, membawa saksi-saksi jika diperlukan, membawa segala surat-surat yang hendak diperlukan dan penegasan dapat menjawab gugatan dengan surat. Panggilan disampaikan langsung kepada para pihak yang berperkara di tempat tinggal yang bersangkutan. Apabila pihak berperkara tidak dijumpai di tempat tinggalnya, maka panggilan disampaikan melalui Kepala Desa atau Kelurahan. Bagian Tata Pemerintahan memiliki tugas untuk memfasilitasi pengumuman relaas di Kota Semarang
       </p>
-      <img alt="Descriptive image related to Kecamatan and Kelurahan" class="mt-8 w-full h-auto transition-zoom" height="1920" src="http://localhost/TAPEM/tapem/resources/img/poster2.png" width="1080"/>
+      <img alt="Descriptive image related to Kecamatan and Kelurahan" class="mt-8 w-full h-auto transition-zoom" height="1920" src="img/poster2.png" width="1080"/>
      </div>
     </div>
     <div class="flex justify-center items-center py-10 bg-black">
      <div class="flex items-center mx-8">
-      <img alt="Semarang Kota logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo1.png"/>
+      <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
      </div>
      <div class="flex items-center mx-8">
-      <img alt="Semarang Smart City logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo2.png"/>
+      <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
      </div>
      <div class="flex items-center mx-8 bg-white text-black p-4">
-      <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo3.png"/>
+      <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
      </div>
      <div class="flex items-center mx-8">
-      <img alt="PPID logo and text" class="h-20" src="http://localhost/TAPEM/tapem/resources/img/logo4.png"/>
+      <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
      </div>
     </div>
     <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
