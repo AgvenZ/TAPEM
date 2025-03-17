@@ -15,16 +15,21 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>No</th>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Created At</th>
+                            <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($news as $article)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $article->id }}</td>
                                 <td>{{ $article->title }}</td>
                                 <td>
                                     @if($article->image_path)
@@ -41,6 +46,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $article->created_at->format('Y-m-d H:i') }}</td>
+                                <td>{{ $article->updated_at->format('Y-m-d H:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', $article) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i> Edit
@@ -56,7 +62,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">No news articles found.</td>
+                                <td colspan="8" class="text-center">No news articles found.</td>
                             </tr>
                         @endforelse
                     </tbody>
