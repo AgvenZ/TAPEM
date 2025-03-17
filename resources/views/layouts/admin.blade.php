@@ -32,6 +32,12 @@
             width: 20px;
             text-align: center;
         }
+        .nav.flex-column .border-top {
+            margin: 1rem 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            height: 1px;
+        }
         @media (max-width: 768px) {
             #sidebar {
                 margin-left: -250px;
@@ -68,6 +74,10 @@
                 </a>
                 <a href="#" class="sidebar-link">
                     <i class="fas fa-cog"></i> Settings
+                </a>
+                <div class="border-top border-secondary my-2"></div>
+                <a href="/" class="sidebar-link" target="_blank">
+                    <i class="fas fa-globe"></i> View Website
                 </a>
             </div>
         </nav>
