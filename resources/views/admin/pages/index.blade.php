@@ -16,7 +16,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID</th>
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Status</th>
@@ -28,8 +27,7 @@
                     <tbody>
                         @forelse($pages as $page)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $page->id }}</td>
+                                <td>{{ ($pages->currentPage() - 1) * $pages->perPage() + $loop->iteration }}</td>
                                 <td>{{ $page->title }}</td>
                                 <td>{{ $page->slug }}</td>
                                 <td>
@@ -67,7 +65,9 @@
                     </tbody>
                 </table>
             </div>
-            {{ $pages->links() }}
+            <div class="d-flex justify-content-end">
+                {{ $pages->links('pagination::bootstrap-4')->withQueryString(1) }}
+            </div>
         </div>
     </div>
 @endsection

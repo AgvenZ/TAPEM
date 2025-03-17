@@ -16,7 +16,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID</th>
                             <th>Title</th>
                             <th>Image</th>
                             <th>Status</th>
@@ -28,8 +27,7 @@
                     <tbody>
                         @forelse($news as $article)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $article->id }}</td>
+                                <td>{{ ($news->currentPage() - 1) * $news->perPage() + $loop->iteration }}</td>
                                 <td>{{ $article->title }}</td>
                                 <td>
                                     @if($article->image_path)
@@ -73,7 +71,9 @@
                     </tbody>
                 </table>
             </div>
-            {{ $news->links() }}
+            <div class="d-flex justify-content-end">
+                {{ $news->links('pagination::bootstrap-4')->withQueryString(1) }}
+            </div>
         </div>
     </div>
 @endsection
