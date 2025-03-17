@@ -1,9 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Admin routes
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    // Admin dashboard
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    
+    // Pages management
+    Route::resource('pages', PageController::class);
+    
+    // News management
+    Route::resource('news', NewsController::class);
 });
 
 Route::get('/strukturorganisasi', function () {
@@ -105,3 +123,5 @@ Route::get('/berita9', function () {
 Route::get('/tentang', function () {
     return view('tentang');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
