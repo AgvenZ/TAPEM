@@ -22,6 +22,8 @@
                     @enderror
                 </div>
 
+                <input type="hidden" name="slug" id="slug" value="{{ old('slug', $news->slug) }}">
+
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content', $news->content) }}</textarea>
@@ -44,8 +46,9 @@
                 </div>
 
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="is_published" name="is_published" {{ old('is_published', $news->is_published) ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_published">Publish this article</label>
+                    <input type="hidden" name="is_published" value="0">
+                    <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ $news->is_published ? 'checked' : '' }}>
+                    <label class="form-check-label" for="is_published">Publish this Article</label>
                 </div>
 
                 <div class="d-grid gap-2">
@@ -56,4 +59,15 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('title').addEventListener('input', function() {
+            let slug = this.value
+                .toLowerCase()
+                .replace(/[^a-z0-9-]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+            document.getElementById('slug').value = slug;
+        });
+    </script>
 @endsection

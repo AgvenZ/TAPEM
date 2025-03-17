@@ -30,60 +30,61 @@ class NewsController extends Controller
             'is_published' => 'boolean'
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']);
-        $validated['is_published'] = $request->has('is_published');
+        // Generate unique slug
+        $slug = Str::slug($validated['title']);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (News::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
+        $validated['slug'] = $slug;
+        // Set is_published to false by default unless checkbox is checked
+        $validated['is_published'] = false;
+        if ($request->has('is_published')) {
+            $validated['is_published'] = true;
+        }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('news', 'public');
-            $validated['image_path'] = $path;
+            $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
         News::create($validated);
 
         return redirect()->route('admin.news.index')
-            ->with('success', 'News article created successfully.');
+            ->with('success', 'News created successfully.');
     }
 
-    public function edit(News $news)
+    public function edit(news $news)
     {
         return view('admin.news.edit', compact('news'));
     }
 
-    public function update(Request $request, News $news)
+    public function update(Request $request, news $news)
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|max:2048',
-            'is_published' => 'boolean'
+            'slug' => 'required',
+            'is_published' => 'required|in:0,1'
         ]);
-
-        $validated['slug'] = Str::slug($validated['title']);
-        $validated['is_published'] = $request->has('is_published');
-
-        if ($request->hasFile('image')) {
-            if ($news->image_path) {
-                Storage::disk('public')->delete($news->image_path);
-            }
-            $path = $request->file('image')->store('news', 'public');
-            $validated['image_path'] = $path;
-        }
-
+    
+        // Convert is_published to boolean or integer as needed by your database
+        $validated['is_published'] = (int)$validated['is_published'];
+    
         $news->update($validated);
-
+    
         return redirect()->route('admin.news.index')
-            ->with('success', 'News article updated successfully.');
+            ->with('success', 'news updated successfully.');
     }
 
-    public function destroy(News $news)
+    public function destroy(news $news)
     {
-        if ($news->image_path) {
-            Storage::disk('public')->delete($news->image_path);
-        }
-
         $news->delete();
 
         return redirect()->route('admin.news.index')
-            ->with('success', 'News article deleted successfully.');
+            ->with('success', 'news deleted successfully.');
     }
 }

@@ -34,7 +34,7 @@
 
                 <div class="mb-3 form-check">
                     <input type="hidden" name="is_published" value="0">
-                    <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ old('is_published', $page->is_published) ? 'checked' : '' }}>
+                    <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ $page->is_published ? 'checked' : '' }}>
                     <label class="form-check-label" for="is_published">Publish this page</label>
                 </div>
 

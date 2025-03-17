@@ -29,7 +29,8 @@ class PageController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        $validated['is_published'] = $request->has('is_published');
+        // Convert is_published to integer
+        $validated['is_published'] = (int)$validated['is_published'];
 
         Page::create($validated);
 
@@ -47,14 +48,15 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'is_published' => 'boolean'
+            'slug' => 'required',
+            'is_published' => 'required|in:0,1'
         ]);
-
-        $validated['slug'] = Str::slug($validated['title']);
-        $validated['is_published'] = $request->has('is_published');
-
+    
+        // Convert is_published to boolean or integer as needed by your database
+        $validated['is_published'] = (int)$validated['is_published'];
+    
         $page->update($validated);
-
+    
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page updated successfully.');
     }
