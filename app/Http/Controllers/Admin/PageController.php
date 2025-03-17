@@ -68,4 +68,10 @@ class PageController extends Controller
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page deleted successfully.');
     }
+
+    public function show($slug)
+    {
+        $page = Page::where('slug', $slug)->firstOrFail();
+        return view('admin.pages.show', compact('page'));
+    }
 }

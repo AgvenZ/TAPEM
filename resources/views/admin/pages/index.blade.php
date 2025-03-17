@@ -22,7 +22,7 @@
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>
-                            <th>Actions</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,17 +41,22 @@
                                 </td>
                                 <td>{{ $page->created_at->format('Y-m-d H:i') }}</td>
                                 <td>{{ $page->updated_at->format('Y-m-d H:i') }}</td>
-                                <td>
-                                    <a href="{{ route('admin.pages.edit', $page) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this page?')">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </form>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a href="{{ route('admin.pages.show', $page->slug) }}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
