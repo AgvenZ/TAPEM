@@ -16,6 +16,11 @@ class NewsController extends Controller
         return view('admin.news.index', compact('news'));
     }
 
+    public function show(News $news)
+    {
+        return view('admin.news.show', compact('news'));
+    }
+
     public function create()
     {
         return view('admin.news.create');
@@ -57,12 +62,12 @@ class NewsController extends Controller
             ->with('success', 'News created successfully.');
     }
 
-    public function edit(news $news)
+    public function edit(News $news)
     {
         return view('admin.news.edit', compact('news'));
     }
 
-    public function update(Request $request, news $news)
+    public function update(Request $request, News $news)
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
@@ -80,7 +85,7 @@ class NewsController extends Controller
             ->with('success', 'news updated successfully.');
     }
 
-    public function destroy(news $news)
+    public function destroy(News $news)
     {
         $news->delete();
 

@@ -21,7 +21,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('pages', PageController::class);
     
     // News management
-    Route::resource('news', NewsController::class);
+    Route::resource('news', NewsController::class)->parameters(['news' => 'news:slug']);
 });
 
 Route::get('/strukturorganisasi', function () {
