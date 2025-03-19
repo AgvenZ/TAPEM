@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\MediaController;
 
 Auth::routes();
 
@@ -22,6 +23,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     
     // News management
     Route::resource('news', NewsController::class)->parameters(['news' => 'news:slug']);
+    
+    // Media Library
+    Route::get('/media', [MediaController::class, 'index'])->name('media.index');
+    Route::get('/media/create', [MediaController::class, 'create'])->name('media.create');
+    Route::post('/media', [MediaController::class, 'store'])->name('media.store');
+    Route::delete('/media/{media}', [MediaController::class, 'destroy'])->name('media.destroy');
+    Route::get('/media/select', [MediaController::class, 'select'])->name('media.select');
 });
 
 Route::get('/strukturorganisasi', function () {
