@@ -78,7 +78,7 @@
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Manage News</h5>
                                     <p class="card-text">Create, edit, and delete news articles</p>
-                                    <a href="{{ route('admin.news.index') }}" class="btn btn-primary">Go to News</a>
+                                    <a href="{{ route('admin.news.index') }}" class="btn btn-success">Go to News</a>
                                 </div>
                             </div>
                         </div>

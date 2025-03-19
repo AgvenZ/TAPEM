@@ -13,11 +13,12 @@ class News extends Model
         'title',
         'slug',
         'content',
-        'image',
+        'images',
         'is_published'
     ];
 
     protected $casts = [
-        'is_published' => 'boolean'
+        'is_published' => 'boolean',
+        'images' => 'array'
     ];
 }
