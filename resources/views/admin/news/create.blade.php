@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
+                    <label for="image" class="form-label">Images</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
                     <div class="mt-3">
                         <button type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 py-2 hover-shadow transition" onclick="openMediaSelector()" style="border: 1px dashed #0d6efd;">
@@ -38,14 +38,9 @@
                             <span>Select from Media Library</span>
                         </button>
                     </div>
-                    <div id="selected-image-preview" class="mt-3" style="display: none;">
-                        <div class="position-relative d-inline-block">
-                            <img src="" alt="Selected image" class="img-thumbnail" style="max-width: 200px;">
-                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" onclick="removeSelectedImage()">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                        <input type="hidden" name="selected_media_url" id="selected-media-url">
+                    <div id="selected-images-preview" class="mt-3" style="display: none;">
+                        <div id="selected-images-grid" class="row g-2"></div>
+                        <input type="hidden" name="selected_media_urls" id="selected-media-urls">
                     </div>
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -63,14 +58,22 @@
                 </style>
 
                 <script>
-                function removeSelectedImage() {
-                    const previewContainer = document.getElementById('selected-image-preview');
-                    const previewImage = previewContainer.querySelector('img');
-                    const urlInput = document.getElementById('selected-media-url');
+                function removeSelectedImage(urlToRemove) {
+                    const previewContainer = document.getElementById('selected-images-preview');
+                    const previewGrid = document.getElementById('selected-images-grid');
+                    const urlInput = document.getElementById('selected-media-urls');
                     
-                    previewContainer.style.display = 'none';
-                    previewImage.src = '';
-                    urlInput.value = '';
+                    const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
+                    
+                    if (selectedUrls.length === 0) {
+                        previewContainer.style.display = 'none';
+                        previewGrid.innerHTML = '';
+                        urlInput.value = '';
+                    } else {
+                        urlInput.value = JSON.stringify(selectedUrls);
+                        const imageToRemove = previewGrid.querySelector(`img[src="${urlToRemove}"]`).closest('.col-md-3');
+                        imageToRemove.remove();
+                    }
                 }
                 </script>
                 <input type="hidden" name="slug" id="slug" value="{{ old('slug') }}">
@@ -126,24 +129,42 @@
                         const img = template.querySelector('img');
                         const title = template.querySelector('.card-title');
                         const fileSize = template.querySelector('.file-size');
-                        const selectBtn = template.querySelector('.select-media');
+                        const checkbox = template.querySelector('.media-checkbox');
 
                         img.src = item.querySelector('img').src;
                         img.alt = item.querySelector('img').alt;
                         title.textContent = item.querySelector('.card-title').textContent;
                         fileSize.textContent = item.querySelector('.text-muted').textContent;
-                        selectBtn.dataset.url = item.querySelector('.select-media').dataset.url;
+                        checkbox.value = item.querySelector('.select-media').dataset.url;
 
-                        selectBtn.addEventListener('click', function() {
-                            const previewContainer = document.getElementById('selected-image-preview');
-                            const previewImage = previewContainer.querySelector('img');
-                            const urlInput = document.getElementById('selected-media-url');
+                        checkbox.addEventListener('change', function() {
+                            const selectedCount = document.querySelectorAll('.media-checkbox:checked').length;
+                            document.getElementById('selectedCount').textContent = `${selectedCount} items selected`;
+                            document.getElementById('confirmSelection').disabled = selectedCount === 0;
+                        });
+
+                        document.getElementById('confirmSelection').addEventListener('click', function() {
+                            const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);
+                            const previewContainer = document.getElementById('selected-images-preview');
+                            const previewGrid = document.getElementById('selected-images-grid');
+                            const urlInput = document.getElementById('selected-media-urls');
                             const fileInput = document.getElementById('image');
 
-                            previewImage.src = this.dataset.url;
-                            urlInput.value = this.dataset.url;
-                            previewContainer.style.display = 'block';
-                            fileInput.value = '';
+                            if (selectedUrls.length > 0) {
+                                previewGrid.innerHTML = selectedUrls.map(url => `
+                                    <div class="col-md-3">
+                                        <div class="position-relative">
+                                            <img src="${url}" class="img-fluid rounded" alt="Selected image">
+                                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('');
+                                urlInput.value = JSON.stringify(selectedUrls);
+                                previewContainer.style.display = 'block';
+                                fileInput.value = '';
+                            }
 
                             bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
                         });

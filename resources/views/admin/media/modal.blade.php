@@ -3,7 +3,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="mediaModalLabel">Select Media</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="ms-auto d-flex align-items-center">
+                    <span id="selectedCount" class="me-3">0 items selected</span>
+                    <button type="button" class="btn btn-primary me-2" id="confirmSelection" disabled>Confirm Selection</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="row" id="mediaItems">
@@ -29,15 +33,19 @@
 <template id="mediaItemTemplate">
     <div class="col-md-3 mb-4">
         <div class="card h-100">
-            <img src="" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+            <div class="position-relative">
+                <img src="" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <div class="position-absolute top-0 end-0 p-2">
+                    <div class="form-check">
+                        <input class="form-check-input media-checkbox" type="checkbox" value="" style="transform: scale(1.5);">
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <h5 class="card-title text-truncate"></h5>
                 <p class="card-text">
                     <small class="text-muted file-size"></small>
                 </p>
-                <button type="button" class="btn btn-primary btn-sm w-100 select-media" data-url="">
-                    <i class="fas fa-check"></i> Select
-                </button>
             </div>
         </div>
     </div>

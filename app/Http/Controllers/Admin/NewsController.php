@@ -32,6 +32,7 @@ class NewsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'image' => 'nullable|image|max:2048',
+            'selected_media_urls' => 'nullable|string',
             'is_published' => 'boolean'
         ]);
 
@@ -52,8 +53,24 @@ class NewsController extends Controller
             $validated['is_published'] = true;
         }
 
+        // Handle image uploads and media library selections
+        $images = [];
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('news', 'public');
+            $images[] = $request->file('image')->store('news', 'public');
+        }
+        if ($request->filled('selected_media_urls')) {
+            $selectedUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($selectedUrls)) {
+                foreach ($selectedUrls as $url) {
+                    $path = str_replace('/storage/', '', $url);
+                    if (!in_array($path, $images)) {
+                        $images[] = $path;
+                    }
+                }
+            }
+        }
+        if (!empty($images)) {
+            $validated['images'] = json_encode($images);
         }
 
         News::create($validated);
@@ -73,11 +90,33 @@ class NewsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'slug' => 'required',
+            'image' => 'nullable|image|max:2048',
+            'selected_media_url' => 'nullable|string',
             'is_published' => 'required|in:0,1'
         ]);
     
         // Convert is_published to boolean or integer as needed by your database
         $validated['is_published'] = (int)$validated['is_published'];
+
+        // Handle image uploads and media library selections
+        $images = [];
+        if ($request->hasFile('image')) {
+            $images[] = $request->file('image')->store('news', 'public');
+        }
+        if ($request->filled('selected_media_urls')) {
+            $selectedUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($selectedUrls)) {
+                foreach ($selectedUrls as $url) {
+                    $path = str_replace('/storage/', '', $url);
+                    if (!in_array($path, $images)) {
+                        $images[] = $path;
+                    }
+                }
+            }
+        }
+        if (!empty($images)) {
+            $validated['images'] = json_encode($images);
+        }
     
         $news->update($validated);
     
