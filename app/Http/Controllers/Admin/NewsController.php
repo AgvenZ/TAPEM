@@ -121,7 +121,7 @@ class NewsController extends Controller
         $news->update($validated);
     
         return redirect()->route('admin.news.index')
-            ->with('success', 'News updated successfully.');
+            ->with('success', 'News updated successfully');
     }
 
     public function destroy(News $news)
@@ -129,6 +129,6 @@ class NewsController extends Controller
         $news->delete();
 
         return redirect()->route('admin.news.index')
-            ->with('success', 'News deleted successfully.');
+            ->with('success', 'News deleted successfully');
     }
 }
