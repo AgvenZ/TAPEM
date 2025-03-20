@@ -106,12 +106,6 @@
             </nav>
 
             <div class="container-fluid p-4">
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 @if($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">
@@ -128,6 +122,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/toast.js"></script>
     <script>
         document.getElementById('sidebarCollapse').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('collapsed');
@@ -145,6 +140,11 @@
                 document.getElementById('sidebar').classList.remove('collapsed');
             }
         });
+
+        // Show toast for success messages
+        @if(session('success'))
+            showToast("{{ session('success') }}", 'success');
+        @endif
     </script>
 </body>
 </html>

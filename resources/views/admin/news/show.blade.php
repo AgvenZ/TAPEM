@@ -52,16 +52,16 @@
                         </div>
                         
                         @if($news->images)
-                        <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+                        <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
                             <div class="carousel-indicators">
                                 @foreach(json_decode($news->images) as $index => $image)
                                     <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
-                            <div class="carousel-inner rounded-lg">
+                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
                                 @foreach(json_decode($news->images) as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="News Image {{ $index + 1 }}">
+                                        <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="News Image {{ $index + 1 }}" style="object-fit: contain;">
                                     </div>
                                 @endforeach
                             </div>
