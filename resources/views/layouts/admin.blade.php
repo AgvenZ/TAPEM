@@ -14,7 +14,7 @@
             min-height: 100vh;
             width: 250px;
             transition: all 0.3s;
-            background-color: #000002 !important;
+            background-color: #212529 !important;
         }
         #sidebar.collapsed {
             margin-left: -250px;
@@ -56,7 +56,7 @@
         }
         /* Add these new styles */
         .navbar {
-            background-color: #000000 !important;
+            background-color: #212529 !important;
         }
         .btn-dark {
             background-color: transparent;
