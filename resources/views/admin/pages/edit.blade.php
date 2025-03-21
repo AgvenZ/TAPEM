@@ -1,9 +1,9 @@
 @extends('layouts.admin')
-@section('title', 'Edit page Article')
+@section('title', 'Edit Page')
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Edit page Article</h1>
+        <h1>Edit Page</h1>
         <a href="{{ route('admin.pages.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Back to page
         </a>
@@ -44,19 +44,24 @@
                     <div id="selected-images-preview" class="mt-3">
                         <div id="selected-images-grid" class="row g-2">
                             @if($page->images)
-                                @foreach(json_decode($page->images) as $image)
-                                    <div class="col-md-3">
-                                        <div class="position-relative">
-                                            <img src="{{ Storage::url($image) }}" class="img-fluid rounded" alt="page Image">
-                                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('{{ Storage::url($image) }}')">
-                                                <i class="fas fa-times"></i>
-                                            </button>
+                                @php
+                                    $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
+                                @endphp
+                                @if(is_array($images))
+                                    @foreach($images as $image)
+                                        <div class="col-md-3">
+                                            <div class="position-relative">
+                                                <img src="{{ Storage::url($image) }}" class="img-fluid rounded" alt="page Image">
+                                                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('{{ Storage::url($image) }}')">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @endif
                             @endif
                         </div>
-                        <input type="hidden" name="selected_media_urls" id="selected-media-urls" value="{{ $page->images ? json_encode(array_map(function($img) { return Storage::url($img); }, json_decode($page->images))) : '' }}">
+                        <input type="hidden" name="selected_media_urls" id="selected-media-urls" value="{{ $page->images ? json_encode(array_map(function($img) { return Storage::url($img); }, is_array($page->images) ? $page->images : json_decode($page->images, true))) : '' }}">
                     </div>
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -96,12 +101,12 @@
                 <div class="mb-3 form-check">
                     <input type="hidden" name="is_published" value="0">
                     <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ $page->is_published ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_published">Publish this Article</label>
+                    <label class="form-check-label" for="is_published">Publish this Page</label>
                 </div>
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Update Article
+                        <i class="fas fa-save"></i> Update Page
                     </button>
                 </div>
             </form>

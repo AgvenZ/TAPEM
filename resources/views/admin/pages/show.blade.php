@@ -265,15 +265,17 @@
                         </div>
                         
                         @if($page->images)
+                        @php
+                            $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
+                        @endphp
                         <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
-                            <div class="carousel-indicators">
-                                @foreach(json_decode($page->images) as $index => $image)
-                                    <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                                @foreach($images as $index => $image)
+                                    <button type="button" data-bs-target="#pagesCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
                             <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
-                                @foreach(json_decode($page->images) as $index => $image)
+                                @foreach($images as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                         <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="News Image {{ $index + 1 }}" style="object-fit: contain;">
                                     </div>

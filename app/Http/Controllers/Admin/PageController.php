@@ -26,15 +26,28 @@ class PageController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'is_published' => 'boolean',
-            'images' => 'nullable|array'
+            'parent_page' => 'nullable|string',
+            'selected_media_urls' => 'nullable|string'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        // Convert is_published to integer
         $validated['is_published'] = (int)$validated['is_published'];
         
-        if ($request->has('images')) {
-            $validated['images'] = $request->images;
+        // Handle selected media URLs
+        if ($request->filled('selected_media_urls')) {
+            $mediaUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($mediaUrls)) {
+                $validated['images'] = array_map(function($url) {
+                    return str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+                }, $mediaUrls);
+            }
+        }
+
+        // Handle direct file upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $validated['images'] = $validated['images'] ?? [];
+            $validated['images'][] = str_replace('public/', '', $path);
         }
 
         // Set the order value to be higher than the highest existing order
@@ -59,14 +72,27 @@ class PageController extends Controller
             'content' => 'required',
             'slug' => 'required',
             'is_published' => 'required|in:0,1',
-            'images' => 'nullable|array'
+            'parent_page' => 'nullable|string',
+            'selected_media_urls' => 'nullable|string'
         ]);
     
-        // Convert is_published to boolean or integer as needed by your database
         $validated['is_published'] = (int)$validated['is_published'];
         
-        if ($request->has('images')) {
-            $validated['images'] = $request->images;
+        // Handle selected media URLs
+        if ($request->filled('selected_media_urls')) {
+            $mediaUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($mediaUrls)) {
+                $validated['images'] = array_map(function($url) {
+                    return str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+                }, $mediaUrls);
+            }
+        }
+
+        // Handle direct file upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $validated['images'] = $validated['images'] ?? [];
+            $validated['images'][] = str_replace('public/', '', $path);
         }
     
         $page->update($validated);
