@@ -7,10 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #00eaff;
+        }
         #sidebar {
             min-height: 100vh;
             width: 250px;
             transition: all 0.3s;
+            background-color: #1900ff !important;
         }
         #sidebar.collapsed {
             margin-left: -250px;
@@ -24,7 +28,7 @@
             transition: all 0.3s;
         }
         .sidebar-link:hover {
-            background: #0d6efd;
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
         .sidebar-link i {
@@ -49,6 +53,17 @@
         #content {
             width: 100%;
             transition: all 0.3s;
+        }
+        /* Add these new styles */
+        .navbar {
+            background-color: #001eff !important;
+        }
+        .btn-dark {
+            background-color: transparent;
+            border: none;
+        }
+        .btn-dark:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>

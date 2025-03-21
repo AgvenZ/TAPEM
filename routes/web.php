@@ -15,8 +15,8 @@ Route::get('/', function () {
 
 // Admin routes
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    // Admin dashboard
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('admins', AdminController::class);
     
     // Pages management
     Route::resource('pages', PageController::class);
