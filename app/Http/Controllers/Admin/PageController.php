@@ -11,7 +11,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::latest()->paginate(10);
+        $pages = Page::orderBy('order', 'desc')->paginate(10);
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -25,12 +25,21 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'is_published' => 'boolean'
+            'is_published' => 'boolean',
+            'images' => 'nullable|array'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
         // Convert is_published to integer
         $validated['is_published'] = (int)$validated['is_published'];
+        
+        if ($request->has('images')) {
+            $validated['images'] = $request->images;
+        }
+
+        // Set the order value to be higher than the highest existing order
+        $highestOrder = Page::max('order') ?? 0;
+        $validated['order'] = $highestOrder + 1;
 
         Page::create($validated);
 
@@ -49,11 +58,16 @@ class PageController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'slug' => 'required',
-            'is_published' => 'required|in:0,1'
+            'is_published' => 'required|in:0,1',
+            'images' => 'nullable|array'
         ]);
     
         // Convert is_published to boolean or integer as needed by your database
         $validated['is_published'] = (int)$validated['is_published'];
+        
+        if ($request->has('images')) {
+            $validated['images'] = $request->images;
+        }
     
         $page->update($validated);
     
