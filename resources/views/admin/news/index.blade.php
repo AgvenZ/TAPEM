@@ -17,7 +17,6 @@
                         <tr>
                             <th>No</th>
                             <th>Title</th>
-                            <th>Image</th>
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>
@@ -29,13 +28,6 @@
                             <tr>
                                 <td>{{ ($news->currentPage() - 1) * $news->perPage() + $loop->iteration }}</td>
                                 <td>{{ $article->title }}</td>
-                                <td>
-                                    @if($article->image_path)
-                                        <img src="{{ Storage::url($article->image_path) }}" alt="{{ $article->title }}" class="img-thumbnail" style="max-width: 100px;">
-                                    @else
-                                        No Image
-                                    @endif
-                                </td>
                                 <td>
                                     @if($article->is_published)
                                         <span class="badge bg-success">Published</span>
