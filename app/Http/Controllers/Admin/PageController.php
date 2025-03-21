@@ -11,7 +11,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::latest()->paginate(10);
+        $pages = Page::orderBy('order', 'desc')->paginate(10);
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -25,12 +25,34 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'is_published' => 'boolean'
+            'is_published' => 'boolean',
+            'parent_page' => 'nullable|string',
+            'selected_media_urls' => 'nullable|string'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        // Convert is_published to integer
         $validated['is_published'] = (int)$validated['is_published'];
+        
+        // Handle selected media URLs
+        if ($request->filled('selected_media_urls')) {
+            $mediaUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($mediaUrls)) {
+                $validated['images'] = array_map(function($url) {
+                    return str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+                }, $mediaUrls);
+            }
+        }
+
+        // Handle direct file upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $validated['images'] = $validated['images'] ?? [];
+            $validated['images'][] = str_replace('public/', '', $path);
+        }
+
+        // Set the order value to be higher than the highest existing order
+        $highestOrder = Page::max('order') ?? 0;
+        $validated['order'] = $highestOrder + 1;
 
         Page::create($validated);
 
@@ -49,11 +71,29 @@ class PageController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'slug' => 'required',
-            'is_published' => 'required|in:0,1'
+            'is_published' => 'required|in:0,1',
+            'parent_page' => 'nullable|string',
+            'selected_media_urls' => 'nullable|string'
         ]);
     
-        // Convert is_published to boolean or integer as needed by your database
         $validated['is_published'] = (int)$validated['is_published'];
+        
+        // Handle selected media URLs
+        if ($request->filled('selected_media_urls')) {
+            $mediaUrls = json_decode($request->selected_media_urls, true);
+            if (is_array($mediaUrls)) {
+                $validated['images'] = array_map(function($url) {
+                    return str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+                }, $mediaUrls);
+            }
+        }
+
+        // Handle direct file upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $validated['images'] = $validated['images'] ?? [];
+            $validated['images'][] = str_replace('public/', '', $path);
+        }
     
         $page->update($validated);
     

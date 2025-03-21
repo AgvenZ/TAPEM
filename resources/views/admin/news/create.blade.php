@@ -104,11 +104,14 @@
             loadMediaItems();
         }
 
+        let selectedMediaUrls = [];
+
         function loadMediaItems(page = 1) {
             const mediaItems = document.getElementById('mediaItems');
             const mediaLoader = document.getElementById('mediaLoader');
             const mediaPagination = document.getElementById('mediaPagination');
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
+            const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
             
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
@@ -135,13 +138,27 @@
                         img.alt = item.querySelector('img').alt;
                         title.textContent = item.querySelector('.card-title').textContent;
                         fileSize.textContent = item.querySelector('.text-muted').textContent;
-                        checkbox.value = item.querySelector('.select-media').dataset.url;
+                        const imageUrl = item.querySelector('.select-media').dataset.url;
+                        checkbox.value = imageUrl;
+                        checkbox.checked = selectedMediaUrls.includes(imageUrl);
+                        const mediaUrl = item.querySelector('.select-media').dataset.url;
+                        checkbox.value = mediaUrl;
+                        
+                        // Check if this image was previously selected
+                        if (selectedMediaUrls.includes(mediaUrl)) {
+                            checkbox.checked = true;
+                        }
 
                         checkbox.addEventListener('change', function() {
                             const selectedCount = document.querySelectorAll('.media-checkbox:checked').length;
                             document.getElementById('selectedCount').textContent = `${selectedCount} items selected`;
                             document.getElementById('confirmSelection').disabled = selectedCount === 0;
                         });
+
+                        // Update initial selected count
+                        const selectedCount = document.querySelectorAll('.media-checkbox:checked').length;
+                        document.getElementById('selectedCount').textContent = `${selectedCount} items selected`;
+                        document.getElementById('confirmSelection').disabled = selectedCount === 0;
 
                         document.getElementById('confirmSelection').addEventListener('click', function() {
                             const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);

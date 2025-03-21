@@ -2,16 +2,53 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>{{ $news->title }} - Tata Pemerintahan Kota Semarang</title>
-    <link rel="icon" type="image/png" href="{{ asset('img/rel.png') }}">
+    <title>{{ $page->title }} - Tata Pemerintahan Kota Semarang</title>
+    <link rel="icon" type="image/png" href="/img/rel.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 2s ease-out, transform 2s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .slide-in.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 2s ease-out, transform 2s ease-out;
+        }
+        .zoom-out {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .zoom-out.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
         .hover-grow {
             display: inline-block;
         }
@@ -93,6 +130,7 @@
             font-family: 'Andika New Basic', sans-serif;
         }
     </style>
+
     <script>
         function toggleDropdown(event, id) {
             event.stopPropagation();
@@ -198,18 +236,17 @@
         </nav>
     </header>
 
-<body class="bg-gray-100">
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">BERITA</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-16">
-                <span onclick="window.location.href='/'" class="cursor-pointer">BERANDA</span>
+            <div class="text-2xl font-bold andika-font ml-20">{{ $page->title }}</div>
+            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer">HOME</span>
                 <i class="fas fa-chevron-right"></i>
-                <span>BERITA</span>
+                <span>{{ $page->title }}</span>
             </div>
         </div>
     </div>
-    
+
     <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
         <main class="container mx-auto py-8 relative z-10 rounded-lg">
@@ -217,25 +254,28 @@
                 <div class="md:w-2/3 mx-auto p-4">
                     <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
                         <h1 class="text-4xl judson-font font-bold text-center">
-                            {{ $news->title }}
+                            {{ $page->title }}
                         </h1>
                         <div class="flex justify-center arvo-font items-center text-white mt-2">
                             <span class="mr-2">
-                                {{ $news->created_at->format('Y-m-d') }}
+                                {{ $page->created_at->format('Y-m-d') }}
                             </span>
                             <span class="mr-2">|</span>
                             <span>tapem</span>
                         </div>
                         
-                        @if($news->images)
+                        @if($page->images)
+                        @php
+                            $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
+                        @endphp
                         <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
-                            <div class="carousel-indicators">
-                                @foreach(json_decode($news->images) as $index => $image)
-                                    <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                                @foreach($images as $index => $image)
+                                    <button type="button" data-bs-target="#pagesCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
+                            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
-                                @foreach(json_decode($news->images) as $index => $image)
+                                @foreach($images as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                         <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="News Image {{ $index + 1 }}" style="object-fit: contain;">
                                     </div>
@@ -253,7 +293,7 @@
                         @endif
 
                         <div class="text-2xl inconsolata-font mt-4 text-justify">
-                            {!! nl2br(e($news->content)) !!}
+                            {!! nl2br(e($page->content)) !!}
                         </div>
 
                     </div>
@@ -262,7 +302,7 @@
             
         </main>
     </div>
-    
+
     <div class="flex justify-center items-center py-10 bg-black">
         <div class="flex items-center mx-8">
             <img alt="Semarang Kota logo and text" class="h-20" src="/img/logo1.png"/>
@@ -281,6 +321,3 @@
     <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
         <p>© 2025 Bagian Tata Pemerintahan, Setda Kota Semarang All rights reserved</p>
     </footer>
-
-</body>
-</html>

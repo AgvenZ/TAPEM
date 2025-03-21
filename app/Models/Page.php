@@ -14,11 +14,14 @@ class Page extends Model
         'title',
         'slug',
         'content',
-        'is_published'
+        'is_published',
+        'image_path',
+        'images'
     ];
 
     protected $casts = [
-        'is_published' => 'boolean'
+        'is_published' => 'boolean',
+        'images' => 'array'
     ];
 
     protected static function boot()
