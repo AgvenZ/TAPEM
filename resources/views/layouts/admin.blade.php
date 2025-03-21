@@ -8,13 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #00eaff;
+            background-color: #ffffff;
         }
         #sidebar {
             min-height: 100vh;
             width: 250px;
             transition: all 0.3s;
-            background-color: #1900ff !important;
+            background-color: #000002 !important;
         }
         #sidebar.collapsed {
             margin-left: -250px;
@@ -56,7 +56,7 @@
         }
         /* Add these new styles */
         .navbar {
-            background-color: #001eff !important;
+            background-color: #000000 !important;
         }
         .btn-dark {
             background-color: transparent;
