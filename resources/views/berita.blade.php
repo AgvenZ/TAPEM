@@ -298,111 +298,31 @@
                 <span class="absolute left-0 bottom-0 w-full h-1 bg-yellow-500 transform scale-x-0 transition-transform duration-500 ease-in-out origin-left"></span>
             </h1>
             <br>
-            <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita1'">
-                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita1.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Doa Bersama Dan Serah Terima Jabatan Wali Kota Dan Wakil Wali Kota Semarang Periode 2025-2030</h2>
-                        <p class="text-gray-600 mt-3">Semarang, 20 Februari 2025 – Pemerintah Kota Semarang menggelar acara doa bersama dan serah terima jabatan...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita1">Read more</a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
+                @foreach($news as $item)
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col" onclick="window.location.href='{{ route('news.show', $item->slug) }}'">
+                        @if($item->images)
+                            @php
+                                $images = json_decode($item->images, true);
+                                $imagePath = is_array($images) && count($images) > 0 ? $images[0] : '';
+                                $imagePath = str_replace('public/', '', $imagePath);
+                            @endphp
+                            @if($imagePath)
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <img alt="{{ $item->title }}" class="w-full h-48 sm:h-56 object-cover" src="{{ asset('storage/' . $imagePath) }}"/>
+                                </div>
+                            @endif
+                        @endif
+                        <div class="p-4 sm:p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="bg-red-600 text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded inline-block">WARTA TAPEM</span>
+                                <h2 class="text-lg sm:text-xl font-bold mt-3 line-clamp-2">{{ $item->title }}</h2>
+                                <p class="text-gray-600 mt-3 text-sm sm:text-base line-clamp-3">{{ Str::limit(strip_tags($item->content), 150) }}</p>
+                            </div>
+                            <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer text-sm sm:text-base hover:text-red-700" href="{{ route('news.show', $item->slug) }}">Read more</a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita2'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita2.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Staff Bagian Tata Pemerintahan Setda Kota Semarang Ikuti Bimtek Penulisan Berbasis Kearifan Lokal 2025</h2>
-                        <p class="text-gray-600 mt-3">Semarang – Dalam rangka meningkatkan kompetensi pegawai, staff dari Bagian Tata Pemerintahan Setda Kota Semarang mengikuti...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita2">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita3'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita3.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Rapat Sinkronisasi Data Kependudukan: Menuju Administrasi Yang Akurat</h2>
-                        <p class="text-gray-600 mt-3">Semarang, (18/01/2025) – Dalam rangka meningkatkan akurasi dan kualitas administrasi kependudukan, Pemerintah Kota Semarang melalui Bagian Tata Pemerintahan...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita3">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
-                <!-- Card 4 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita4'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita4.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">PEMENANG LOMBA DESAIN LOGO 477 KOTA SEMARANG</h2>
-                        <p class="text-gray-600 mt-3">SEMARANG, 1 Februari 2024 - Muhammad Iqbal Febryan Kuningan, Jawa Barat, dinobatkan sebagai pemenang Lomba Desain Logo 477 Kota Semarang. Logo karyanya terpilih dari 500 desain yang masuk ke Dinas Komunikasi...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita4">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita5'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita5.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Warga Tegalsari Apresiasi Program Mbak Ita Sapa Warga</h2>
-                        <p class="text-gray-600 mt-3">Semarang, 8 Januari 2024 - Warga Kelurahan Tegalsari, Kecamatan Candisari, Kota Semarang, mengapresiasi program Mbak Ita Sapa Warga yang diselenggarakan oleh Pemerintah Kota...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita5">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita6'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita6.jpg"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Kesempatan Magang di Bagian Tata Pemerintahan Setda Kota Semarang</h2>
-                        <p class="text-gray-600 mt-3">Ingin merasakan pengalaman langsung bekerja di lingkungan pemerintahan? Inilah kesempatan emas buat kamu! Bagian Tata Pemerintahan Setda Kota Semarang membuka peluang magang bagi mahasiswa/pelajar...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita6">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
-                <!-- Card 7 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita7'">
-                    <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita7.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Bagian Tata Pemerintahan Gelar Pembinaan Kelurahan untuk Meningkatkan Kualitas Kinerja, Data & Informasi</h2>
-                        <p class="text-gray-600 mt-3">Semarang, 12 Oktober 2023 - Bagian Tata Pemerintahan Sekretariat Daerah Kota Semarang melakukan pembinaan kelurahan di beberapa kelurahan di Kota Semarang. Pembinaan tersebut dilakukan untuk meningkatkan kualitas penyusunan Laporan Evaluasi Kinerja, Penelaaha...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita7">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Card 8 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita8'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita8.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Pemerintah Kota Semarang Gelar Rapat Koordinasi Kewaspadaan Wilayah terhadap Bencana Kebakaran</h2>
-                        <p class="text-gray-600 mt-3">Warta Tapem - Semarang, 09 Oktober 2023 - Pemerintah Kota Semarang menggelar Rapat Koordinasi Kewaspadaan Wilayah terhadap Bencana Kebakaran pada Senin (09/7) di Situation Room  Balai Kota Semarang. Rapat ini dihadiri oleh Camat...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita8">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Card 9 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita9'">
-                    <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita9.png"/>
-                    <div class="p-6">
-                        <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                        <h2 class="text-xl font-bold mt-3">Bagian Tata Pemerintahan Gelar Bimtek Penelaahan Nama Rupabumi Kota Semarang</h2>
-                        <p class="text-gray-600 mt-3">Dalam rangka keberhasilan pelaksanaan proses dan optimalisasi pengumpulan data rupabumi di wilayah Kota Semarang, Bagian Tata Pemerintahan Sekretariat Daerah Kota Semarang melaksanakan kegiatan Bimbingan Teknis Penelaahan Nama Rupabumi...</p>
-                        <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita9">Read more</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <br>
             <br>
