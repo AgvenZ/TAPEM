@@ -68,9 +68,8 @@ Route::get('/penamaan-dan-pendataan-rupa-bumi', function () {
     return view('penamaan-dan-pendataan-rupa-bumi');
 });
 
-Route::get('/berita', function () {
-    return view('berita');
-});
+Route::get('/berita', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 
 Route::get('/galeri', function () {
     return view('galeri');
