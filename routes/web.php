@@ -71,6 +71,10 @@ Route::get('/penamaan-dan-pendataan-rupa-bumi', function () {
 Route::get('/berita', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 
+// Public pages routes
+Route::get('/pages', [\App\Http\Controllers\PageController::class, 'index'])->name('pages.index');
+Route::get('/pages/{page:slug}', [\App\Http\Controllers\PageController::class, 'show'])->name('pages.show');
+
 Route::get('/galeri', function () {
     return view('galeri');
 });

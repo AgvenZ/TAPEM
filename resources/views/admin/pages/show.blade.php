@@ -268,12 +268,12 @@
                         @php
                             $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
                         @endphp
-                        <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
+                        <div id="pagesCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
+                            <div class="carousel-indicators">
                                 @foreach($images as $index => $image)
                                     <button type="button" data-bs-target="#pagesCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
-                            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
                                 @foreach($images as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -281,11 +281,11 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#pagesCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#pagesCarousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>

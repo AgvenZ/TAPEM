@@ -296,6 +296,7 @@
         </div>
     </div>
 </body>
+
 <div class="flex justify-center items-center py-10 bg-black">
     <div class="flex items-center mx-8">
       <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
@@ -315,6 +316,7 @@
       © 2025 Bagian Tata Pemerintahan, Setda Kota Semarang All rights reserved
     </p>
   </footer>
+  
     <script>
          function changeSlide(n) {
                 slideIndex += n;
