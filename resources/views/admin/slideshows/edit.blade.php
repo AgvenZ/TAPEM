@@ -1,0 +1,46 @@
+@extends('layouts.admin')
+
+@section('content')
+<div class="container">
+    <h2>Edit Slideshow</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('admin.slideshows.update', $slideshow) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $slideshow->title) }}" required>
+                    @error('title')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                    <small class="form-text text-muted">Leave empty to keep the current image</small>
+                    @error('image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $slideshow->image_path) }}" alt="Current Image" style="max-height: 100px;">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="order" class="form-label">Display Order</label>
+                    <input type="number" class="form-control @error('order') is-invalid @enderror" id="order" name="order" value="{{ old('order', $slideshow->order) }}" min="0">
+                    @error('order')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="active" name="active" value="1" {{ old('active', $slideshow->active) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="active">Active</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Slideshow</button>
+                <a href="{{ route('admin.slideshows.index') }}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection

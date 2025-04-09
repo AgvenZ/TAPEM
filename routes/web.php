@@ -6,16 +6,22 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\SlideshowController;
 
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    $latestNews = \App\Models\News::where('is_published', true)
+        ->latest()
+        ->take(3)
+        ->get();
+    return view('welcome', compact('latestNews'));
 });
 
 // Admin routes
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('slideshows', SlideshowController::class);
     Route::resource('admins', AdminController::class);
     
     // Pages management

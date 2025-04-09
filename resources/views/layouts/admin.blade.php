@@ -78,6 +78,9 @@
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-link">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
+                <a href="{{ route('admin.slideshows.index') }}" class="sidebar-link">
+                    <i class="fas fa-film"></i> Slideshow
+                </a>
                 <a href="{{ route('admin.pages.index') }}" class="sidebar-link">
                     <i class="fas fa-file-alt"></i> Pages
                 </a>

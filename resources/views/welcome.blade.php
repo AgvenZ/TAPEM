@@ -275,9 +275,37 @@
     </header>
 </body>
     <div class="slideshow-container" id="slideshowContainer">
-        <img alt="Slideshow image" class="slideshow-image" id="slideshowImage" src="img/slideshow1.png"/>
-        <a class="prev" onclick="changeSlide(-1)">❮</a>
-        <a class="next" onclick="changeSlide(1)">❯</a>
+        @php
+            $slideshows = \App\Models\Slideshow::where('active', true)->orderBy('order')->get();
+        @endphp
+        @if($slideshows->count() > 0)
+            <img alt="{{ $slideshows->first()->title }}" class="slideshow-image" id="slideshowImage" src="{{ asset('storage/' . $slideshows->first()->image_path) }}"/>
+            <a class="prev" onclick="changeSlide(-1)">❮</a>
+            <a class="next" onclick="changeSlide(1)">❯</a>
+            <script>
+                let slideIndex = 0;
+                const slides = @json($slideshows->map(function($slideshow) {
+                    return [
+                        'image' => asset('storage/' . $slideshow->image_path),
+                        'title' => $slideshow->title
+                    ];
+                }));
+
+                function changeSlide(n) {
+                    slideIndex += n;
+                    if (slideIndex >= slides.length) slideIndex = 0;
+                    if (slideIndex < 0) slideIndex = slides.length - 1;
+                    const image = document.getElementById('slideshowImage');
+                    image.src = slides[slideIndex].image;
+                    image.alt = slides[slideIndex].title;
+                }
+
+                // Auto change slide every 5 seconds
+                setInterval(() => changeSlide(1), 5000);
+            </script>
+        @else
+            <img alt="Default Slideshow" class="slideshow-image" src="img/slideshow1.png"/>
+        @endif
     </div>
     <div class="bg-red-900 flex items-center justify-center min-h-screen relative py-20" id="contentContainer">
         <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="img/background1.png" width="1920"/>
@@ -328,38 +356,30 @@
                     <span class="absolute left-0 bottom-0 w-full h-1 bg-yellow-500 transform scale-x-0 transition-transform duration-500 ease-in-out origin-left"></span>
                 </h1>
                 <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
-                    <!-- Card 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita1'">
-                        <img alt="Two officials standing side by side" class="w-full h-64 object-cover" src="img/berita1.png"/>
-                        <div class="p-6">
-                            <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                            <h2 class="text-xl font-bold mt-3">Doa Bersama Dan Serah Terima Jabatan Wali Kota Dan Wakil Wali Kota Semarang Periode 2025-2030</h2>
-                            <p class="text-gray-600 mt-3">Semarang, 20 Februari 2025 – Pemerintah Kota Semarang menggelar acara doa bersama dan serah terima jabatan...</p>
-                            <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita1">Read more</a>
+                    @foreach($latestNews as $news)
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col" onclick="window.location.href='{{ route('news.show', $news->slug) }}'">
+                        @if($news->images)
+                            @php
+                                $images = json_decode($news->images, true);
+                                $imagePath = is_array($images) && count($images) > 0 ? $images[0] : '';
+                                $imagePath = str_replace('public/', '', $imagePath);
+                            @endphp
+                            @if($imagePath)
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <img alt="{{ $news->title }}" class="w-full h-48 sm:h-56 object-cover" src="{{ asset('storage/' . $imagePath) }}"/>
+                                </div>
+                            @endif
+                        @endif
+                        <div class="p-4 sm:p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="bg-red-600 text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded inline-block">WARTA TAPEM</span>
+                                <h2 class="text-lg sm:text-xl font-bold mt-3 line-clamp-2">{{ $news->title }}</h2>
+                                <p class="text-gray-600 mt-3 text-sm sm:text-base line-clamp-3">{{ Str::limit(strip_tags($news->content), 150) }}</p>
+                            </div>
+                            <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer text-sm sm:text-base hover:text-red-700" href="{{ route('news.show', $news->slug) }}">Read more</a>
                         </div>
                     </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita2'">
-                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita2.png"/>
-                        <div class="p-6">
-                            <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                            <h2 class="text-xl font-bold mt-3">Staff Bagian Tata Pemerintahan Setda Kota Semarang Ikuti Bimtek Penulisan Berbasis Kearifan Lokal 2025</h2>
-                            <p class="text-gray-600 mt-3">Semarang – Dalam rangka meningkatkan kompetensi pegawai, staff dari Bagian Tata Pemerintahan Setda Kota Semarang mengikuti...</p>
-                            <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita2">Read more</a>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 cursor-pointer card-transition card card hover:scale-105 transition-transform duration-300 ease-in-out" onclick="window.location.href='berita3'">
-                        <img alt="People attending a seminar" class="w-full h-64 object-cover" src="img/berita3.png"/>
-                        <div class="p-6">
-                            <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">WARTA TAPEM</span>
-                            <h2 class="text-xl font-bold mt-3">Rapat Sinkronisasi Data Kependudukan: Menuju Administrasi Yang Akurat</h2>
-                            <p class="text-gray-600 mt-3">Semarang, (18/01/2025) – Dalam rangka meningkatkan akurasi dan kualitas administrasi kependudukan, Pemerintah Kota Semarang melalui Bagian Tata Pemerintahan...</p>
-                            <a class="text-red-600 font-bold mt-4 inline-block cursor-pointer" href="berita3">Read more</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <br>
                 <br>
