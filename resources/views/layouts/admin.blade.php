@@ -87,7 +87,7 @@
                 <a href="{{ route('admin.media.index') }}" class="sidebar-link">
                     <i class="fas fa-images"></i> Media Library
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('admin.users.index') }}" class="sidebar-link">
                     <i class="fas fa-users"></i> Users
                 </a>
                 <a href="#" class="sidebar-link">

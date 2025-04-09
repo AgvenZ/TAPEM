@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\UserController;
 
 Auth::routes();
 
@@ -17,6 +18,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('admins', AdminController::class);
+    Route::resource('users', UserController::class);
     
     // Pages management
     Route::resource('pages', PageController::class);
