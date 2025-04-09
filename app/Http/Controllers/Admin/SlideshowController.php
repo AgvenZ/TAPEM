@@ -62,7 +62,7 @@ class SlideshowController extends Controller
         $data = [
             'title' => $request->title,
             'order' => $request->order ?? $slideshow->order,
-            'active' => $request->boolean('active', $slideshow->active)
+            'active' => $request->has('active') ? $request->boolean('active') : false
         ];
 
         if ($request->hasFile('image')) {

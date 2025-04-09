@@ -274,7 +274,7 @@
         </nav>
     </header>
 </body>
-    <div class="slideshow-container" id="slideshowContainer">
+    <div class="slideshow-container relative z-0" id="slideshowContainer">
         @php
             $slideshows = \App\Models\Slideshow::where('active', true)->orderBy('order')->get();
         @endphp
@@ -283,25 +283,31 @@
             <a class="prev" onclick="changeSlide(-1)">❮</a>
             <a class="next" onclick="changeSlide(1)">❯</a>
             <script>
-                let slideIndex = 0;
-                const slides = @json($slideshows->map(function($slideshow) {
-                    return [
-                        'image' => asset('storage/' . $slideshow->image_path),
-                        'title' => $slideshow->title
-                    ];
-                }));
+                document.addEventListener('DOMContentLoaded', function() {
+                    let slideIndex = 0;
+                    const slides = @json($slideshows->map(function($slideshow) {
+                        return [
+                            'image' => asset('storage/' . $slideshow->image_path),
+                            'title' => $slideshow->title
+                        ];
+                    }));
 
-                function changeSlide(n) {
-                    slideIndex += n;
-                    if (slideIndex >= slides.length) slideIndex = 0;
-                    if (slideIndex < 0) slideIndex = slides.length - 1;
-                    const image = document.getElementById('slideshowImage');
-                    image.src = slides[slideIndex].image;
-                    image.alt = slides[slideIndex].title;
-                }
+                    function changeSlide(n) {
+                        slideIndex += n;
+                        if (slideIndex >= slides.length) slideIndex = 0;
+                        if (slideIndex < 0) slideIndex = slides.length - 1;
+                        const image = document.getElementById('slideshowImage');
+                        if(image) {
+                            image.src = slides[slideIndex].image;
+                            image.alt = slides[slideIndex].title;
+                        }
+                    }
 
-                // Auto change slide every 5 seconds
-                setInterval(() => changeSlide(1), 5000);
+                    // Auto change slide every 5 seconds
+                    if(slides.length > 0) {
+                        setInterval(() => changeSlide(1), 5000);
+                    }
+                });
             </script>
         @else
             <img alt="Default Slideshow" class="slideshow-image" src="img/slideshow1.png"/>
