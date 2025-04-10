@@ -282,7 +282,7 @@
         </div>
     </div>
 </div>
-<div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background4.png');">
+<div class="flex items-center justify-center min-h-screen bg-repeat bg-center bg-[length:auto]" style="background-image: url('img/background4.png');">
     <div class="p-35 rounded-lg max-w-6xl text-white">
         <div class="text-center mb-8">
             <br>
