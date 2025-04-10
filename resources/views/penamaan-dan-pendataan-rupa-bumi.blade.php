@@ -163,12 +163,7 @@
             transform: translateX(-100%);
             transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
-        .bg-cover {
-    background-image: url('background4.png');
-    background-size: cover; /* Bisa diganti contain jika perlu */
-    background-position: center top;
-    height: 430vh; /* Kurangi tinggi agar tidak sampai footer */
-}
+
         .slide-in.visible {
             opacity: 1;
             transform: translateX(0);
@@ -322,7 +317,7 @@
                 </div>
         </div>
     </div>
-        <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background4.png');">
+    <div class="flex items-center justify-center min-h-screen bg-repeat bg-center bg-[length:auto]" style="background-image: url('img/background4.png');">
             <div class="p-35 rounded-lg max-w-6xl text-white">
                 <br>
                 <br>
