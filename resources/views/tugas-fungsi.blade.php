@@ -283,7 +283,8 @@
                 <span>TUGAS DAN FUNGSI</span>
             </div>
         </div>
-        <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background4.png');">
+        <div class="flex items-center justify-center min-h-screen bg-repeat bg-center bg-[length:auto]" style="background-image: url('img/background4.png');">
+
             <div class="p-28 rounded-lg max-w-6xl text-white">
                 <body class="p-4">
                     <div class="max-w-4xl mx-auto justify-text">
