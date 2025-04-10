@@ -309,8 +309,6 @@
                     }
                 });
             </script>
-        @else
-            <img alt="Default Slideshow" class="slideshow-image" src="img/slideshow1.png"/>
         @endif
     </div>
     <div class="bg-red-900 flex items-center justify-center min-h-screen relative py-20" id="contentContainer">
@@ -413,11 +411,9 @@
       </footer>
         <script>
             var slideIndex = 0;
-            var slides = [
-                "img/slideshow1.png",
-                "img/slideshow2.jpeg",
-                "img/slideshow3.jpg"
-            ];
+            var slides = @json($slideshows->map(function($slideshow) {
+                return asset('storage/' . $slideshow->image_path);
+            }));
 
             function changeSlide(n) {
                 slideIndex += n;
