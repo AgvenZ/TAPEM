@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Slideshow')
 
 @section('content')
 <div class="container">
