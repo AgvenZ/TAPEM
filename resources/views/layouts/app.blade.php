@@ -13,6 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- Styles -->
+    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -30,7 +33,36 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @php
+                            $mainPages = \App\Models\Page::whereNull('parent_page')
+                                ->where('is_published', true)
+                                ->orderBy('order')
+                                ->get();
+                        @endphp
+                        @foreach($mainPages as $mainPage)
+                            @php
+                                $subPages = \App\Models\Page::where('parent_page', $mainPage->title)
+                                    ->where('is_published', true)
+                                    ->orderBy('order')
+                                    ->get();
+                            @endphp
+                            @if($subPages->count() > 0)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ $mainPage->title }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach($subPages as $subPage)
+                                            <li><a class="dropdown-item" href="{{ route('pages.show', $subPage->slug) }}">{{ $subPage->title }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('pages.show', $mainPage->slug) }}">{{ $mainPage->title }}</a>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
 
                     <!-- Right Side Of Navbar -->

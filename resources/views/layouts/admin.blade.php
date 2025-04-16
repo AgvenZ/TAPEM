@@ -81,9 +81,17 @@
                 <a href="{{ route('admin.slideshows.index') }}" class="sidebar-link">
                     <i class="fas fa-film"></i> Slideshow
                 </a>
-                <a href="{{ route('admin.pages.index') }}" class="sidebar-link">
-                    <i class="fas fa-file-alt"></i> Pages
+                <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#pagesSubmenu" aria-expanded="false">
+                    <i class="fas fa-file-alt"></i> Pages <i class="fas fa-chevron-down ms-auto"></i>
                 </a>
+                <div class="collapse" id="pagesSubmenu">
+                    <a href="{{ route('admin.pages.index') }}" class="sidebar-link ps-4">
+                        <i class="fas fa-list"></i> All Pages
+                    </a>
+                    <a href="{{ route('admin.pages.create') }}" class="sidebar-link ps-4">
+                        <i class="fas fa-plus"></i> Add New Page
+                    </a>
+                </div>
                 <a href="{{ route('admin.news.index') }}" class="sidebar-link">
                     <i class="fas fa-newspaper"></i> News
                 </a>

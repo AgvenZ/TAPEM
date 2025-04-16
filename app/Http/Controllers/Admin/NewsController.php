@@ -33,7 +33,8 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'nullable|image|max:2048',
             'selected_media_urls' => 'nullable|string',
-            'is_published' => 'boolean'
+            'is_published' => 'boolean',
+            'published_at' => 'nullable|date'
         ]);
 
         // Generate unique slug
@@ -92,7 +93,8 @@ class NewsController extends Controller
             'slug' => 'required',
             'image' => 'nullable|image|max:2048',
             'selected_media_url' => 'nullable|string',
-            'is_published' => 'required|in:0,1'
+            'is_published' => 'required|in:0,1',
+            'published_at' => 'nullable|date'
         ]);
     
         // Convert is_published to boolean or integer as needed by your database
@@ -126,6 +128,14 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
+        // Delete associated images from storage if they exist
+        if (!empty($news->images)) {
+            $images = json_decode($news->images, true);
+            foreach ($images as $image) {
+                Storage::disk('public')->delete($image);
+            }
+        }
+
         $news->delete();
 
         return redirect()->route('admin.news.index')

@@ -33,6 +33,14 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="published_at" class="form-label">Publication Date</label>
+                    <input type="datetime-local" class="form-control @error('published_at') is-invalid @enderror" id="published_at" name="published_at" value="{{ old('published_at', $news->published_at ? date('Y-m-d\TH:i', strtotime($news->published_at)) : '') }}">
+                    @error('published_at')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="image" class="form-label">Images</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
                     <div class="mt-3">
