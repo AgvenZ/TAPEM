@@ -9,7 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <style>
+        .headline-font {
+  font-family: 'Playfair Display', serif;
+}
         .hover-grow {
     display: inline-block;
 }
@@ -287,17 +291,17 @@
         <div class="absolute inset-0 w-full h-full">
             <img alt="Background image" class="w-full h-full object-cover" src="img/background4.png"/>
         </div>
-        <div class="relative container mx-auto py-8">
-            <br>
-            <br>
-            <h1 class="text-4xl font-bold mb-7 arvo-font text-white text-center zoom-out">
-                <i class="fas fa-newspaper text-yellow-500 mr-2 zoom-out"></i>
-                <br>
-                KUMPULAN BERITA
-                <br> BAGIAN TATA PEMERINTAHAN
-                <span class="absolute left-0 bottom-0 w-full h-1 bg-yellow-500 transform scale-x-0 transition-transform duration-500 ease-in-out origin-left"></span>
-            </h1>
-            <br>
+        <div class="relative container mx-auto py-8 px-4">
+            <div class="text-white p-6 md:p-10 rounded-xl max-w-3xl mx-auto">
+              <h1 class="text-2xl md:text-6xl font-semibold mb-2 headline-font text-center zoom-in">
+                  <i class="fas fa-newspaper text-yellow-400 mr-2 text-base md:text-6xl"></i>
+                  BERITA TERBARU
+                </h1>
+              <div class="text-4xl md:text-3xl inconsolata-font font-bold text-red-700 italic text-center zoom-in" style="animation-delay: 0.3s;">
+                  BAGIAN TATA PEMERINTAHAN
+                </div>
+              <div class="w-24 h-1 bg-yellow-300 mx-auto mt-4 mb-2 rounded-full fade-up" style="animation-delay: 0.5s;"></div>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
                 @foreach($news as $item)
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col" onclick="window.location.href='{{ route('news.show', $item->slug) }}'">

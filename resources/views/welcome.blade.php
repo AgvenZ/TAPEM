@@ -8,7 +8,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
     <style>
+        .headline-font {
+  font-family: 'Playfair Display', serif;
+}
+
+
         .hover-grow {
     display: inline-block;
 }
@@ -345,20 +352,23 @@
             </div>
         </div>
     </div>
-    <br>
     <body class="bg-black text-white">
         <div class="relative min-h-screen flex items-center justify-center">
             <div class="absolute inset-0 w-full h-full">
-                <img alt="Background image" class="w-full h-full object-cover" src="img/background3.png"/>
+                <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="img/background3.png" width="1920"/>
             </div>
-            <div class="relative container mx-auto py-8">
-                <h1 class="text-4xl font-bold mb-7 arvo-font text-black-600 text-center zoom-out">
-                    <i class="fas fa-newspaper text-yellow-500 mr-2 zoom-out"></i>
-                    <br>
-                    BERITA TERBARU
-                    <br> BAGIAN TATA PEMERINTAHAN
-                    <span class="absolute left-0 bottom-0 w-full h-1 bg-yellow-500 transform scale-x-0 transition-transform duration-500 ease-in-out origin-left"></span>
-                </h1>
+                <!-- Konten -->
+                <div class="relative container mx-auto py-8 px-4">
+                  <div class="text-black p-6 md:p-10 rounded-xl max-w-3xl mx-auto">
+                    <h1 class="text-2xl md:text-6xl font-semibold mb-2 headline-font text-center zoom-in">
+                        <i class="fas fa-newspaper text-yellow-400 mr-2 text-base md:text-6xl"></i>
+                        BERITA TERBARU
+                      </h1>
+                    <div class="text-4xl md:text-3xl inconsolata-font font-bold text-red-700 italic text-center zoom-in" style="animation-delay: 0.3s;">
+                        BAGIAN TATA PEMERINTAHAN
+                      </div>
+                    <div class="w-24 h-1 bg-yellow-300 mx-auto mt-4 mb-2 rounded-full fade-up" style="animation-delay: 0.5s;"></div>
+                  </div>
                 <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                     @foreach($latestNews as $news)
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col" onclick="window.location.href='{{ route('news.show', $news->slug) }}'">
