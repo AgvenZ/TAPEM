@@ -9,6 +9,31 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
+    public function move(Page $page, Request $request)
+    {
+        $direction = $request->direction;
+        $currentOrder = $page->order;
+
+        if ($direction === 'up') {
+            $swapPage = Page::where('parent_page', $page->parent_page)
+                ->where('order', '>', $currentOrder)
+                ->orderBy('order', 'asc')
+                ->first();
+        } else {
+            $swapPage = Page::where('parent_page', $page->parent_page)
+                ->where('order', '<', $currentOrder)
+                ->orderBy('order', 'desc')
+                ->first();
+        }
+
+        if ($swapPage) {
+            $swapOrder = $swapPage->order;
+            $swapPage->update(['order' => $currentOrder]);
+            $page->update(['order' => $swapOrder]);
+        }
+
+        return redirect()->back()->with('success', 'Page order updated successfully.');
+    }
     public function index()
     {
         $pages = Page::orderBy('order', 'desc')->paginate(10);
@@ -23,14 +48,25 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'parent_page' => 'nullable|string|max:255',
+            'menu_order' => 'nullable|integer',
             'title' => 'required|max:255',
             'content' => 'required',
             'is_published' => 'boolean',
             'parent_page' => 'nullable|string',
-            'selected_media_urls' => 'nullable|string'
+            'selected_media_urls' => 'nullable|string',
+            'menu_order' => 'nullable|integer'
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']);
+        $baseSlug = Str::slug($validated['title']);
+        $slug = $baseSlug;
+        $counter = 1;
+        
+        while (Page::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $counter++;
+        }
+        
+        $validated['slug'] = $slug;
         $validated['is_published'] = (int)$validated['is_published'];
         
         // Handle selected media URLs
@@ -50,9 +86,13 @@ class PageController extends Controller
             $validated['images'][] = str_replace('public/', '', $path);
         }
 
-        // Set the order value to be higher than the highest existing order
-        $highestOrder = Page::max('order') ?? 0;
-        $validated['order'] = $highestOrder + 1;
+        // Set the order value based on parent_page
+        if ($validated['parent_page']) {
+            $highestOrder = Page::where('parent_page', $validated['parent_page'])->max('order') ?? 0;
+        } else {
+            $highestOrder = Page::whereNull('parent_page')->max('order') ?? 0;
+        }
+        $validated['order'] = $validated['menu_order'] ?? ($highestOrder + 1);
 
         Page::create($validated);
 
@@ -70,11 +110,21 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:pages,slug,' . $page->id,
             'is_published' => 'required|in:0,1',
             'parent_page' => 'nullable|string',
+            'menu_order' => 'nullable|integer',
             'selected_media_urls' => 'nullable|string'
         ]);
+
+        // If slug is changed, ensure it's unique
+        if ($validated['slug'] !== $page->slug) {
+            $baseSlug = $validated['slug'];
+            $counter = 1;
+            while (Page::where('slug', $validated['slug'])->where('id', '!=', $page->id)->exists()) {
+                $validated['slug'] = $baseSlug . '-' . $counter++;
+            }
+        }
     
         $validated['is_published'] = (int)$validated['is_published'];
         

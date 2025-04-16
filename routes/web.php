@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SlideshowController;
 
 Auth::routes();
@@ -22,16 +22,19 @@ Route::get('/', function () {
 // Admin routes
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::resource('slideshows', SlideshowController::class);
     Route::resource('admins', AdminController::class);
     Route::resource('users', UserController::class);
     
     // Pages management
     Route::resource('pages', PageController::class);
+    Route::post('pages/{page}/move', [PageController::class, 'move'])->name('pages.move');
     
     // News management
     Route::resource('news', NewsController::class)->parameters(['news' => 'news:slug']);
     
+    // Slideshow management
+    Route::resource('slideshows', SlideshowController::class);
+
     // Media Library
     Route::get('/media', [MediaController::class, 'index'])->name('media.index');
     Route::get('/media/create', [MediaController::class, 'create'])->name('media.create');

@@ -1,0 +1,38 @@
+.card {
+    background-color: #FFA07A;
+    border-color: #FF8C69;
+}
+
+.card-header {
+    background-color: #FA8072;
+    color: white;
+    border-bottom: 1px solid #FF8C69;
+}
+
+.btn-primary {
+    background-color: #E9967A;
+    border-color: #FF8C69;
+}
+
+.btn-primary:hover {
+    background-color: #FF8C69;
+    border-color: #E9967A;
+}
+
+.btn-link {
+    color: #CD5C5C;
+}
+
+.btn-link:hover {
+    color: #FF6347;
+}
+
+.form-control:focus {
+    border-color: #FF8C69;
+    box-shadow: 0 0 0 0.25rem rgba(255, 140, 105, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: #E9967A;
+    border-color: #FF8C69;
+}

@@ -16,7 +16,9 @@ class Page extends Model
         'content',
         'is_published',
         'image_path',
-        'images'
+        'images',
+        'parent_page',
+        'order'
     ];
 
     protected $casts = [

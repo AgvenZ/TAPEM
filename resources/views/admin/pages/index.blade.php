@@ -17,10 +17,10 @@
                         <tr>
                             <th>No</th>
                             <th>Title</th>
-                            <th>Slug</th>
+                            <th>Parent Menu</th>
+                            <th>Order</th>
                             <th>Status</th>
                             <th>Created At</th>
-                            <th>Updated At</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -28,8 +28,32 @@
                         @forelse($pages as $page)
                             <tr>
                                 <td>{{ ($pages->currentPage() - 1) * $pages->perPage() + $loop->iteration }}</td>
-                                <td>{{ $page->title }}</td>
-                                <td>{{ $page->slug }}</td>
+                                <td>
+                                    @if($page->parent_page)
+                                        <span class="ms-3">└─</span>
+                                    @endif
+                                    {{ $page->title }}
+                                    @if(\App\Models\Page::where('parent_page', $page->title)->exists())
+                                        <span class="badge bg-info">Dropdown</span>
+                                    @endif
+                                </td>
+                                <td>{{ $page->parent_page ?: 'Main Menu' }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <form action="{{ route('admin.pages.move', ['page' => $page->id, 'direction' => 'up']) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $loop->first ? 'disabled' : '' }}>
+                                                <i class="fas fa-arrow-up"></i>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.pages.move', ['page' => $page->id, 'direction' => 'down']) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $loop->last ? 'disabled' : '' }}>
+                                                <i class="fas fa-arrow-down"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                                 <td>
                                     @if($page->is_published)
                                         <span class="badge bg-success">Published</span>
@@ -38,7 +62,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $page->created_at->format('Y-m-d H:i') }}</td>
-                                <td>{{ $page->updated_at->format('Y-m-d H:i') }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('admin.pages.show', $page->slug) }}" class="btn btn-info btn-sm">
