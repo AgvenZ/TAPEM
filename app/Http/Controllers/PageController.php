@@ -18,10 +18,20 @@ class PageController extends Controller
 
     public function show($slug)
     {
+        // First try to find a dynamic page
         $page = Page::where('slug', $slug)
             ->where('is_published', true)
-            ->firstOrFail();
+            ->first();
 
-        return view('admin.pages.show', compact('page'));
+        if ($page) {
+            return view('admin.pages.show', compact('page'));
+        }
+
+        // If no dynamic page found, check if it's a static page
+        if (view()->exists($slug)) {
+            return view($slug);
+        }
+
+        abort(404);
     }
 }

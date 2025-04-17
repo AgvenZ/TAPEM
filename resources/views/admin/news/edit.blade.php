@@ -173,21 +173,33 @@
                             const previewGrid = document.getElementById('selected-images-grid');
                             const urlInput = document.getElementById('selected-media-urls');
                             const fileInput = document.getElementById('image');
-
+                            
                             if (selectedUrls.length > 0) {
-                                previewGrid.innerHTML = selectedUrls.map(url => `
-                                    <div class="col-md-3">
+                                const existingUrls = JSON.parse(urlInput.value || '[]');
+                                const mergedUrls = [...new Set([...existingUrls, ...selectedUrls])];
+                                
+                                // Clear existing grid content
+                                previewGrid.innerHTML = '';
+                                
+                                // Add each image to the grid
+                                mergedUrls.forEach(url => {
+                                    const imageDiv = document.createElement('div');
+                                    imageDiv.className = 'col-md-3';
+                                    imageDiv.innerHTML = `
                                         <div class="position-relative">
                                             <img src="${url}" class="img-fluid rounded" alt="Selected image">
                                             <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
-                                    </div>
-                                `).join('');
-                                urlInput.value = JSON.stringify(selectedUrls);
+                                    `;
+                                    previewGrid.appendChild(imageDiv);
+                                });
+                                
+                                urlInput.value = JSON.stringify(mergedUrls);
                                 previewContainer.style.display = 'block';
                                 fileInput.value = '';
+                            }
                             }
 
                             bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
