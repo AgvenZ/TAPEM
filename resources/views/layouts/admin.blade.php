@@ -86,7 +86,7 @@
                 </a>
                 <div class="collapse" id="pagesSubmenu">
                     <a href="{{ route('admin.pages.index') }}" class="sidebar-link ps-4">
-                        <i class="fas fa-list"></i> All Pages
+                        <i class="fas fa-list"></i> Manage Navbar Pages
                     </a>
                     <a href="{{ route('admin.pages.create') }}" class="sidebar-link ps-4">
                         <i class="fas fa-plus"></i> Add New Page
