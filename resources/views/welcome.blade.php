@@ -12,18 +12,15 @@
 
     <style>
         .headline-font {
-  font-family: 'Playfair Display', serif;
-}
-
-
+            font-family: 'Playfair Display', serif;
+        }
         .hover-grow {
-    display: inline-block;
-}
-
-.hover-grow:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
+            display: inline-block;
+        }
+        .hover-grow:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -38,39 +35,31 @@
         header.sticky {
             transition: all 0.5s ease-in-out;
         }
-
         /* CSS untuk navbar yang diperkecil */
         header.shrink {
             padding-top: 10px;
             padding-bottom: 10px;
         }
-
         header.shrink .container {
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
-
         header.shrink img {
             height: 60px; /* Ubah ukuran logo */
             width: 200px; /* Ubah ukuran logo */
         }
-
         header.shrink .text-lg {
             font-size: 1rem; /* Ubah ukuran font */
         }
-
         header.shrink .inconsolata-font {
             font-size: 1rem; /* Ubah ukuran font */
         }
-
         header.sticky img {
             transition: all 0.3s ease-in-out;
         }
-
         header.sticky .text-lg {
             transition: all 0.3s ease-in-out;
         }
-
         header.sticky .inconsolata-font {
             transition: all 0.3s ease-in-out;
         }
@@ -132,9 +121,9 @@
             transition: opacity 2s ease-out, transform 2s ease-out;
         }
         /* Gaya saat cursor berada di atas teks */
-.hover-underline:hover {
-    text-decoration: underline; /* Menampilkan underline saat hover */
-}
+        .hover-underline:hover {
+            text-decoration: underline; /* Menampilkan underline saat hover */
+        }
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);

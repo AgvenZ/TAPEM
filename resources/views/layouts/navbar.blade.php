@@ -2,7 +2,7 @@
     <div class="container mx-auto flex justify-between items-center py-4">
         <div class="flex items-center">
             <a href="/" onclick="refreshPage(event)">
-                <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
+                <img src="/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
             </a>
             <script>
                 function refreshPage(event) {
