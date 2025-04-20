@@ -37,7 +37,7 @@
                                         <span class="badge bg-info">Dropdown</span>
                                     @endif
                                 </td>
-                                <td>{{ $page->parent_page ?: 'Main Menu' }}</td>
+                                <td>{{ $page->parent_page ?: '-' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <form action="{{ route('admin.pages.move', ['page' => $page->id, 'direction' => 'up']) }}" method="POST" class="d-inline">

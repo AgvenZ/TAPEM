@@ -18,7 +18,7 @@
                     <label for="parent_page" class="form-label">Parent Menu</label>
                     <div class="input-group">
                         <select class="form-select @error('parent_page') is-invalid @enderror" id="parent_page" name="parent_page">
-                            <option value="">None (Main Menu)</option>
+                            <option value="">None</option>
                             <option value="new" data-bs-toggle="modal" data-bs-target="#newParentModal">+ Add New Parent Menu</option>
                             @php
                                 $existingParents = \App\Models\Page::select('parent_page')
@@ -32,6 +32,9 @@
                         </select>
                         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#newParentModal">
                             <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-outline-primary" type="button" onclick="editParentMenu()">
+                            <i class="fas fa-edit"></i>
                         </button>
                     </div>
                     @error('parent_page')
@@ -107,18 +110,19 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="newParentModalLabel">Add New Parent Menu</h5>
+                                <h5 class="modal-title" id="newParentModalLabel">Edit Parent Menu</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="new_parent_name" class="form-label">Parent Menu Name</label>
                                     <input type="text" class="form-control" id="new_parent_name">
+                                    <input type="hidden" name="old_parent_name" id="old_parent_name">
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" onclick="addNewParentMenu()">Add</button>
+                                <button type="button" class="btn btn-primary" onclick="addNewParentMenu()">Update</button>
                             </div>
                         </div>
                     </div>
@@ -135,6 +139,17 @@
                 </style>
 
                 <script>
+                function editParentMenu() {
+                    const select = document.getElementById('parent_page');
+                    const currentParent = select.value;
+                    if (currentParent && currentParent !== 'new' && currentParent !== '') {
+                        document.getElementById('new_parent_name').value = currentParent;
+                        document.getElementById('old_parent_name').value = currentParent;
+                        const modal = new bootstrap.Modal(document.getElementById('newParentModal'));
+                        modal.show();
+                    }
+                }
+
                 function removeSelectedImage(urlToRemove) {
                     const previewContainer = document.getElementById('selected-images-preview');
                     const previewGrid = document.getElementById('selected-images-grid');
@@ -157,79 +172,27 @@
                     const newParentName = document.getElementById('new_parent_name').value.trim();
                     if (newParentName) {
                         const select = document.getElementById('parent_page');
-                        const option = new Option(newParentName, newParentName, false, true);
-                        select.add(option, 1);
+                        const oldValue = select.value;
+                        
+                        // If we're editing an existing parent menu
+                        if (oldValue && oldValue !== 'new') {
+                            // Update all pages with the old parent name
+                            Array.from(select.options).forEach(option => {
+                                if (option.value === oldValue) {
+                                    option.text = newParentName;
+                                    option.value = newParentName;
+                                }
+                            });
+                        } else {
+                            // Add new option
+                            const option = new Option(newParentName, newParentName, false, true);
+                            select.add(option, 1);
+                        }
+                        
                         select.value = newParentName;
-                        $('#newParentModal').modal('hide');
-                    }
-                }
-                </script>
-
-                <div class="mb-3">
-                    <label for="parent_page" class="form-label">Parent Menu</label>
-                    <div class="input-group">
-                        <select class="form-select @error('parent_page') is-invalid @enderror" id="parent_page" name="parent_page">
-                            <option value="">None (Main Menu)</option>
-                            <option value="new" data-bs-toggle="modal" data-bs-target="#newParentModal">+ Add New Parent Menu</option>
-                            @php
-                                $existingParents = \App\Models\Page::select('parent_page')
-                                    ->whereNotNull('parent_page')
-                                    ->distinct()
-                                    ->pluck('parent_page');
-                            @endphp
-                            @foreach($existingParents as $parent)
-                                <option value="{{ $parent }}" {{ old('parent_page', $page->parent_page) == $parent ? 'selected' : '' }}>{{ $parent }}</option>
-                            @endforeach
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#newParentModal">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    @error('parent_page')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="menu_order" class="form-label">Menu Order</label>
-                    <input type="number" class="form-control @error('menu_order') is-invalid @enderror" id="menu_order" name="menu_order" value="{{ old('menu_order', $page->order) }}">
-                    <small class="form-text text-muted">Leave empty for automatic ordering</small>
-                    @error('menu_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <!-- Modal for adding new parent menu -->
-                <div class="modal fade" id="newParentModal" tabindex="-1" aria-labelledby="newParentModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="newParentModalLabel">Add New Parent Menu</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="new_parent_name" class="form-label">Parent Menu Name</label>
-                                    <input type="text" class="form-control" id="new_parent_name">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" onclick="addNewParentMenu()">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <script>
-                function addNewParentMenu() {
-                    const newParentName = document.getElementById('new_parent_name').value.trim();
-                    if (newParentName) {
-                        const select = document.getElementById('parent_page');
-                        const option = new Option(newParentName, newParentName, false, true);
-                        select.add(option, 1);
-                        select.value = newParentName;
-                        $('#newParentModal').modal('hide');
+                        document.getElementById('new_parent_name').value = '';
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('newParentModal'));
+                        modal.hide();
                     }
                 }
                 </script>
@@ -293,38 +256,7 @@
                         checkbox.value = imageUrl;
                         checkbox.checked = selectedMediaUrls.includes(imageUrl);
 
-                        checkbox.addEventListener('change', function() {
-                            const selectedCount = document.querySelectorAll('.media-checkbox:checked').length;
-                            document.getElementById('selectedCount').textContent = `${selectedCount} items selected`;
-                            document.getElementById('confirmSelection').disabled = selectedCount === 0;
-                        });
-
-                        document.getElementById('confirmSelection').addEventListener('click', function() {
-                            const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);
-                            const previewContainer = document.getElementById('selected-images-preview');
-                            const previewGrid = document.getElementById('selected-images-grid');
-                            const urlInput = document.getElementById('selected-media-urls');
-                            const fileInput = document.getElementById('image');
-
-                            if (selectedUrls.length > 0) {
-                                previewGrid.innerHTML = selectedUrls.map(url => `
-                                    <div class="col-md-3">
-                                        <div class="position-relative">
-                                            <img src="${url}" class="img-fluid rounded" alt="Selected image">
-                                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                `).join('');
-                                urlInput.value = JSON.stringify(selectedUrls);
-                                previewContainer.style.display = 'block';
-                                fileInput.value = '';
-                            }
-
-                            bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
-                        });
-
+                        checkbox.addEventListener('change', updateSelectedCount);
                         mediaItems.appendChild(template);
                     });
 
@@ -344,6 +276,45 @@
                     mediaLoadSuccess.classList.remove('d-none');
                 });
         }
+
+        function updateSelectedCount() {
+            const selectedCount = document.querySelectorAll('.media-checkbox:checked').length;
+            document.getElementById('selectedCount').textContent = `${selectedCount} items selected`;
+            document.getElementById('confirmSelection').disabled = selectedCount === 0;
+        }
+
+        function handleConfirmSelection() {
+            const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);
+            const previewContainer = document.getElementById('selected-images-preview');
+            const previewGrid = document.getElementById('selected-images-grid');
+            const urlInput = document.getElementById('selected-media-urls');
+            const fileInput = document.getElementById('image');
+
+            if (selectedUrls.length > 0) {
+                previewGrid.innerHTML = selectedUrls.map(url => `
+                    <div class="col-md-3">
+                        <div class="position-relative">
+                            <img src="${url}" class="img-fluid rounded" alt="Selected image">
+                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                urlInput.value = JSON.stringify(selectedUrls);
+                previewContainer.style.display = 'block';
+                fileInput.value = '';
+            }
+
+            bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const confirmButton = document.getElementById('confirmSelection');
+            if (confirmButton) {
+                confirmButton.addEventListener('click', handleConfirmSelection);
+            }
+        });
 
         document.getElementById('title').addEventListener('input', function() {
             let slug = this.value

@@ -114,8 +114,15 @@ class PageController extends Controller
             'is_published' => 'required|in:0,1',
             'parent_page' => 'nullable|string',
             'menu_order' => 'nullable|integer',
-            'selected_media_urls' => 'nullable|string'
+            'selected_media_urls' => 'nullable|string',
+            'old_parent_name' => 'nullable|string'
         ]);
+
+        // Update parent_page name for all related pages if it was changed
+        if (!empty($validated['old_parent_name']) && $validated['old_parent_name'] !== $validated['parent_page']) {
+            Page::where('parent_page', $validated['old_parent_name'])
+                ->update(['parent_page' => $validated['parent_page']]);
+        }
 
         // If slug is changed, ensure it's unique
         if ($validated['slug'] !== $page->slug) {

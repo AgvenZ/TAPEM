@@ -54,7 +54,7 @@
                                 $childPages = \App\Models\Page::where('parent_page', $parentMenu->parent_page)->where('is_published', true)->orderBy('order')->get();
                             @endphp
                             @foreach($childPages as $childPage)
-                            <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/pages/{{ $childPage->slug }}">{{ strtoupper($childPage->title) }}</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/{{ $childPage->slug }}">{{ strtoupper($childPage->title) }}</a></li>
                             @endforeach
                         </ul>
                     </div>

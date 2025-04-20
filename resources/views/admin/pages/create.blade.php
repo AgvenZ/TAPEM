@@ -17,7 +17,7 @@
                     <label for="parent_page" class="form-label">Parent Menu</label>
                     <div class="input-group">
                         <select class="form-select @error('parent_page') is-invalid @enderror" id="parent_page" name="parent_page">
-                            <option value="">None (Main Menu)</option>
+                            <option value="">None</option>
                             <option value="new" data-bs-toggle="modal" data-bs-target="#newParentModal">+ Add New Parent Menu</option>
                             @php
                                 $existingParents = \App\Models\Page::select('parent_page')
@@ -31,6 +31,9 @@
                         </select>
                         <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#newParentModal">
                             <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-outline-primary" type="button" onclick="editParentMenu()">
+                            <i class="fas fa-edit"></i>
                         </button>
                     </div>
                     @error('parent_page')
@@ -59,6 +62,7 @@
                                 <div class="mb-3">
                                     <label for="new_parent_name" class="form-label">Parent Menu Name</label>
                                     <input type="text" class="form-control" id="new_parent_name">
+                                    <input type="hidden" name="old_parent_name" id="old_parent_name">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -70,14 +74,41 @@
                 </div>
 
                 <script>
+                function editParentMenu() {
+                    const select = document.getElementById('parent_page');
+                    const currentParent = select.value;
+                    if (currentParent && currentParent !== 'new' && currentParent !== '') {
+                        document.getElementById('new_parent_name').value = currentParent;
+                        const modal = new bootstrap.Modal(document.getElementById('newParentModal'));
+                        modal.show();
+                    }
+                }
+
                 function addNewParentMenu() {
                     const newParentName = document.getElementById('new_parent_name').value.trim();
                     if (newParentName) {
                         const select = document.getElementById('parent_page');
-                        const option = new Option(newParentName, newParentName, false, true);
-                        select.add(option, 1);
+                        const oldValue = select.value;
+                        
+                        // If we're editing an existing parent menu
+                        if (oldValue && oldValue !== 'new') {
+                            // Update all pages with the old parent name
+                            Array.from(select.options).forEach(option => {
+                                if (option.value === oldValue) {
+                                    option.text = newParentName;
+                                    option.value = newParentName;
+                                }
+                            });
+                        } else {
+                            // Add new option
+                            const option = new Option(newParentName, newParentName, false, true);
+                            select.add(option, 1);
+                        }
+                        
                         select.value = newParentName;
-                        $('#newParentModal').modal('hide');
+                        document.getElementById('new_parent_name').value = '';
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('newParentModal'));
+                        modal.hide();
                     }
                 }
                 </script>

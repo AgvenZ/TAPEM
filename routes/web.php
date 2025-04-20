@@ -84,7 +84,9 @@ Route::get('/berita/{news}', [\App\Http\Controllers\NewsController::class, 'show
 
 // Public pages routes
 Route::get('/pages', [\App\Http\Controllers\PageController::class, 'index'])->name('pages.index');
-Route::get('/pages/{page:slug}', [\App\Http\Controllers\PageController::class, 'show'])->name('pages.show');
+Route::get('/{page:slug}', [\App\Http\Controllers\PageController::class, 'show'])
+    ->name('pages.show')
+    ->where('page', '^(?!admin|berita|galeri|e-magang|kontak|regulasi|tentang|home).*$');
 
 Route::get('/galeri', function () {
     return view('galeri');
