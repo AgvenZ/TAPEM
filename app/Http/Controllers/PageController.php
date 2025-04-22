@@ -24,6 +24,11 @@ class PageController extends Controller
             ->first();
 
         if ($page) {
+            // If the page has source code, use it directly
+            if (!empty($page->source_code)) {
+                return response($page->source_code)->header('Content-Type', 'text/html');
+            }
+            // Otherwise use the standard view
             return view('admin.pages.show', compact('page'));
         }
 

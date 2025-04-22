@@ -14,6 +14,7 @@ class Page extends Model
         'title',
         'slug',
         'content',
+        'source_code',
         'is_published',
         'image_path',
         'images',

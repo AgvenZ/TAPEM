@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -192,6 +193,7 @@
             transform: scale(1);
         }
     </style>
+</head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     <header class="sticky top-0 z-50 border-b bg-white">
         <div class="container mx-auto flex justify-between items-center py-4">
@@ -271,7 +273,6 @@
             </div>
         </nav>
     </header>
-</body>
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">STRUKTUR ORGANISASI</div>

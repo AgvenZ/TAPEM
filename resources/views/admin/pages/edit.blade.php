@@ -70,6 +70,72 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="source_code" class="form-label">Source Code (HTML/CSS/JS)</label>
+                    <div class="card mb-2">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Source Code Editor</span>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="preview-source-btn">Preview</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <textarea class="form-control @error('source_code') is-invalid @enderror" id="source_code" name="source_code" rows="10" style="font-family: monospace; tab-size: 4;">{{ old('source_code', $page->source_code) }}</textarea>
+                        </div>
+                    </div>
+                    <div class="card" id="source-preview" style="display: none;">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Preview</span>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="close-preview-btn">Close</button>
+                        </div>
+                        <div class="card-body p-0" id="source-preview-content"></div>
+                    </div>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const closePreviewBtn = document.getElementById('close-preview-btn');
+                        const previewContainer = document.getElementById('source-preview');
+
+                        closePreviewBtn.addEventListener('click', function() {
+                            previewContainer.style.display = 'none';
+                        });
+                    });
+                    </script>
+                    @error('source_code')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const sourceCodeEditor = document.getElementById('source_code');
+                    const previewBtn = document.getElementById('preview-source-btn');
+                    const previewContainer = document.getElementById('source-preview');
+                    const previewContent = document.getElementById('source-preview-content');
+
+                    previewBtn.addEventListener('click', function() {
+                        const sourceCode = sourceCodeEditor.value;
+
+                        // Create an iframe to properly render the HTML content
+                        const iframe = document.createElement('iframe');
+                        iframe.style.width = '100%';
+                        iframe.style.height = '600px';
+                        iframe.style.border = 'none';
+
+                        // Clear previous content
+                        previewContent.innerHTML = '';
+                        previewContent.appendChild(iframe);
+
+                        // Write the source code to the iframe
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(sourceCode);
+                        iframeDoc.close();
+
+                        previewContainer.style.display = 'block';
+                    });
+                });
+                </script>
+
+                <div class="mb-3">
                     <label for="image" class="form-label">Images</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
                     <div class="mt-3">
@@ -154,9 +220,9 @@
                     const previewContainer = document.getElementById('selected-images-preview');
                     const previewGrid = document.getElementById('selected-images-grid');
                     const urlInput = document.getElementById('selected-media-urls');
-                    
+
                     const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
-                    
+
                     if (selectedUrls.length === 0) {
                         previewContainer.style.display = 'none';
                         previewGrid.innerHTML = '';
@@ -173,7 +239,7 @@
                     if (newParentName) {
                         const select = document.getElementById('parent_page');
                         const oldValue = select.value;
-                        
+
                         // If we're editing an existing parent menu
                         if (oldValue && oldValue !== 'new') {
                             // Update all pages with the old parent name
@@ -188,7 +254,7 @@
                             const option = new Option(newParentName, newParentName, false, true);
                             select.add(option, 1);
                         }
-                        
+
                         select.value = newParentName;
                         document.getElementById('new_parent_name').value = '';
                         const modal = bootstrap.Modal.getInstance(document.getElementById('newParentModal'));
@@ -226,7 +292,7 @@
             const mediaPagination = document.getElementById('mediaPagination');
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
             const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
-            
+
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
             mediaLoader.querySelector('.spinner-border').style.display = 'block';

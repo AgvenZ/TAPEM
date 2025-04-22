@@ -89,7 +89,7 @@
                     if (newParentName) {
                         const select = document.getElementById('parent_page');
                         const oldValue = select.value;
-                        
+
                         // If we're editing an existing parent menu
                         if (oldValue && oldValue !== 'new') {
                             // Update all pages with the old parent name
@@ -104,7 +104,7 @@
                             const option = new Option(newParentName, newParentName, false, true);
                             select.add(option, 1);
                         }
-                        
+
                         select.value = newParentName;
                         document.getElementById('new_parent_name').value = '';
                         const modal = bootstrap.Modal.getInstance(document.getElementById('newParentModal'));
@@ -130,6 +130,43 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="source_code" class="form-label">Source Code (HTML/CSS/JS)</label>
+                    <div class="card mb-2">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Source Code Editor</span>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="preview-source-btn">Preview</button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <textarea class="form-control @error('source_code') is-invalid @enderror" id="source_code" name="source_code" rows="10" style="font-family: monospace; tab-size: 4;">{{ old('source_code') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="card" id="source-preview" style="display: none;">
+                        <div class="card-header">Preview</div>
+                        <div class="card-body" id="source-preview-content"></div>
+                    </div>
+                    @error('source_code')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const sourceCodeEditor = document.getElementById('source_code');
+                    const previewBtn = document.getElementById('preview-source-btn');
+                    const previewContainer = document.getElementById('source-preview');
+                    const previewContent = document.getElementById('source-preview-content');
+
+                    previewBtn.addEventListener('click', function() {
+                        const sourceCode = sourceCodeEditor.value;
+                        previewContent.innerHTML = sourceCode;
+                        previewContainer.style.display = 'block';
+                    });
+                });
+                </script>
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Images</label>
@@ -164,9 +201,9 @@
                     const previewContainer = document.getElementById('selected-images-preview');
                     const previewGrid = document.getElementById('selected-images-grid');
                     const urlInput = document.getElementById('selected-media-urls');
-                    
+
                     const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
-                    
+
                     if (selectedUrls.length === 0) {
                         previewContainer.style.display = 'none';
                         previewGrid.innerHTML = '';
@@ -209,7 +246,7 @@
             const mediaPagination = document.getElementById('mediaPagination');
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
             const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
-            
+
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
             mediaLoader.querySelector('.spinner-border').style.display = 'block';

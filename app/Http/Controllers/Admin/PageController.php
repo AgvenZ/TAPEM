@@ -61,14 +61,14 @@ class PageController extends Controller
         $baseSlug = Str::slug($validated['title']);
         $slug = $baseSlug;
         $counter = 1;
-        
+
         while (Page::where('slug', $slug)->exists()) {
             $slug = $baseSlug . '-' . $counter++;
         }
-        
+
         $validated['slug'] = $slug;
         $validated['is_published'] = (int)$validated['is_published'];
-        
+
         // Handle selected media URLs
         if ($request->filled('selected_media_urls')) {
             $mediaUrls = json_decode($request->selected_media_urls, true);
@@ -110,6 +110,7 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'source_code' => 'nullable',
             'slug' => 'required|unique:pages,slug,' . $page->id,
             'is_published' => 'required|in:0,1',
             'parent_page' => 'nullable|string',
@@ -132,9 +133,9 @@ class PageController extends Controller
                 $validated['slug'] = $baseSlug . '-' . $counter++;
             }
         }
-    
+
         $validated['is_published'] = (int)$validated['is_published'];
-        
+
         // Handle selected media URLs
         if ($request->filled('selected_media_urls')) {
             $mediaUrls = json_decode($request->selected_media_urls, true);
@@ -151,9 +152,9 @@ class PageController extends Controller
             $validated['images'] = $validated['images'] ?? [];
             $validated['images'][] = str_replace('public/', '', $path);
         }
-    
+
         $page->update($validated);
-    
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page updated successfully.');
     }
