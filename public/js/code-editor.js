@@ -2,7 +2,11 @@ let editor;
 let isEditorInitialized = false;
 
 function initializeEditor(element) {
-    if (!isEditorInitialized && element) {
+    if (element) {
+        if (isEditorInitialized) {
+            editor.toTextArea(); // Clean up existing editor
+            isEditorInitialized = false;
+        }
         editor = CodeMirror.fromTextArea(element, {
             mode: 'xml',
             theme: 'monokai',
@@ -25,6 +29,7 @@ function initializeEditor(element) {
             lint: true
         });
         isEditorInitialized = true;
+        editor.refresh(); // Force a refresh after initialization
         return editor;
     }
     return null;
