@@ -1,31 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const sourceCodeElements = document.querySelectorAll('#source_code');
+let editor;
+let isEditorInitialized = false;
 
-    if (sourceCodeElements.length > 0) {
+function initializeEditor(element) {
+    if (!isEditorInitialized && element) {
+        editor = CodeMirror.fromTextArea(element, {
+            mode: 'xml',
+            theme: 'monokai',
+            lineNumbers: true,
+            autoCloseTags: true,
+            autoCloseBrackets: true,
+            matchBrackets: true,
+            indentUnit: 4,
+            tabSize: 4,
+            lineWrapping: true,
+            extraKeys: {
+                'Tab': 'indentMore',
+                'Shift-Tab': 'indentLess',
+                'Ctrl-Space': 'autocomplete'
+            },
+            gutters: ['CodeMirror-linenumbers'],
+            styleActiveLine: true,
+            matchTags: { bothTags: true },
+            foldGutter: true,
+            lint: true
+        });
+        isEditorInitialized = true;
+        return editor;
+    }
+    return null;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sourceCodeElement = document.querySelector('#source_code');
+
+    if (sourceCodeElement) {
         loadCodeMirrorResources().then(() => {
-            sourceCodeElements.forEach(element => {
-                CodeMirror.fromTextArea(element, {
-                    mode: 'xml',
-                    theme: 'monokai',
-                    lineNumbers: true,
-                    autoCloseTags: true,
-                    autoCloseBrackets: true,
-                    matchBrackets: true,
-                    indentUnit: 4,
-                    tabSize: 4,
-                    lineWrapping: true,
-                    extraKeys: {
-                        'Tab': 'indentMore',
-                        'Shift-Tab': 'indentLess',
-                        'Ctrl-Space': 'autocomplete'
-                    },
-                    gutters: ['CodeMirror-linenumbers'],
-                    styleActiveLine: true,
-                    matchTags: { bothTags: true },
-                    foldGutter: true,
-                    lint: true
-                });
-            });
+            initializeEditor(sourceCodeElement);
         });
     }
 });
