@@ -14,15 +14,17 @@ class PageController extends Controller
         $direction = $request->direction;
         $currentOrder = $page->order;
 
+        // Fix direction logic: 'up' means decreasing order number (moving up in the list)
+        // 'down' means increasing order number (moving down in the list)
         if ($direction === 'up') {
-            $swapPage = Page::where('parent_page', $page->parent_page)
-                ->where('order', '>', $currentOrder)
-                ->orderBy('order', 'asc')
-                ->first();
-        } else {
             $swapPage = Page::where('parent_page', $page->parent_page)
                 ->where('order', '<', $currentOrder)
                 ->orderBy('order', 'desc')
+                ->first();
+        } else {
+            $swapPage = Page::where('parent_page', $page->parent_page)
+                ->where('order', '>', $currentOrder)
+                ->orderBy('order', 'asc')
                 ->first();
         }
 
@@ -36,7 +38,10 @@ class PageController extends Controller
     }
     public function index()
     {
-        $pages = Page::orderBy('order', 'desc')->paginate(10);
+        // Get parent pages (null parent_page) first, then child pages, all ordered by their order field
+        $pages = Page::orderBy('parent_page', 'asc')
+                    ->orderBy('order', 'asc')
+                    ->paginate(10);
         return view('admin.pages.index', compact('pages'));
     }
 
