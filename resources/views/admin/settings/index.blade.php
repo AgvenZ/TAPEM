@@ -33,24 +33,12 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
-
-            <!-- Upload Logo -->
-            <div class="mb-4">
-                <h4 class="border-bottom pb-2">Upload Logo</h4>
                 <div class="mb-3">
-                    <label for="agency_logo" class="form-label">Upload Agency Logo</label>
-                    <input type="file" class="form-control @error('agency_logo') is-invalid @enderror" id="agency_logo" name="agency_logo" accept=".jpg,.png,.svg">
-                    <div class="form-text">Accepted formats: .jpg, .png, .svg. Maximum file size: 2MB. Recommended size: 500x500px</div>
-                    @error('agency_logo')
+                    <label for="institution_description" class="form-label">Institution Description</label>
+                    <textarea class="form-control @error('institution_description') is-invalid @enderror" id="institution_description" name="institution_description" rows="3" placeholder="Website tata pemerintahan ini merupakan platform digital resmi yang dikelola oleh institusi pemerintahan guna menyediakan layanan publik dan informasi yang transparan, akurat, dan mudah diakses oleh masyarakat.">{{ old('institution_description', $settings['institution_description'] ?? '') }}</textarea>
+                    @error('institution_description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-
-                    @if(isset($settings['agency_logo']))
-                    <div class="mt-2">
-                        <img src="{{ asset('storage/' . $settings['agency_logo']) }}" alt="Agency Logo" class="img-thumbnail" style="max-width: 150px;">
-                    </div>
-                    @endif
                 </div>
             </div>
 
