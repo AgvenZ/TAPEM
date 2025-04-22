@@ -6,7 +6,6 @@
     <title>@yield('title') | Tata Pemerintahan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    @yield('styles')
     <style>
         body {
             background-color: #ffffff;
@@ -102,7 +101,7 @@
                 <a href="{{ route('admin.users.index') }}" class="sidebar-link">
                     <i class="fas fa-users"></i> Users
                 </a>
-                <a href="{{ route('admin.settings.index') }}" class="sidebar-link">
+                <a href="#" class="sidebar-link">
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="border-top border-secondary my-2"></div>
@@ -150,7 +149,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/toast.js"></script>
-    @yield('scripts')
     <script>
         document.getElementById('sidebarCollapse').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');

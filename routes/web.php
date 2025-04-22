@@ -24,14 +24,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('admins', AdminController::class);
     Route::resource('users', UserController::class);
-
+    
     // Pages management
     Route::resource('pages', PageController::class)->parameters(['pages' => 'page:slug']);
     Route::post('pages/{page}/move', [PageController::class, 'move'])->name('pages.move');
-
+    
     // News management
     Route::resource('news', NewsController::class)->parameters(['news' => 'news:slug']);
-
+    
     // Slideshow management
     Route::resource('slideshows', SlideshowController::class);
 
@@ -41,10 +41,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::post('/media', [MediaController::class, 'store'])->name('media.store');
     Route::delete('/media/{media}', [MediaController::class, 'destroy'])->name('media.destroy');
     Route::get('/media/select', [MediaController::class, 'select'])->name('media.select');
-
-    // Settings
-    Route::get('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('settings.index');
-    Route::put('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
 });
 
 Route::get('/strukturorganisasi', function () {
