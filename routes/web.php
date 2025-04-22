@@ -26,7 +26,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('users', UserController::class);
     
     // Pages management
-    Route::resource('pages', PageController::class);
+    Route::resource('pages', PageController::class)->parameters(['pages' => 'page:slug']);
     Route::post('pages/{page}/move', [PageController::class, 'move'])->name('pages.move');
     
     // News management

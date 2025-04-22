@@ -177,5 +177,6 @@
             showToast("{{ session('success') }}", 'success');
         @endif
     </script>
+    <script src="{{ asset('js/code-editor.js') }}"></script>
 </body>
 </html>
