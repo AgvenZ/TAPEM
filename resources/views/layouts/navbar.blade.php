@@ -67,9 +67,33 @@
                 @endforeach
             </div>
             <div class="flex items-center space-x-3">
+                <div id="realtime-clock" class="mr-4 inconsolata-font text-lg text-black"></div>
                 <i class="fas fa-envelope text-red-600 text-lg"></i>
                 <a class="text-red-600 inconsolata-font text-lg hover-underline" href="mailto:tapemkotasmg@gmail.com">tapemkotasmg@gmail.com</a>
             </div>
+            <script>
+                function updateClock() {
+                    const now = new Date();
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    const dateString = now.toLocaleDateString('id-ID', options);
+                    
+                    let hours = now.getHours();
+                    let minutes = now.getMinutes();
+                    let seconds = now.getSeconds();
+                    
+                    // Add leading zeros
+                    hours = hours < 10 ? '0' + hours : hours;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+                    
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+                    document.getElementById('realtime-clock').innerHTML = `<i class="far fa-clock mr-1"></i> ${dateString} | ${timeString}`;
+                }
+                
+                // Update clock immediately and then every second
+                updateClock();
+                setInterval(updateClock, 1000);
+            </script>
         </div>
     </nav>
 </header>
