@@ -49,17 +49,33 @@
                             @if($subPages->count() > 0)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $mainPage->title }}
+                                        @php
+                                            // Menghilangkan format tanggal dari judul
+                                            $mainTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $mainPage->title);
+                                        @endphp
+                                        {{ $mainTitle }}
                                     </a>
                                     <ul class="dropdown-menu">
                                         @foreach($subPages as $subPage)
-                                            <li><a class="dropdown-item" href="{{ route('pages.show', $subPage->slug) }}">{{ $subPage->title }}</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('pages.show', $subPage->slug) }}">
+                                                @php
+                                                    // Menghilangkan format tanggal dari judul
+                                                    $subTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $subPage->title);
+                                                @endphp
+                                                {{ $subTitle }}
+                                            </a></li>
                                         @endforeach
                                     </ul>
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('pages.show', $mainPage->slug) }}">{{ $mainPage->title }}</a>
+                                    <a class="nav-link" href="{{ route('pages.show', $mainPage->slug) }}">
+                                        @php
+                                            // Menghilangkan format tanggal dari judul
+                                            $mainTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $mainPage->title);
+                                        @endphp
+                                        {{ $mainTitle }}
+                                    </a>
                                 </li>
                             @endif
                         @endforeach

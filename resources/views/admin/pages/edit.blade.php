@@ -75,7 +75,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Source Code Editor</span>
                             <div>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" id="preview-source-btn">Preview</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-preview-btn">Toggle Live Preview</button>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="card" id="source-preview" style="display: none;">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <span>Preview</span>
+                            <span>Live Preview</span>
                             <button type="button" class="btn btn-sm btn-outline-secondary" id="close-preview-btn">Close</button>
                         </div>
                         <div class="card-body p-0" id="source-preview-content"></div>
@@ -96,6 +96,8 @@
 
                         closePreviewBtn.addEventListener('click', function() {
                             previewContainer.style.display = 'none';
+                            document.getElementById('toggle-preview-btn').textContent = 'Toggle Live Preview';
+                            livePreviewEnabled = false;
                         });
                     });
                     </script>
@@ -107,31 +109,51 @@
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const sourceCodeEditor = document.getElementById('source_code');
-                    const previewBtn = document.getElementById('preview-source-btn');
+                    const togglePreviewBtn = document.getElementById('toggle-preview-btn');
                     const previewContainer = document.getElementById('source-preview');
                     const previewContent = document.getElementById('source-preview-content');
+                    let livePreviewEnabled = true; // Aktifkan live preview secara default
+                    let previewIframe;
 
-                    previewBtn.addEventListener('click', function() {
+                    // Function to update preview
+                    function updatePreview() {
                         const sourceCode = sourceCodeEditor.value;
 
-                        // Create an iframe to properly render the HTML content
-                        const iframe = document.createElement('iframe');
-                        iframe.style.width = '100%';
-                        iframe.style.height = '600px';
-                        iframe.style.border = 'none';
-
-                        // Clear previous content
-                        previewContent.innerHTML = '';
-                        previewContent.appendChild(iframe);
+                        // Create an iframe if it doesn't exist
+                        if (!previewIframe) {
+                            previewIframe = document.createElement('iframe');
+                            previewIframe.style.width = '100%';
+                            previewIframe.style.height = '600px';
+                            previewIframe.style.border = 'none';
+                            previewContent.innerHTML = '';
+                            previewContent.appendChild(previewIframe);
+                        }
 
                         // Write the source code to the iframe
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        const iframeDoc = previewIframe.contentDocument || previewIframe.contentWindow.document;
                         iframeDoc.open();
                         iframeDoc.write(sourceCode);
                         iframeDoc.close();
+                    }
 
-                        previewContainer.style.display = 'block';
+                    // Toggle live preview
+                    togglePreviewBtn.addEventListener('click', function() {
+                        livePreviewEnabled = !livePreviewEnabled;
+                        previewContainer.style.display = livePreviewEnabled ? 'block' : 'none';
+                        togglePreviewBtn.textContent = livePreviewEnabled ? 'Hide Live Preview' : 'Toggle Live Preview';
+
+                        if (livePreviewEnabled) {
+                            updatePreview();
+                        }
                     });
+
+                    // Update preview on input - real-time update
+                    sourceCodeEditor.addEventListener('input', updatePreview);
+
+                    // Tampilkan preview secara otomatis saat halaman dimuat
+                    previewContainer.style.display = 'block';
+                    togglePreviewBtn.textContent = 'Hide Live Preview';
+                    updatePreview();
                 });
                 </script>
 

@@ -1,16 +1,9 @@
 <header class="sticky top-0 z-50 border-b bg-white">
     <div class="container mx-auto flex justify-between items-center py-4">
         <div class="flex items-center">
-            <a href="/" onclick="refreshPage(event)">
+            <a href="http://127.0.0.1:8000/">
                 <img src="/img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
             </a>
-            <script>
-                function refreshPage(event) {
-                    event.preventDefault();
-                    location.reload();
-                    window.scrollTo(0, 0);
-                }
-            </script>
         </div>
         <div class="hidden md:flex items-center space-x-6 inconsolata-font">
             <a class="text-black text-lg" href="/tentang">TENTANG</a>
@@ -47,14 +40,22 @@
             <div class="flex items-center space-x-6 inconsolata-font">
                 @foreach($uniqueParentMenus as $parentMenu)
                 <div class="relative">
-                    <button class="text-black text-lg" onclick="toggleDropdown(event, 'dropdown_{{ $loop->index }}')">{{ strtoupper($parentMenu->parent_page) }} <i class="fas fa-caret-down"></i></button>
+                    @php
+                        // Menghilangkan format tanggal dari judul parent menu
+                        $parentTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $parentMenu->parent_page);
+                    @endphp
+                    <button class="text-black text-lg" onclick="toggleDropdown(event, 'dropdown_{{ $loop->index }}')">{{ strtoupper($parentTitle) }} <i class="fas fa-caret-down"></i></button>
                     <div class="absolute bg-gray-800 shadow-lg mt-3 group-hover:block dropdown-content min-w-[200px]" id="dropdown_{{ $loop->index }}">
                         <ul class="py-2 text-sm">
                             @php
                                 $childPages = \App\Models\Page::where('parent_page', $parentMenu->parent_page)->where('is_published', true)->orderBy('order')->get();
                             @endphp
                             @foreach($childPages as $childPage)
-                            <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/{{ $childPage->slug }}">{{ strtoupper($childPage->title) }}</a></li>
+                            @php
+                                // Menghilangkan format tanggal dari judul child page
+                                $childTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $childPage->title);
+                            @endphp
+                            <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/{{ $childPage->slug }}">{{ strtoupper($childTitle) }}</a></li>
                             @endforeach
                         </ul>
                     </div>

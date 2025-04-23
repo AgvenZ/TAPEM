@@ -32,7 +32,11 @@
                                     @if($page->parent_page)
                                         <span class="ms-3">└─</span>
                                     @endif
-                                    {{ $page->title }}
+                                    @php
+                                        // Menghilangkan format tanggal dari judul
+                                        $title = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->title);
+                                    @endphp
+                                    {{ $title }}
                                     @if(\App\Models\Page::where('parent_page', $page->title)->exists())
                                         <span class="badge bg-info">Dropdown</span>
                                     @endif

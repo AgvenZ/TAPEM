@@ -125,7 +125,8 @@
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content') }}</textarea>
+                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10">{{ old('content') }}</textarea>
+                    <small class="form-text text-muted">Opsional jika Anda menggunakan Source Code</small>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -137,7 +138,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Source Code Editor</span>
                             <div>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" id="preview-source-btn">Preview</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-preview-btn">Toggle Live Preview</button>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -145,8 +146,11 @@
                         </div>
                     </div>
                     <div class="card" id="source-preview" style="display: none;">
-                        <div class="card-header">Preview</div>
-                        <div class="card-body" id="source-preview-content"></div>
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Live Preview</span>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="close-preview-btn">Close</button>
+                        </div>
+                        <div class="card-body p-0" id="source-preview-content"></div>
                     </div>
                     @error('source_code')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -156,15 +160,60 @@
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const sourceCodeEditor = document.getElementById('source_code');
-                    const previewBtn = document.getElementById('preview-source-btn');
+                    const togglePreviewBtn = document.getElementById('toggle-preview-btn');
                     const previewContainer = document.getElementById('source-preview');
                     const previewContent = document.getElementById('source-preview-content');
+                    const closePreviewBtn = document.getElementById('close-preview-btn');
+                    let livePreviewEnabled = true; // Aktifkan live preview secara default
+                    let previewIframe;
 
-                    previewBtn.addEventListener('click', function() {
+                    // Function to update preview
+                    function updatePreview() {
+                        if (!livePreviewEnabled) return;
+
                         const sourceCode = sourceCodeEditor.value;
-                        previewContent.innerHTML = sourceCode;
-                        previewContainer.style.display = 'block';
+
+                        if (!previewIframe) {
+                            previewIframe = document.createElement('iframe');
+                            previewIframe.style.width = '100%';
+                            previewIframe.style.height = '600px';
+                            previewIframe.style.border = 'none';
+                            previewContent.innerHTML = '';
+                            previewContent.appendChild(previewIframe);
+                        }
+
+                        const iframeDoc = previewIframe.contentDocument || previewIframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(sourceCode);
+                        iframeDoc.close();
+                    }
+
+                    // Toggle live preview
+                    togglePreviewBtn.addEventListener('click', function() {
+                        livePreviewEnabled = !livePreviewEnabled;
+                        previewContainer.style.display = livePreviewEnabled ? 'block' : 'none';
+                        togglePreviewBtn.textContent = livePreviewEnabled ? 'Hide Live Preview' : 'Toggle Live Preview';
+
+                        if (livePreviewEnabled) {
+                            updatePreview();
+                        }
                     });
+
+                    // Close preview
+                    closePreviewBtn.addEventListener('click', function() {
+                        previewContainer.style.display = 'none';
+                        togglePreviewBtn.textContent = 'Toggle Live Preview';
+                        livePreviewEnabled = false;
+                    });
+
+                    // Update preview on input
+                    sourceCodeEditor.addEventListener('input', updatePreview);
+
+                    // Tampilkan preview secara otomatis saat halaman dimuat
+                    previewContainer.style.display = 'block';
+                    togglePreviewBtn.textContent = 'Hide Live Preview';
+                    livePreviewEnabled = true;
+                    updatePreview();
                 });
                 </script>
 

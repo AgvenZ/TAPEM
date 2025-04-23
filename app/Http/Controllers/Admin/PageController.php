@@ -56,12 +56,27 @@ class PageController extends Controller
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer',
             'title' => 'required|max:255',
-            'content' => 'required',
+            'content' => 'nullable',
+            'source_code' => 'nullable',
             'is_published' => 'boolean',
             'parent_page' => 'nullable|string',
             'selected_media_urls' => 'nullable|string',
             'menu_order' => 'nullable|integer'
         ]);
+
+        // Add source_code to validated data
+        if ($request->has('source_code')) {
+            $validated['source_code'] = $request->source_code;
+            // Jika source_code disediakan, content bisa kosong
+            if (empty($validated['content'])) {
+                $validated['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
+            }
+        } else if (empty($validated['content'])) {
+            // Jika tidak ada source_code dan content kosong, kembalikan error
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
+        }
 
         $baseSlug = Str::slug($validated['title']);
         $slug = $baseSlug;
@@ -114,7 +129,7 @@ class PageController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required',
+            'content' => 'nullable',
             'source_code' => 'nullable',
             'slug' => 'required|unique:pages,slug,' . $page->id,
             'is_published' => 'required|in:0,1',
@@ -123,6 +138,20 @@ class PageController extends Controller
             'selected_media_urls' => 'nullable|string',
             'old_parent_name' => 'nullable|string'
         ]);
+
+        // Add source_code to validated data if not already in validated array
+        if ($request->has('source_code')) {
+            $validated['source_code'] = $request->source_code;
+            // Jika source_code disediakan, content bisa kosong
+            if (empty($validated['content'])) {
+                $validated['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
+            }
+        } else if (empty($validated['content'])) {
+            // Jika tidak ada source_code dan content kosong, kembalikan error
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
+        }
 
         // Update parent_page name for all related pages if it was changed
         if (!empty($validated['old_parent_name']) && $validated['old_parent_name'] !== $validated['parent_page']) {
