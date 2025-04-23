@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    public function move(Page $page, Request $request)
+    public function move(Request $request, Page $page)
     {
         $direction = $request->direction;
         $currentOrder = $page->order;
@@ -18,13 +18,27 @@ class PageController extends Controller
         // 'down' means increasing order number (moving down in the list)
         if ($direction === 'up') {
             $swapPage = Page::where('parent_page', $page->parent_page)
-                ->where('order', '<', $currentOrder)
+                ->where(function($query) use ($currentOrder, $page) {
+                    $query->where('order', '<', $currentOrder)
+                        ->orWhere(function($q) use ($currentOrder, $page) {
+                            $q->where('order', '=', $currentOrder)
+                              ->where('id', '<', $page->id);
+                        });
+                })
                 ->orderBy('order', 'desc')
+                ->orderBy('id', 'desc')
                 ->first();
         } else {
             $swapPage = Page::where('parent_page', $page->parent_page)
-                ->where('order', '>', $currentOrder)
+                ->where(function($query) use ($currentOrder, $page) {
+                    $query->where('order', '>', $currentOrder)
+                        ->orWhere(function($q) use ($currentOrder, $page) {
+                            $q->where('order', '=', $currentOrder)
+                              ->where('id', '>', $page->id);
+                        });
+                })
                 ->orderBy('order', 'asc')
+                ->orderBy('id', 'asc')
                 ->first();
         }
 
@@ -138,20 +152,6 @@ class PageController extends Controller
             'selected_media_urls' => 'nullable|string',
             'old_parent_name' => 'nullable|string'
         ]);
-
-        // Add source_code to validated data if not already in validated array
-        if ($request->has('source_code')) {
-            $validated['source_code'] = $request->source_code;
-            // Jika source_code disediakan, content bisa kosong
-            if (empty($validated['content'])) {
-                $validated['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
-            }
-        } else if (empty($validated['content'])) {
-            // Jika tidak ada source_code dan content kosong, kembalikan error
-            return redirect()->back()
-                ->withInput()
-                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
-        }
 
         // Update parent_page name for all related pages if it was changed
         if (!empty($validated['old_parent_name']) && $validated['old_parent_name'] !== $validated['parent_page']) {
