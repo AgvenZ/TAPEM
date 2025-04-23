@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    public function move(Page $page, Request $request)
+    public function move(Request $request, Page $page)
     {
         $direction = $request->direction;
         $currentOrder = $page->order;
@@ -18,13 +18,27 @@ class PageController extends Controller
         // 'down' means increasing order number (moving down in the list)
         if ($direction === 'up') {
             $swapPage = Page::where('parent_page', $page->parent_page)
-                ->where('order', '<', $currentOrder)
+                ->where(function($query) use ($currentOrder, $page) {
+                    $query->where('order', '<', $currentOrder)
+                        ->orWhere(function($q) use ($currentOrder, $page) {
+                            $q->where('order', '=', $currentOrder)
+                              ->where('id', '<', $page->id);
+                        });
+                })
                 ->orderBy('order', 'desc')
+                ->orderBy('id', 'desc')
                 ->first();
         } else {
             $swapPage = Page::where('parent_page', $page->parent_page)
-                ->where('order', '>', $currentOrder)
+                ->where(function($query) use ($currentOrder, $page) {
+                    $query->where('order', '>', $currentOrder)
+                        ->orWhere(function($q) use ($currentOrder, $page) {
+                            $q->where('order', '=', $currentOrder)
+                              ->where('id', '>', $page->id);
+                        });
+                })
                 ->orderBy('order', 'asc')
+                ->orderBy('id', 'asc')
                 ->first();
         }
 
@@ -123,6 +137,30 @@ class PageController extends Controller
             'selected_media_urls' => 'nullable|string',
             'old_parent_name' => 'nullable|string'
         ]);
+
+        // Handle menu order update
+        if (isset($validated['menu_order']) && $validated['menu_order'] !== $page->order) {
+            $newOrder = $validated['menu_order'];
+            $currentOrder = $page->order;
+            
+            // Get pages with the same parent
+            $query = Page::where('parent_page', $validated['parent_page']);
+            
+            if ($newOrder > $currentOrder) {
+                // Moving down: decrease order of pages between current and new position
+                $query->where('order', '>', $currentOrder)
+                      ->where('order', '<=', $newOrder)
+                      ->decrement('order');
+            } else {
+                // Moving up: increase order of pages between new and current position
+                $query->where('order', '>=', $newOrder)
+                      ->where('order', '<', $currentOrder)
+                      ->increment('order');
+            }
+            
+            // Set the new order for the current page
+            $validated['order'] = $newOrder;
+        }
 
         // Update parent_page name for all related pages if it was changed
         if (!empty($validated['old_parent_name']) && $validated['old_parent_name'] !== $validated['parent_page']) {
