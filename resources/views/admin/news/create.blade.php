@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label for="published_at" class="form-label">Publication Date</label>
-                    <input type="datetime-local" class="form-control @error('published_at') is-invalid @enderror" id="published_at" name="published_at" value="{{ old('published_at') }}">
+                    <input type="date" class="form-control @error('published_at') is-invalid @enderror" id="published_at" name="published_at" value="{{ old('published_at') ? date('Y-m-d', strtotime(old('published_at'))) : date('Y-m-d') }}">
                     @error('published_at')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -70,9 +70,9 @@
                     const previewContainer = document.getElementById('selected-images-preview');
                     const previewGrid = document.getElementById('selected-images-grid');
                     const urlInput = document.getElementById('selected-media-urls');
-                    
+
                     const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
-                    
+
                     if (selectedUrls.length === 0) {
                         previewContainer.style.display = 'none';
                         previewGrid.innerHTML = '';
@@ -120,7 +120,7 @@
             const mediaPagination = document.getElementById('mediaPagination');
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
             const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
-            
+
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
             mediaLoader.querySelector('.spinner-border').style.display = 'block';
@@ -151,7 +151,7 @@
                         checkbox.checked = selectedMediaUrls.includes(imageUrl);
                         const mediaUrl = item.querySelector('.select-media').dataset.url;
                         checkbox.value = mediaUrl;
-                        
+
                         // Check if this image was previously selected
                         if (selectedMediaUrls.includes(mediaUrl)) {
                             checkbox.checked = true;
