@@ -1,0 +1,75 @@
+/**
+ * Settings page specific styles
+ */
+
+/* Section headers */
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section h4 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+/* Form elements styling */
+.color-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.form-control-color {
+    width: 60px;
+    height: 38px;
+    padding: 0.375rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.color-picker-container input[type="text"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Logo preview */
+#logo-preview {
+    margin-top: 1rem;
+}
+
+#logo-preview img {
+    border: 1px solid #dee2e6;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    max-height: 150px;
+    width: auto;
+}
+
+/* Required field indicator */
+.required-field {
+    color: #dc3545;
+    margin-left: 0.25rem;
+}
+
+/* Toggle switch styling */
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.5em;
+    margin-top: 0.25em;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: #2F80ED;
+    border-color: #2F80ED;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-control-color {
+        width: 50px;
+    }
+
+    .d-md-flex {
+        display: flex !important;
+    }
+}
