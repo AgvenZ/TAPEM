@@ -18,6 +18,7 @@
             <a class="text-black text-lg" href="/regulasi">REGULASI</a>
             <span class="text-lg">|</span>
             <a class="text-black text-lg" href="/kontak">KONTAK</a>
+            @if(request()->is('/'))
             <div class="flex flex-col items-center">
                 <a class="text-black text-lg flex items-center" href="#">SLIDESHOW</a>
                 <label class="relative inline-flex items-center cursor-pointer mt-2">
@@ -25,11 +26,13 @@
                     <div class="w-12 h-7 bg-gray-400 rounded-full peer peer-focus:ring-0 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-[#760000]"></div>
                 </label>
             </div>
+            @endif
         </div>
         <div class="md:hidden flex items-center space-x-6 inconsolata-font">
             <a class="text-black text-lg" href="/regulasi">REGULASI</a>
             <span class="text-lg">|</span>
             <a class="text-black text-lg" href="/kontak">KONTAK</a>
+            @if(request()->is('/'))
             <div class="flex flex-col items-center">
                 <a class="text-black text-lg flex items-center" href="#">SLIDESHOW</a>
                 <label class="relative inline-flex items-center cursor-pointer mt-2">
@@ -37,6 +40,7 @@
                     <div class="w-12 h-7 bg-gray-200 rounded-full peer peer-focus:ring-0 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-[#760000]"></div>
                 </label>
             </div>
+            @endif
         </div>
     </div>
     @php
