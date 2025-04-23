@@ -17,7 +17,7 @@
                 <div class="mb-3">
                     <label for="parent_page" class="form-label">Parent Menu</label>
                     <div class="input-group">
-                        <select class="form-select @error('parent_page') is-invalid @enderror" id="parent_page" name="parent_page">
+                        <select class="form-select @error('parent_page') is-invalid @enderror" id="parent_page" name="parent_page" onchange="if(this.value === 'new') { new bootstrap.Modal(document.getElementById('newParentModal')).show(); }">
                             <option value="">None</option>
                             <option value="new" data-bs-toggle="modal" data-bs-target="#newParentModal">+ Add New Parent Menu</option>
                             @php
@@ -30,9 +30,6 @@
                                 <option value="{{ $parent }}" {{ old('parent_page', $page->parent_page) == $parent ? 'selected' : '' }}>{{ $parent }}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#newParentModal">
-                            <i class="fas fa-plus"></i>
-                        </button>
                         <button class="btn btn-outline-primary" type="button" onclick="editParentMenu()">
                             <i class="fas fa-edit"></i>
                         </button>
