@@ -22,6 +22,7 @@ Route::get('/', function () {
 // Admin routes
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/pages/preview/{page}', [\App\Http\Controllers\Admin\PageController::class, 'preview'])->name('pages.preview');
     Route::resource('admins', AdminController::class);
     Route::resource('users', UserController::class);
 

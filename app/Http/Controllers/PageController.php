@@ -16,12 +16,32 @@ class PageController extends Controller
         return view('pages.index', compact('pages'));
     }
 
+    public function preview(Page $page)
+    {
+        // Only allow admin to preview pages
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            abort(403);
+        }
+
+        // If the page has source code, use it directly
+        if (!empty($page->source_code)) {
+            return response($page->source_code)->header('Content-Type', 'text/html');
+        }
+        // Otherwise use the standard view
+        return view('admin.pages.show', compact('page'));
+    }
+
     public function show($slug)
     {
         // First try to find a dynamic page
-        $page = Page::where('slug', $slug)
-            ->where('is_published', true)
-            ->first();
+        $query = Page::where('slug', $slug);
+        
+        // Only show draft pages to authenticated admin users
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            $query->where('is_published', true);
+        }
+        
+        $page = $query->first();
 
         if ($page) {
             // If the page has source code, use it directly
