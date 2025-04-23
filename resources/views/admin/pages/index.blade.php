@@ -70,7 +70,7 @@
                                         <a href="{{ route('admin.pages.edit', $page->slug) }}" class="btn btn-primary btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('admin.pages.destroy', $page->slug) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
