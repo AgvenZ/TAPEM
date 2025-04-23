@@ -203,84 +203,7 @@
         }
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
-    <header class="sticky top-0 z-50 border-b bg-white">
-        <div class="container mx-auto flex justify-between items-center py-4">
-            <div class="flex items-center">
-                <a href="/" onclick="refreshPage(event)">
-                    <img src="img/logo-pemkot.png" alt="Logo TAPEM" class="h-20 w-80 mr-4" />
-                </a>
-                <script>
-                    function refreshPage(event) {
-                        event.preventDefault();
-                        window.location.href = "/"; // Arahkan ke beranda
-                        window.scrollTo(0, 0); // Scroll ke bagian paling atas
-                    }
-                </script>
-            </div>
-            <div class="hidden md:flex items-center space-x-6 inconsolata-font">
-                <a class="text-black text-lg" href="/tentang">TENTANG</a>
-                <span class="text-lg">|</span>
-                <a class="text-black text-lg" href="/regulasi">REGULASI</a>
-                <span class="text-lg">|</span>
-                <a class="text-black text-lg" href="/kontak">KONTAK</a>
-            </div>
-            <div class="md:hidden flex items-center space-x-6 inconsolata-font">
-                <a class="text-black text-lg" href="/regulasi">REGULASI</a>
-                <span class="text-lg">|</span>
-                <a class="text-black text-lg" href="/kontak">KONTAK</a>
-                <div class="flex flex-col items-center">
-                    <a class="text-black text-lg flex items-center" href="#">SLIDESHOW</a>
-                    <label class="relative inline-flex items-center cursor-pointer mt-2">
-                        <input checked class="sr-only peer no-outline" id="slideshowToggleMobile" onclick="toggleSlideshowMobile()" type="checkbox" />
-                        <div class="w-12 h-7 bg-gray-200 rounded-full peer peer-focus:ring-0 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-[#760000]"></div>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <nav class="bg-[#FEFF01] border-t border-b border-gray-600">
-            <div class="container mx-auto flex justify-between items-center py-3">
-                <div class="flex items-center space-x-6 inconsolata-font">
-                    <div class="relative">
-                        <button class="text-black text-lg" onclick="toggleDropdown(event, 'profilDropdown')">PROFIL <i class="fas fa-caret-down"></i></button>
-                        <div class="absolute bg-gray-800 shadow-lg mt-3 group-hover:block dropdown-content min-w-[200px]" id="profilDropdown">
-                            <ul class="py-2 text-sm">
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/strukturorganisasi">STRUKTUR ORGANISASI</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/sdm">SDM</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/visi-misi">VISI DAN MISI</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/tugas-fungsi">TUGAS DAN FUNGSI</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <button class="text-black text-lg" onclick="toggleDropdown(event, 'programDropdown')">PROGRAM & KEGIATAN <i class="fas fa-caret-down"></i></button>
-                        <div class="absolute bg-gray-800 shadow-lg mt-3 dropdown-content min-w-[250px]" id="programDropdown">
-                            <ul class="py-2 text-sm">
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/pembinaan-administrasi-kecamatan-dan-kelurahan">PEMBINAAN ADMINISTRASI KECAMATAN DAN KELURAHAN</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="evaluasi-kinerja-kecamatan-dan-kelurahan">EVALUASI KINERJA KECAMATAN DAN KELURAHAN</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/fasilitasi-pengumuman-relaas">FASILITASI PENGUMUMAN RELAAS</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/pelayanan-terpadu-akhir-pekan-dan-malam-hari">PELAYANAN TERPADU AKHIR PEKAN DAN MALAM HARI</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/penamaan-dan-pendataan-rupa-bumi">PENAMAAN DAN PENDATAAN RUPA BUMI</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <button class="text-black text-lg" onclick="toggleDropdown(event, 'informasiDropdown')">INFORMASI & LAYANAN <i class="fas fa-caret-down"></i></button>
-                        <div class="absolute bg-gray-800 shadow-lg mt-3 dropdown-content min-w-[200px]" id="informasiDropdown">
-                            <ul class="py-2 text-sm">
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/berita">BERITA</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/e-magang">E-MAGANG</a></li>
-                                <li><a class="block px-4 py-3 hover:bg-[#FEFF01] hover:text-black" href="/daftar-kecamatan-kelurahan">DAFTAR KECAMATAN/KELURAHAN</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-envelope text-red-600 text-lg"></i>
-                    <a class="text-red-600 inconsolata-font text-lg hover-underline" href="mailto:tapemkotasmg@gmail.com">tapemkotasmg@gmail.com</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    @include('layouts.navbar')
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">PEMBINAAN ADMINISTRASI KECAMATAN DAN KELURAHAN</div>
@@ -323,23 +246,7 @@
             </p>
         </div>
     </div>
-    <div class="flex justify-center items-center py-10 bg-black">
-        <div class="flex items-center mx-8">
-            <img alt="Semarang Kota logo and text" class="h-20" src="img/logo1.png"/>
-        </div>
-        <div class="flex items-center mx-8">
-            <img alt="Semarang Smart City logo and text" class="h-20" src="img/logo2.png"/>
-        </div>
-        <div class="flex items-center mx-8 bg-white text-black p-4">
-            <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="img/logo3.png"/>
-        </div>
-        <div class="flex items-center mx-8">
-            <img alt="PPID logo and text" class="h-20" src="img/logo4.png"/>
-        </div>
-    </div>
-    <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
-        <p>© 2025 Bagian Tata Pemerintahan, Setda Kota Semarang All rights reserved</p>
-    </footer>
+    @include('layouts.footer')
     <script>
          function changeSlide(n) {
                 slideIndex += n;
