@@ -17,18 +17,21 @@
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <i class="fas fa-check-circle text-success check-circle" style="font-size: 2rem; display: none;"></i>
+                    <i class="fas fa-check-circle text-success check-circle" style="font-size: 2rem; display: none;" id="successIcon"></i>
                 </div>
                 <div class="alert alert-success d-none mt-4 text-center" id="mediaLoadSuccess">
                     All images have been loaded successfully
                 </div>
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Fungsi untuk menyembunyikan loader dan menampilkan pesan sukses
-                    function hideLoaderAndShowSuccess() {
+                    // Fungsi untuk menyembunyikan loader dan menampilkan pesan status
+                    function hideLoaderAndShowStatus() {
                         const mediaLoader = document.getElementById('mediaLoader');
                         const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
                         const spinner = document.querySelector('.spinner-border');
+                        const successIcon = document.getElementById('successIcon');
+                        const mediaItems = document.getElementById('mediaItems');
+                        const mediaItemsCount = mediaItems ? mediaItems.querySelectorAll('.col-md-3').length : 0;
                         
                         if (mediaLoader) {
                             mediaLoader.style.display = 'none';
@@ -37,22 +40,32 @@
                         if (spinner) {
                             spinner.style.display = 'none';
                         }
+
+                        if (successIcon) {
+                            successIcon.style.display = mediaItemsCount > 0 ? 'block' : 'none';
+                        }
                         
                         if (mediaLoadSuccess) {
                             mediaLoadSuccess.classList.remove('d-none');
+                            if (mediaItemsCount > 0) {
+                                mediaLoadSuccess.textContent = 'All images have been loaded successfully';
+                                mediaLoadSuccess.classList.remove('alert-warning');
+                                mediaLoadSuccess.classList.add('alert-success');
+                            } else {
+                                mediaLoadSuccess.textContent = 'No media found';
+                                mediaLoadSuccess.classList.remove('alert-success');
+                                mediaLoadSuccess.classList.add('alert-warning');
+                            }
                         }
                     }
                     
                     // Menambahkan observer untuk memantau perubahan pada #mediaItems
                     const mediaItemsObserver = new MutationObserver(function(mutations) {
-                        // Jika ada perubahan pada #mediaItems (gambar telah dimuat)
-                        if (document.querySelectorAll('#mediaItems .col-md-3').length > 0) {
-                            // Tunggu sedikit untuk memastikan semua gambar telah dimuat
-                            setTimeout(hideLoaderAndShowSuccess, 500);
-                            
-                            // Hentikan observer setelah gambar dimuat
-                            mediaItemsObserver.disconnect();
-                        }
+                        // Jika ada perubahan pada #mediaItems
+                        setTimeout(hideLoaderAndShowStatus, 500);
+                        
+                        // Hentikan observer setelah pemeriksaan
+                        mediaItemsObserver.disconnect();
                     });
                     
                     // Mulai memantau #mediaItems untuk perubahan
