@@ -202,6 +202,23 @@
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar')
+    <div class="bg-black text-white">
+     <div class="flex justify-between items-center p-4">
+      <div class="text-2xl font-bold andika-font ml-20">
+       REGULASI
+      </div>
+      <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-48">
+       <span class="cursor-pointer" onclick="window.location.href='/'">
+        BERANDA
+       </span>
+       <i class="fas fa-chevron-right">
+       </i>
+       <span>
+        REGULASI
+       </span>
+      </div>
+     </div>
+    </div>
     <body class="text-white font-sans bg-cover bg-no-repeat bg-fixed flex items-center justify-center min-h-screen" style="background-image: url('img/background4.png');">
         <div class="text-white container mx-auto p-4 arvo-font">
             <div class="p-14 rounded-lg">
