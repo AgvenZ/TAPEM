@@ -134,20 +134,10 @@
                     <div class="card mb-2">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Source Code Editor</span>
-                            <div>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" id="toggle-preview-btn">Toggle Live Preview</button>
-                            </div>
                         </div>
                         <div class="card-body p-0">
                             <textarea class="form-control @error('source_code') is-invalid @enderror" id="source_code" name="source_code" rows="10" style="font-family: monospace; tab-size: 4;">{{ old('source_code') }}</textarea>
                         </div>
-                    </div>
-                    <div class="card" id="source-preview" style="display: none;">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <span>Live Preview</span>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" id="close-preview-btn">Close</button>
-                        </div>
-                        <div class="card-body p-0" id="source-preview-content"></div>
                     </div>
                     @error('source_code')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -157,60 +147,9 @@
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const sourceCodeEditor = document.getElementById('source_code');
-                    const togglePreviewBtn = document.getElementById('toggle-preview-btn');
-                    const previewContainer = document.getElementById('source-preview');
-                    const previewContent = document.getElementById('source-preview-content');
-                    const closePreviewBtn = document.getElementById('close-preview-btn');
-                    let livePreviewEnabled = true; // Aktifkan live preview secara default
-                    let previewIframe;
+                    // Live preview functionality has been removed
+                });
 
-                    // Function to update preview
-                    function updatePreview() {
-                        if (!livePreviewEnabled) return;
-
-                        const sourceCode = sourceCodeEditor.value;
-
-                        if (!previewIframe) {
-                            previewIframe = document.createElement('iframe');
-                            previewIframe.style.width = '100%';
-                            previewIframe.style.height = '600px';
-                            previewIframe.style.border = 'none';
-                            previewContent.innerHTML = '';
-                            previewContent.appendChild(previewIframe);
-                        }
-
-                        const iframeDoc = previewIframe.contentDocument || previewIframe.contentWindow.document;
-                        iframeDoc.open();
-                        iframeDoc.write(sourceCode);
-                        iframeDoc.close();
-                    }
-
-                    // Toggle live preview
-                    togglePreviewBtn.addEventListener('click', function() {
-                        livePreviewEnabled = !livePreviewEnabled;
-                        previewContainer.style.display = livePreviewEnabled ? 'block' : 'none';
-                        togglePreviewBtn.textContent = livePreviewEnabled ? 'Hide Live Preview' : 'Toggle Live Preview';
-
-                        if (livePreviewEnabled) {
-                            updatePreview();
-                        }
-                    });
-
-                    // Close preview
-                    closePreviewBtn.addEventListener('click', function() {
-                        previewContainer.style.display = 'none';
-                        togglePreviewBtn.textContent = 'Toggle Live Preview';
-                        livePreviewEnabled = false;
-                    });
-
-                    // Update preview on input
-                    sourceCodeEditor.addEventListener('input', updatePreview);
-
-                    // Tampilkan preview secara otomatis saat halaman dimuat
-                    previewContainer.style.display = 'block';
-                    togglePreviewBtn.textContent = 'Hide Live Preview';
-                    livePreviewEnabled = true;
-                    updatePreview();
                 });
                 </script>
 
