@@ -24,9 +24,9 @@ class PageController extends Controller
              ->first();
 
         if ($page) {
-            // If the page has source code, use it directly
+            // If the page has source code, use the main layout with the source code
             if (!empty($page->source_code)) {
-                return response($page->source_code)->header('Content-Type', 'text/html');
+                return view('layouts.dynamic', compact('page'));
             }
             // Otherwise use the standard view
             return view('admin.pages.show', compact('page'));

@@ -171,7 +171,7 @@
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar')
     <div class="bg-black text-white">
-        <div class="flex justify-between items-center p-4">
+        {{-- <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">{{ $page->title }}</div>
             <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
                 <span onclick="window.location.href='/'" class="cursor-pointer">{{ $page->parent_page ?? 'HOME' }}</span>
@@ -179,7 +179,7 @@
                 <span>{{ $page->title }}</span>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
