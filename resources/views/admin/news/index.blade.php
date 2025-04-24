@@ -19,7 +19,6 @@
                             <th>Title</th>
                             <th>Status</th>
                             <th>Created At</th>
-                            <th>Updated At</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -36,7 +35,6 @@
                                     @endif
                                 </td>
                                 <td>{{ $article->created_at->format('Y-m-d H:i') }}</td>
-                                <td>{{ $article->updated_at->format('Y-m-d H:i') }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('admin.news.show', $article->slug) }}" class="btn btn-info btn-sm">
