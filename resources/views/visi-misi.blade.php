@@ -192,7 +192,7 @@
         }
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
-    @include('layouts.navbar')
+    @include('layouts.navbar2')
 </body>
 <div class="bg-black text-white">
     <div class="flex justify-between items-center p-4">
