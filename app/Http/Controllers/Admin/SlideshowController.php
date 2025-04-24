@@ -24,12 +24,18 @@ class SlideshowController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => $request->has('selected_media_urls') ? 'nullable' : 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'selected_media_urls' => $request->hasFile('image') ? 'nullable' : 'required|json',
             'order' => 'nullable|integer|min:0',
             'active' => 'boolean'
         ]);
 
-        $imagePath = $request->file('image')->store('slideshows', 'public');
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('slideshows', 'public');
+        } else {
+            $selectedUrls = json_decode($request->selected_media_urls, true);
+            $imagePath = str_replace('/storage/', '', $selectedUrls[0]);
+        }
 
         Slideshow::create([
             'title' => $request->title,
