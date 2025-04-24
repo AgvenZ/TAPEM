@@ -1,4 +1,4 @@
-{{-- <html lang="en">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -554,4 +554,4 @@ let currentSlide = 0;
 window.addEventListener('scroll', handleScroll);
     </script>
 </body>
-</html> --}}
+</html>

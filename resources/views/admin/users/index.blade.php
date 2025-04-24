@@ -23,7 +23,6 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -33,7 +32,6 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->role }}</td>
                                 <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-primary">
