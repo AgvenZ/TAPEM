@@ -22,10 +22,7 @@
                                 {{ $item->mime_type }}
                             </small>
                         </p>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-sm btn-info copy-url" data-url="{{ $item->url }}">
-                                <i class="fas fa-copy"></i> Copy URL
-                            </button>
+                        <div class="d-flex justify-content-end">
                             <form action="{{ route('admin.media.destroy', $item) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
@@ -48,16 +45,5 @@
         {{ $media->links('pagination::bootstrap-4') }}
     </div>
 
-    @push('scripts')
-    <script>
-        document.querySelectorAll('.copy-url').forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.dataset.url;
-                navigator.clipboard.writeText(url).then(() => {
-                    alert('URL copied to clipboard!');
-                });
-            });
-        });
-    </script>
-    @endpush
+    <!-- Copy URL functionality has been removed -->
 @endsection
