@@ -86,9 +86,8 @@
                     const previewContainer = document.getElementById('selected-images-preview');
                     const previewGrid = document.getElementById('selected-images-grid');
                     const urlInput = document.getElementById('selected-media-urls');
-
                     const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
-
+                    
                     if (selectedUrls.length === 0) {
                         previewContainer.style.display = 'none';
                         previewGrid.innerHTML = '';
@@ -132,6 +131,11 @@
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
             const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
             
+            // Remove existing event listener from confirm button to prevent duplicates
+            const confirmButton = document.getElementById('confirmSelection');
+            const newConfirmButton = confirmButton.cloneNode(true);
+            confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
+            
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
             mediaLoader.querySelector('.spinner-border').style.display = 'block';
@@ -167,61 +171,46 @@
                             document.getElementById('confirmSelection').disabled = selectedCount === 0;
                         });
 
-                        document.getElementById('confirmSelection').addEventListener('click', function() {
-                            const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);
-                            const previewContainer = document.getElementById('selected-images-preview');
-                            const previewGrid = document.getElementById('selected-images-grid');
-                            const urlInput = document.getElementById('selected-media-urls');
-                            const fileInput = document.getElementById('image');
-                            
-                            if (selectedUrls.length > 0) {
-                                const existingUrls = JSON.parse(urlInput.value || '[]');
-                                const mergedUrls = [...new Set([...existingUrls, ...selectedUrls])];
-                                
-                                // Clear existing grid content
-                                previewGrid.innerHTML = '';
-                                
-                                // Add each image to the grid
-                                mergedUrls.forEach(url => {
-                                    const imageDiv = document.createElement('div');
-                                    imageDiv.className = 'col-md-3';
-                                    imageDiv.innerHTML = `
-                                        <div class="position-relative">
-                                            <img src="${url}" class="img-fluid rounded" alt="Selected image">
-                                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    `;
-                                    previewGrid.appendChild(imageDiv);
-                                });
-                                
-                                urlInput.value = JSON.stringify(mergedUrls);
-                                previewContainer.style.display = 'block';
-                                fileInput.value = '';
-                            }
-                            }
-
-                            bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
-                        });
-
                         mediaItems.appendChild(template);
                     });
 
-                    if (pagination) {
-                        mediaPagination.innerHTML = pagination.innerHTML;
-                        mediaPagination.querySelectorAll('a').forEach(link => {
-                            link.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                const pageNum = this.href.split('page=')[1];
-                                loadMediaItems(pageNum);
+                    // Add event listener for confirm selection button outside the loop
+                    document.getElementById('confirmSelection').addEventListener('click', function() {
+                        const selectedUrls = Array.from(document.querySelectorAll('.media-checkbox:checked')).map(cb => cb.value);
+                        const previewContainer = document.getElementById('selected-images-preview');
+                        const previewGrid = document.getElementById('selected-images-grid');
+                        const urlInput = document.getElementById('selected-media-urls');
+                        const fileInput = document.getElementById('image');
+                        
+                        if (selectedUrls.length > 0) {
+                            const existingUrls = JSON.parse(urlInput.value || '[]');
+                            const mergedUrls = [...new Set([...existingUrls, ...selectedUrls])];
+                            
+                            // Clear existing grid content
+                            previewGrid.innerHTML = '';
+                            
+                            // Add each image to the grid
+                            mergedUrls.forEach(url => {
+                                const imageDiv = document.createElement('div');
+                                imageDiv.className = 'col-md-3';
+                                imageDiv.innerHTML = `
+                                    <div class="position-relative">
+                                        <img src="${url}" class="img-fluid rounded" alt="Selected image">
+                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1" onclick="removeSelectedImage('${url}')">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                `;
+                                previewGrid.appendChild(imageDiv);
                             });
-                        });
-                    }
-
-                    mediaLoader.querySelector('.spinner-border').style.display = 'none';
-                    mediaLoader.querySelector('.check-circle').style.display = 'block';
-                    mediaLoadSuccess.classList.remove('d-none');
+                            
+                            urlInput.value = JSON.stringify(mergedUrls);
+                            previewContainer.style.display = 'block';
+                            fileInput.value = '';
+                        }
+                        
+                        bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
+                    });
                 });
         }
 
