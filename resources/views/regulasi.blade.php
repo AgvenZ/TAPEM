@@ -201,27 +201,44 @@
         }
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
-    @include('layouts.navbar')
+    @include('layouts.navbar2')
+    <div class="bg-black text-white">
+     <div class="flex justify-between items-center p-4">
+      <div class="text-2xl font-bold andika-font ml-20">
+       REGULASI
+      </div>
+      <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-48">
+       <span class="cursor-pointer" onclick="window.location.href='/'">
+        BERANDA
+       </span>
+       <i class="fas fa-chevron-right">
+       </i>
+       <span>
+        REGULASI
+       </span>
+      </div>
+     </div>
+    </div>
     <body class="text-white font-sans bg-cover bg-no-repeat bg-fixed flex items-center justify-center min-h-screen" style="background-image: url('img/background4.png');">
         <div class="text-white container mx-auto p-4 arvo-font">
             <div class="p-14 rounded-lg">
                 <ol class="list-decimal list-inside text-lg md:text-xl lg:text-2xl leading-relaxed text-justify">
-                    <li class="-mr-10">Undang-Undang Nomor 14 Tahun 2008 Tentang Keterbukaan Informasi Publik <a href="https://drive.google.com/file/d/10EzZqxgSKVA2vhXnQDm66Ai7GIeYNwZ9/view" class="text-red-500">(unduh)</a></li>
-                    <li class="-mr-10">Undang-Undang Nomor 25 Tahun 2009 Tentang Pelayanan Publik <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500">(unduh)</a></li>
-                    <li class="-mr-10">Undang-Undang Nomor 23 Tahun 2014 Tentang Pemerintahan Daerah <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500">(unduh)</a></li>
+                    <li class="-mr-10">Undang-Undang Nomor 14 Tahun 2008 Tentang Keterbukaan Informasi Publik <a href="https://drive.google.com/file/d/10EzZqxgSKVA2vhXnQDm66Ai7GIeYNwZ9/view" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Undang-Undang Nomor 25 Tahun 2009 Tentang Pelayanan Publik <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Undang-Undang Nomor 23 Tahun 2014 Tentang Pemerintahan Daerah <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Undang-Undang Nomor 1 Tahun 2022 Tentang Hubungan Keuangan antara Pemerintah Pusat dan</li>
-                    <p class="pl-6">Pemerintah Daerah <a href="https://drive.google.com/file/d/1qIvkwlbgLU07Whhafnoak_dG7BSkErZK/view" class="text-red-500">(unduh)</a></p>
-                    <li class="-mr-10">Peraturan Pemerintah Nomor 17 Tahun 2018 Tentang Kecamatan <a href="https://drive.google.com/file/d/1_xAYroFN4ME3Rnv6bIYwfRhRnqjeVPMX/view" class="text-red-500">(unduh)</a></li>
-                    <li class="-mr-10">Peraturan Pemerintah Nomor 2 Tahun 2021 Tentang Penyelenggaraan Nama Rupabumi <a href="#" class="text-red-500">(unduh)</a></li>
-                    <li class="-mr-10">Peraturan Daerah Nomor 2 Tahun 2021 Tentang Kecamatan <a href="https://drive.google.com/file/d/1M6hjEUpKVeQi-1rC6EV3sRchMoMKIQmz/view" class="text-red-500">(unduh)</a></li>
+                    <p class="pl-6">Pemerintah Daerah <a href="https://drive.google.com/file/d/1qIvkwlbgLU07Whhafnoak_dG7BSkErZK/view" class="text-red-500" target="_blank">(unduh)</a></p>
+                    <li class="-mr-10">Peraturan Pemerintah Nomor 17 Tahun 2018 Tentang Kecamatan <a href="https://drive.google.com/file/d/1_xAYroFN4ME3Rnv6bIYwfRhRnqjeVPMX/view" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Peraturan Pemerintah Nomor 2 Tahun 2021 Tentang Penyelenggaraan Nama Rupabumi <a href="#" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Peraturan Daerah Nomor 2 Tahun 2021 Tentang Kecamatan <a href="https://drive.google.com/file/d/1M6hjEUpKVeQi-1rC6EV3sRchMoMKIQmz/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Peraturan Walikota Nomor 7 Tahun 2018 Tentang Pelimpahan Sebagian Kewenangan Walikota</li>
-                    <p class="pl-6">Kepada Camat <a href="https://drive.google.com/file/d/1NllWKAIlM7eszuh67ffmYOgvmtteZteX/view" class="text-red-500">(unduh)</a></p>
+                    <p class="pl-6">Kepada Camat <a href="https://drive.google.com/file/d/1NllWKAIlM7eszuh67ffmYOgvmtteZteX/view" class="text-red-500" target="_blank">(unduh)</a></p>
                     <li class="mr-10">Peraturan Walikota Semarang Nomor 90 Tahun 2021 Tentang Kedudukan, Susunan  </li>
-                    <p class="pl-6">Organisasi, Tugas Dan Fungsi Serta Sistem Kerja Sekretariat Daerah Kota Semarang <a href="https://drive.google.com/file/d/1d_dphX_dtsu8yrRf9pIgq7TgiA-Xp43B/view" class="text-red-500">(unduh)</a></p>
+                    <p class="pl-6">Organisasi, Tugas Dan Fungsi Serta Sistem Kerja Sekretariat Daerah Kota Semarang <a href="https://drive.google.com/file/d/1d_dphX_dtsu8yrRf9pIgq7TgiA-Xp43B/view" class="text-red-500" target="_blank">(unduh)</a></p>
                     <li class="-ml-3">Peraturan Walikota Semarang Nomor 9 Tahun 2022 Tentang Evaluasi Kinerja Kecamatan dan</li>
-                    <p class="pl-6">Kelurahan <a href="https://drive.google.com/file/d/1o3vKURhjOqhgX4TUoyxAG-VsAHNbYJQD/view" class="text-red-500">(unduh)</a></p>
+                    <p class="pl-6">Kelurahan <a href="https://drive.google.com/file/d/1o3vKURhjOqhgX4TUoyxAG-VsAHNbYJQD/view" class="text-red-500" target="_blank">(unduh)</a></p>
                     <li class="-ml-2">Peraturan Walikota Nomor 25 Tahun 2022 Tentang Pedoman Pengelolaan Informasi Dan </li>
-                    <p class="pl-6">Dokumentasi Publik di Lingkungan Pemerintah Daerah <a href="https://drive.google.com/file/d/1VK0d31jgbHyndcCg5q-YWT63TmUXNcCU/view" class="text-red-500">(unduh)</a></p>
+                    <p class="pl-6">Dokumentasi Publik di Lingkungan Pemerintah Daerah <a href="https://drive.google.com/file/d/1VK0d31jgbHyndcCg5q-YWT63TmUXNcCU/view" class="text-red-500" target="_blank">(unduh)</a></p>
                 </ol>
             </div>
         </div>

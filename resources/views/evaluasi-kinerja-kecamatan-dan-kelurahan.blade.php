@@ -203,7 +203,7 @@
         }
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
-    @include('layouts.navbar')
+    @include('layouts.navbar2')
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">EVALUASI KINERJA KECAMATAN DAN KELURAHAN</div>

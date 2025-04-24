@@ -10,14 +10,7 @@ function handleFilePreview(input, previewElement) {
     }
 }
 
-// Handle URL copying
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showToast('URL copied to clipboard!', 'success');
-    }).catch(() => {
-        showToast('Failed to copy URL', 'error');
-    });
-}
+// URL copying functionality has been removed
 
 // Initialize media library functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -30,11 +23,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Copy URL buttons
-    document.querySelectorAll('.copy-url').forEach(button => {
-        button.addEventListener('click', function() {
-            const url = this.dataset.url;
-            copyToClipboard(url);
-        });
-    });
+    // Copy URL functionality has been removed
 });
