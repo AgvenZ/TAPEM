@@ -25,7 +25,7 @@
                                         <div>
                                             <h6 class="text-uppercase mb-1">Total Pages</h6>
                                             <h3 class="mb-0">{{ $stats['pages']['total'] }}</h3>
-                                            <small>Published: {{ $stats['pages']['published'] }}</small>
+                                            <small>Published: {{ $stats['pages']['published'] }} | Draft: {{ $stats['pages']['draft'] }}</small>
                                         </div>
                                         <i class="fas fa-file-alt fa-2x opacity-75"></i>
                                     </div>
@@ -39,7 +39,7 @@
                                         <div>
                                             <h6 class="text-uppercase mb-1">Total News</h6>
                                             <h3 class="mb-0">{{ $stats['news']['total'] }}</h3>
-                                            <small>Published: {{ $stats['news']['published'] }}</small>
+                                            <small>Published: {{ $stats['news']['published'] }} | Draft: {{ $stats['news']['draft'] }}</small>
                                         </div>
                                         <i class="fas fa-newspaper fa-2x opacity-75"></i>
                                     </div>
@@ -53,7 +53,7 @@
                                         <div>
                                             <h6 class="text-uppercase mb-1">Total Slideshows</h6>
                                             <h3 class="mb-0">{{ $stats['slideshows']['total'] }}</h3>
-                                            <small>Active: {{ $stats['slideshows']['active'] }}</small>
+                                            <small>Active: {{ $stats['slideshows']['active'] }} | Inactive: {{ $stats['slideshows']['total'] - $stats['slideshows']['active'] }}</small>
                                         </div>
                                         <i class="fas fa-images fa-2x opacity-75"></i>
                                     </div>
