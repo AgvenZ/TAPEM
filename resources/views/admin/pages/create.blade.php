@@ -123,7 +123,6 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10">{{ old('content') }}</textarea>
-                    <small class="form-text text-muted">Opsional jika Anda menggunakan Source Code</small>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
