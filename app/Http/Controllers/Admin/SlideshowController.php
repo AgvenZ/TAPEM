@@ -60,7 +60,8 @@ class SlideshowController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => $request->has('selected_media_urls') ? 'nullable' : 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'selected_media_urls' => $request->hasFile('image') ? 'nullable' : 'nullable|json',
             'order' => 'nullable|integer|min:0',
             'active' => 'boolean'
         ]);
@@ -74,6 +75,11 @@ class SlideshowController extends Controller
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($slideshow->image_path);
             $data['image_path'] = $request->file('image')->store('slideshows', 'public');
+        } elseif ($request->filled('selected_media_urls')) {
+            Storage::disk('public')->delete($slideshow->image_path);
+            $selectedUrls = json_decode($request->selected_media_urls, true);
+            $imagePath = str_replace('/storage/', '', $selectedUrls[0]);
+            $data['image_path'] = $imagePath;
         }
 
         $slideshow->update($data);

@@ -18,6 +18,7 @@
                             <th>Title</th>
                             <th>Image</th>
                             <th>Status</th>
+                            <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -27,8 +28,8 @@
                                 <td>{{ $slideshow->order }}</td>
                                 <td>{{ $slideshow->title }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $slideshow->image_path) }}" 
-                                         alt="{{ $slideshow->title }}" 
+                                    <img src="{{ asset('storage/' . $slideshow->image_path) }}"
+                                         alt="{{ $slideshow->title }}"
                                          style="max-height: 50px;">
                                 </td>
                                 <td>
@@ -36,12 +37,13 @@
                                         {{ $slideshow->active ? 'Active' : 'Inactive' }}
                                     </span>
                                 </td>
+                                <td>{{ $slideshow->created_at->format('Y-m-d H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.slideshows.edit', $slideshow) }}" 
+                                    <a href="{{ route('admin.slideshows.edit', $slideshow) }}"
                                        class="btn btn-sm btn-info">Edit</a>
-                                    <form action="{{ route('admin.slideshows.destroy', $slideshow) }}" 
-                                          method="POST" 
-                                          class="d-inline" 
+                                    <form action="{{ route('admin.slideshows.destroy', $slideshow) }}"
+                                          method="POST"
+                                          class="d-inline"
                                           onsubmit="return confirm('Are you sure you want to delete this slideshow?');">
                                         @csrf
                                         @method('DELETE')
@@ -51,7 +53,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">No slideshows found.</td>
+                                <td colspan="6" class="text-center">No slideshows found.</td>
                             </tr>
                         @endforelse
                     </tbody>
