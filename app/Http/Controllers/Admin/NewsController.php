@@ -72,6 +72,9 @@ class NewsController extends Controller
         }
         if (!empty($images)) {
             $validated['images'] = json_encode($images);
+        } else {
+            // If no URLs are selected, clear the images
+            $validated['images'] = null;
         }
 
         News::create($validated);
@@ -96,7 +99,7 @@ class NewsController extends Controller
             'is_published' => 'required|in:0,1',
             'published_at' => 'nullable|date'
         ]);
-    
+
         // Convert is_published to boolean or integer as needed by your database
         $validated['is_published'] = (int)$validated['is_published'];
 
@@ -118,10 +121,13 @@ class NewsController extends Controller
         }
         if (!empty($images)) {
             $validated['images'] = json_encode($images);
+        } else {
+            // If no URLs are selected, clear the images
+            $validated['images'] = null;
         }
-    
+
         $news->update($validated);
-    
+
         return redirect()->route('admin.news.index')
             ->with('success', 'News updated successfully');
     }

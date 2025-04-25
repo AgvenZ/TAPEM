@@ -56,7 +56,15 @@ class PagesController extends Controller
         // Handle media library images
         if ($request->filled('selected_media_urls')) {
             $selectedUrls = json_decode($request->selected_media_urls, true);
-            $page->images = $selectedUrls;
+            if (is_array($selectedUrls) && !empty($selectedUrls)) {
+                $page->images = $selectedUrls;
+            } else {
+                // If empty array is provided, clear the images
+                $page->images = null;
+            }
+        } else {
+            // If no URLs are selected, clear the images
+            $page->images = null;
         }
 
         $page->save();
@@ -104,7 +112,15 @@ class PagesController extends Controller
         // Handle media library images
         if ($request->filled('selected_media_urls')) {
             $selectedUrls = json_decode($request->selected_media_urls, true);
-            $page->images = $selectedUrls;
+            if (is_array($selectedUrls) && !empty($selectedUrls)) {
+                $page->images = $selectedUrls;
+            } else {
+                // If empty array is provided, clear the images
+                $page->images = null;
+            }
+        } else {
+            // If no URLs are selected, clear the images
+            $page->images = null;
         }
 
         $page->save();
