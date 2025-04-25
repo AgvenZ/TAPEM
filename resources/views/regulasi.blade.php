@@ -225,7 +225,7 @@
                 <ol class="list-decimal list-inside text-lg md:text-xl lg:text-2xl leading-relaxed text-justify">
                     <li class="-mr-10">Undang-Undang Nomor 14 Tahun 2008 Tentang Keterbukaan Informasi Publik <a href="https://drive.google.com/file/d/10EzZqxgSKVA2vhXnQDm66Ai7GIeYNwZ9/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Undang-Undang Nomor 25 Tahun 2009 Tentang Pelayanan Publik <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500" target="_blank">(unduh)</a></li>
-                    <li class="-mr-10">Undang-Undang Nomor 23 Tahun 2014 Tentang Pemerintahan Daerah <a href="https://drive.google.com/file/d/1qiUtCz-saM4cRkIj_ZMoi2nElP-XbLXq/view" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Undang-Undang Nomor 23 Tahun 2014 Tentang Pemerintahan Daerah <a href="https://drive.google.com/file/d/1W58F5qDfHA5tXXz4mm9Uwb6qJZZdoOuF/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Undang-Undang Nomor 1 Tahun 2022 Tentang Hubungan Keuangan antara Pemerintah Pusat dan</li>
                     <p class="pl-6">Pemerintah Daerah <a href="https://drive.google.com/file/d/1qIvkwlbgLU07Whhafnoak_dG7BSkErZK/view" class="text-red-500" target="_blank">(unduh)</a></p>
                     <li class="-mr-10">Peraturan Pemerintah Nomor 17 Tahun 2018 Tentang Kecamatan <a href="https://drive.google.com/file/d/1_xAYroFN4ME3Rnv6bIYwfRhRnqjeVPMX/view" class="text-red-500" target="_blank">(unduh)</a></li>
