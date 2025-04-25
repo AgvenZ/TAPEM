@@ -40,14 +40,18 @@
                                 <td>{{ $slideshow->created_at->format('Y-m-d H:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.slideshows.edit', $slideshow) }}"
-                                       class="btn btn-sm btn-info">Edit</a>
+                                       class="btn btn-sm btn-info">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
                                     <form action="{{ route('admin.slideshows.destroy', $slideshow) }}"
                                           method="POST"
                                           class="d-inline"
                                           onsubmit="return confirm('Are you sure you want to delete this slideshow?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
