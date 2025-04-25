@@ -229,7 +229,7 @@
                     <li class="-mr-10">Undang-Undang Nomor 1 Tahun 2022 Tentang Hubungan Keuangan antara Pemerintah Pusat dan</li>
                     <p class="pl-6">Pemerintah Daerah <a href="https://drive.google.com/file/d/1qIvkwlbgLU07Whhafnoak_dG7BSkErZK/view" class="text-red-500" target="_blank">(unduh)</a></p>
                     <li class="-mr-10">Peraturan Pemerintah Nomor 17 Tahun 2018 Tentang Kecamatan <a href="https://drive.google.com/file/d/1_xAYroFN4ME3Rnv6bIYwfRhRnqjeVPMX/view" class="text-red-500" target="_blank">(unduh)</a></li>
-                    <li class="-mr-10">Peraturan Pemerintah Nomor 2 Tahun 2021 Tentang Penyelenggaraan Nama Rupabumi <a href="#" class="text-red-500" target="_blank">(unduh)</a></li>
+                    <li class="-mr-10">Peraturan Pemerintah Nomor 2 Tahun 2021 Tentang Penyelenggaraan Nama Rupabumi <a href="https://drive.google.com/file/d/1M6hjEUpKVeQi-1rC6EV3sRchMoMKIQmz/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Peraturan Daerah Nomor 2 Tahun 2021 Tentang Kecamatan <a href="https://drive.google.com/file/d/1M6hjEUpKVeQi-1rC6EV3sRchMoMKIQmz/view" class="text-red-500" target="_blank">(unduh)</a></li>
                     <li class="-mr-10">Peraturan Walikota Nomor 7 Tahun 2018 Tentang Pelimpahan Sebagian Kewenangan Walikota</li>
                     <p class="pl-6">Kepada Camat <a href="https://drive.google.com/file/d/1NllWKAIlM7eszuh67ffmYOgvmtteZteX/view" class="text-red-500" target="_blank">(unduh)</a></p>
