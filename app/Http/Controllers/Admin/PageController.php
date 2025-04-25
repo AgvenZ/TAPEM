@@ -13,9 +13,29 @@ class PageController extends Controller
     {
         $direction = $request->direction;
         $currentOrder = $page->order;
+        $pageNumber = $request->query('page', 1);
 
-        // Fix direction logic: 'up' means decreasing order number (moving up in the list)
-        // 'down' means increasing order number (moving down in the list)
+        // Get all pages with the same parent to determine boundaries
+        $allPagesWithSameParent = Page::where('parent_page', $page->parent_page)
+            ->orderBy('order', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        // Find the current page's position in the overall list
+        $currentPosition = $allPagesWithSameParent->search(function($item) use ($page) {
+            return $item->id === $page->id;
+        });
+
+        // Check if we're at the first or last position overall
+        $isFirstOverall = $currentPosition === 0;
+        $isLastOverall = $currentPosition === ($allPagesWithSameParent->count() - 1);
+
+        // If trying to move up when already at the top, or down when already at the bottom, do nothing
+        if (($direction === 'up' && $isFirstOverall) || ($direction === 'down' && $isLastOverall)) {
+            return redirect()->back()->with('info', 'Page is already at the ' . ($direction === 'up' ? 'top' : 'bottom') . ' position.');
+        }
+
+        // Find the page to swap with
         if ($direction === 'up') {
             $swapPage = Page::where('parent_page', $page->parent_page)
                 ->where(function($query) use ($currentOrder, $page) {
@@ -46,9 +66,25 @@ class PageController extends Controller
             $swapOrder = $swapPage->order;
             $swapPage->update(['order' => $currentOrder]);
             $page->update(['order' => $swapOrder]);
+
+            // Determine which page to redirect to based on the swap
+            $targetPage = $pageNumber;
+
+            // If the swapped page is on a different page of pagination, redirect to that page
+            $perPage = 10; // Same as in the controller's index method
+            $swapPosition = $allPagesWithSameParent->search(function($item) use ($swapPage) {
+                return $item->id === $swapPage->id;
+            });
+
+            $swapPageNumber = ceil(($swapPosition + 1) / $perPage);
+            if ($swapPageNumber != $pageNumber) {
+                $targetPage = $swapPageNumber;
+            }
+
+            return redirect()->route('admin.pages.index', ['page' => $targetPage])->with('success', 'Page order updated successfully.');
         }
 
-        return redirect()->back()->with('success', 'Page order updated successfully.');
+        return redirect()->back()->with('info', 'Unable to move the page.');
     }
     public function index()
     {

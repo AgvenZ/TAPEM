@@ -46,13 +46,32 @@
                                     <div class="btn-group">
                                         <form action="{{ route('admin.pages.move', ['page' => $page->id, 'direction' => 'up']) }}" method="POST" class="d-inline">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $loop->first ? 'disabled' : '' }}>
+                                            @php
+                                                // Get all pages with the same parent to determine if this is the first overall
+                                                $allPagesWithSameParent = \App\Models\Page::where('parent_page', $page->parent_page)
+                                                    ->orderBy('order', 'asc')
+                                                    ->orderBy('id', 'asc')
+                                                    ->get();
+
+                                                // Find the current page's position in the overall list
+                                                $currentPosition = $allPagesWithSameParent->search(function($item) use ($page) {
+                                                    return $item->id === $page->id;
+                                                });
+
+                                                // Check if we're at the first position overall
+                                                $isFirstOverall = $currentPosition === 0;
+                                            @endphp
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $isFirstOverall ? 'disabled' : '' }}>
                                                 <i class="fas fa-arrow-up"></i>
                                             </button>
                                         </form>
                                         <form action="{{ route('admin.pages.move', ['page' => $page->id, 'direction' => 'down']) }}" method="POST" class="d-inline">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $loop->last ? 'disabled' : '' }}>
+                                            @php
+                                                // Check if we're at the last position overall
+                                                $isLastOverall = $currentPosition === ($allPagesWithSameParent->count() - 1);
+                                            @endphp
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" {{ $isLastOverall ? 'disabled' : '' }}>
                                                 <i class="fas fa-arrow-down"></i>
                                             </button>
                                         </form>
