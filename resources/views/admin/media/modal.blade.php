@@ -32,11 +32,11 @@
                         const successIcon = document.getElementById('successIcon');
                         const mediaItems = document.getElementById('mediaItems');
                         const mediaItemsCount = mediaItems ? mediaItems.querySelectorAll('.col-md-3').length : 0;
-                        
+
                         if (mediaLoader) {
                             mediaLoader.style.display = 'none';
                         }
-                        
+
                         if (spinner) {
                             spinner.style.display = 'none';
                         }
@@ -44,7 +44,7 @@
                         if (successIcon) {
                             successIcon.style.display = mediaItemsCount > 0 ? 'block' : 'none';
                         }
-                        
+
                         if (mediaLoadSuccess) {
                             mediaLoadSuccess.classList.remove('d-none');
                             if (mediaItemsCount > 0) {
@@ -58,22 +58,22 @@
                             }
                         }
                     }
-                    
+
                     // Menambahkan observer untuk memantau perubahan pada #mediaItems
                     const mediaItemsObserver = new MutationObserver(function(mutations) {
                         // Jika ada perubahan pada #mediaItems
                         setTimeout(hideLoaderAndShowStatus, 500);
-                        
+
                         // Hentikan observer setelah pemeriksaan
                         mediaItemsObserver.disconnect();
                     });
-                    
+
                     // Mulai memantau #mediaItems untuk perubahan
                     const mediaItems = document.getElementById('mediaItems');
                     if (mediaItems) {
                         mediaItemsObserver.observe(mediaItems, { childList: true, subtree: true });
                     }
-                    
+
                     // Tambahkan event listener untuk modal show event
                     const mediaModal = document.getElementById('mediaModal');
                     if (mediaModal) {
@@ -82,14 +82,14 @@
                             if (mediaItems) {
                                 mediaItemsObserver.observe(mediaItems, { childList: true, subtree: true });
                             }
-                            
+
                             // Periksa apakah gambar sudah dimuat
                             if (document.querySelectorAll('#mediaItems .col-md-3').length > 0) {
                                 hideLoaderAndShowSuccess();
                             }
                         });
                     }
-                    
+
                     // Tambahkan event listener untuk memantau perubahan pada mediaPagination
                     // Ini akan mendeteksi ketika halaman terakhir telah dimuat
                     const mediaPaginationObserver = new MutationObserver(function(mutations) {
@@ -98,22 +98,22 @@
                             setTimeout(hideLoaderAndShowSuccess, 500);
                         }
                     });
-                    
+
                     const mediaPagination = document.getElementById('mediaPagination');
                     if (mediaPagination) {
                         mediaPaginationObserver.observe(mediaPagination, { childList: true, subtree: true });
                     }
-                    
+
                     // Tambahkan interval untuk memeriksa apakah gambar sudah dimuat tetapi loader masih terlihat
                     const loaderCheckInterval = setInterval(function() {
-                        if (document.querySelectorAll('#mediaItems .col-md-3').length > 0 && 
-                            document.getElementById('mediaLoader') && 
+                        if (document.querySelectorAll('#mediaItems .col-md-3').length > 0 &&
+                            document.getElementById('mediaLoader') &&
                             document.getElementById('mediaLoader').style.display !== 'none') {
                             hideLoaderAndShowSuccess();
                             clearInterval(loaderCheckInterval);
                         }
                     }, 1000);
-                    
+
                     // Bersihkan interval setelah 10 detik untuk mencegah interval berjalan terus-menerus
                     setTimeout(function() {
                         clearInterval(loaderCheckInterval);
@@ -132,7 +132,9 @@
     <div class="col-md-3 mb-4">
         <div class="card h-100">
             <div class="position-relative">
-                <img src="" class="card-img-top" alt="" style="height: 200px; object-fit: cover;">
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa;">
+                    <img src="" class="card-img-top" alt="" style="max-height: 200px; max-width: 100%; object-fit: contain;">
+                </div>
                 <div class="position-absolute top-0 end-0 p-2">
                     <div class="form-check">
                         <input class="form-check-input media-checkbox" type="checkbox" value="" style="transform: scale(1.5);">

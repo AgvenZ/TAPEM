@@ -197,7 +197,7 @@
                             <span class="mr-2">|</span>
                             <span>tapem</span>
                         </div>
-                        
+
                         @if($page->images)
                         @php
                             $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
@@ -208,10 +208,12 @@
                                     <button type="button" data-bs-target="#pagesCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
-                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
+                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9;">
                                 @foreach($images as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="News Image {{ $index + 1 }}" style="object-fit: contain;">
+                                        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                                            <img src="{{ asset('storage/' . $image) }}" class="d-block" alt="Page Image {{ $index + 1 }}" style="max-height: 100%; max-width: 100%; object-fit: cover;">
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -233,7 +235,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </main>
     </div>
 

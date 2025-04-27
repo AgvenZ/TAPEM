@@ -13,7 +13,9 @@
         @forelse($media as $item)
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <img src="{{ Storage::url($item->path) }}" class="card-img-top" alt="{{ $item->name }}" style="height: 200px; object-fit: cover;">
+                    <div style="height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa;">
+                        <img src="{{ Storage::url($item->path) }}" class="card-img-top" alt="{{ $item->name }}" style="max-height: 200px; max-width: 100%; object-fit: contain;">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title text-truncate">{{ $item->name }}</h5>
                         <p class="card-text">
@@ -44,6 +46,6 @@
     <div class="d-flex justify-content-end mt-4">
         {{ $media->links('pagination::bootstrap-4') }}
     </div>
-    
+
     <!-- Copy URL functionality has been removed -->
 @endsection

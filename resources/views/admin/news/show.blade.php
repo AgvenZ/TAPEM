@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
         <main class="container mx-auto py-8 relative z-10 rounded-lg">
@@ -160,7 +160,7 @@
                             <span class="mr-2">|</span>
                             <span>tapem</span>
                         </div>
-                        
+
                         @if($news->images)
                         <div id="newsCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
                             <div class="carousel-indicators">
@@ -168,10 +168,12 @@
                                     <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
-                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9; background-color: #f8f9fa;">
+                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9;">
                                 @foreach(json_decode($news->images) as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 h-100" alt="News Image {{ $index + 1 }}" style="object-fit: contain;">
+                                        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                                            <img src="{{ asset('storage/' . $image) }}" class="d-block" alt="News Image {{ $index + 1 }}" style="max-height: 100%; max-width: 100%; object-fit: cover;">
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -193,10 +195,10 @@
                     </div>
                 </div>
             </div>
-            
+
         </main>
     </div>
-    
+
     <div class="flex justify-center items-center py-10 bg-black">
         <div class="flex items-center mx-8">
             <img alt="Semarang Kota logo and text" class="h-20" src="/img/logo1.png"/>
