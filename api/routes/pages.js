@@ -4,7 +4,7 @@ const { db } = require('../server'); // Keep this import as server.js still expo
 
 // Get all pages
 router.get('/', (req, res) => {
-  const sql = 'SELECT id, title, slug, content, is_published, created_at, updated_at FROM pages';
+  const sql = 'SELECT id, title, slug, content, source_code, is_published, image_path, images, parent_page, `order`, created_at, updated_at FROM pages';
 
   db.query(sql, [], (err, rows) => {
     if (err) {
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 // Get page by slug
 router.get('/:slug', (req, res) => {
-  const sql = 'SELECT id, title, slug, content, is_published, created_at, updated_at FROM pages WHERE slug = ?';
+  const sql = 'SELECT id, title, slug, content, source_code, is_published, image_path, images, parent_page, `order`, created_at, updated_at FROM pages WHERE slug = ?';
 
   db.query(sql, [req.params.slug], (err, results) => {
     if (err) {

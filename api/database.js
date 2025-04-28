@@ -27,7 +27,7 @@ function initializeDatabase() {
       port: process.env.MYSQL_PORT || 3306,
       user: process.env.MYSQL_USER || 'root',
       password: process.env.MYSQL_PASSWORD || '',
-      database: process.env.MYSQL_DATABASE || 'tapem'
+      database: process.env.MYSQL_DATABASE || 'db_tapem'
     });
   }
 
