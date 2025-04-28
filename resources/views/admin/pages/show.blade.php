@@ -129,6 +129,8 @@
         .andika-font {
             font-family: 'Andika New Basic', sans-serif;
         }
+
+        
     </style>
 
     <script>
@@ -167,76 +169,25 @@
     </script>
 </body>
 </html>
-
-<body class="font-sans" onclick="closeAllDropdowns(event)">
+    {{-- <body class="font-sans" onclick="closeAllDropdowns(event)"> --}}
     @include('layouts.navbar')
-    <div class="bg-black text-white">
-        {{-- <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">{{ $page->title }}</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
-                <span onclick="window.location.href='/'" class="cursor-pointer">{{ $page->parent_page ?? 'HOME' }}</span>
-                <i class="fas fa-chevron-right"></i>
-                <span>{{ $page->title }}</span>
-            </div>
-        </div>
-    </div> --}}
+    
 
-    <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
+    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen">
         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
-        <main class="container mx-auto py-8 relative z-10 rounded-lg">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-2/3 mx-auto p-4">
-                    <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
-                        <h1 class="text-4xl judson-font font-bold text-center">
-                            {{ $page->title }}
-                        </h1>
-                        <div class="flex justify-center arvo-font items-center text-white mt-2">
-                            <span class="mr-2">
-                                {{ $page->created_at->format('Y-m-d') }}
-                            </span>
-                            <span class="mr-2">|</span>
-                            <span>tapem</span>
+        <div class="relative z-10 w-full max-w-6xl mx-auto px-4">
+            
+                <div class="text-2xl inconsolata-font mt-4 text-justify p-8 rounded-lg text-white">
+                    @if(!empty($page->source_code))
+                        <div class="dynamic-content">
+                            {!! $page->source_code !!}
                         </div>
-
-                        @if($page->images)
-                        @php
-                            $images = is_array($page->images) ? $page->images : json_decode($page->images, true);
-                        @endphp
-                        <div id="pagesCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 800px; margin: 0 auto;">
-                            <div class="carousel-indicators">
-                                @foreach($images as $index => $image)
-                                    <button type="button" data-bs-target="#pagesCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-                                @endforeach
-                            </div>
-                            <div class="carousel-inner rounded-lg" style="aspect-ratio: 16/9;">
-                                @foreach($images as $index => $image)
-                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                                            <img src="{{ asset('storage/' . $image) }}" class="d-block" alt="Page Image {{ $index + 1 }}" style="max-height: 100%; max-width: 100%; object-fit: cover;">
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#pagesCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#pagesCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                        @endif
-
-                        <div class="text-2xl inconsolata-font mt-4 text-justify">
-                            {!! nl2br(e($page->content)) !!}
-                        </div>
-
-                    </div>
+                    @else
+                        {!! nl2br(e($page->content)) !!}
+                    @endif
                 </div>
             </div>
-
-        </main>
+        </div>
     </div>
 
     @include('layouts.footer')
