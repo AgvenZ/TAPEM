@@ -109,9 +109,7 @@ class PageController extends Controller
             'content' => 'nullable',
             'source_code' => 'nullable',
             'is_published' => 'boolean',
-            'parent_page' => 'nullable|string',
-            'selected_media_urls' => 'nullable|string',
-            'menu_order' => 'nullable|integer'
+            'selected_media_urls' => 'nullable|string',          
         ]);
 
         // Add source_code to validated data

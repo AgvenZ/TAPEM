@@ -24,11 +24,7 @@ class PageController extends Controller
              ->first();
 
         if ($page) {
-            // If the page has source code, use the main layout with the source code
-            if (!empty($page->source_code)) {
-                return view('layouts.dynamic', compact('page'));
-            }
-            // Otherwise use the standard view
+            // Menggunakan satu view untuk semua jenis halaman (dengan atau tanpa source code)
             return view('admin.pages.show', compact('page'));
         }
 
