@@ -173,9 +173,8 @@
     @include('layouts.navbar')
     
 
-    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16">
-        <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
-        <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6">
+    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16" style="background-image: url('{{ asset('img/background4.png') }}'); background-attachment: fixed; background-size: cover; background-position: center;">
+        <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6 bg-gray bg-opacity-500">
             
                 <!-- Bagian Gambar -->
                 @if($page->images && is_array($page->images) && count($page->images) > 0)
@@ -189,7 +188,7 @@
                 @endif
                 
                 <!-- Bagian Konten -->
-                <div class="text-2xl inconsolata-font mt-6 text-justify p-8 rounded-lg text-white bg-gray-800 bg-opacity-50 border border-gray-600">
+                <div class="text-2xl inconsolata-font mt-6 text-white text-justify p-8">
                     @if(!empty($page->source_code))
                         <div class="dynamic-content">
                             {!! $page->source_code !!}

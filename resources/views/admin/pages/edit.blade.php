@@ -72,13 +72,9 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Source Code Editor</span>
                         </div>
-                        <div class="card-body p-0">
-                            <textarea class="form-control @error('source_code') is-invalid @enderror" id="source_code" name="source_code" rows="10" style="font-family: monospace; tab-size: 4;">{{ old('source_code', $page->source_code) }}</textarea>
-                        </div>
+                    <div class="card-body p-0">
+                        <textarea class="form-control @error('source_code') is-invalid @enderror" id="source_code" name="source_code" rows="10" style="font-family: monospace; tab-size: 4;">{{ old('source_code', $page->source_code) }}</textarea>
                     </div>
-                    @error('source_code')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
 
 

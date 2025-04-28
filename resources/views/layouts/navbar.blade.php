@@ -98,6 +98,8 @@
     </nav>
 </header>
 
+
+
 {{-- Breadcrumb Section --}}
 @if(!request()->is('/'))
 <div class="bg-black text-white">
