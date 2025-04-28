@@ -173,11 +173,23 @@
     @include('layouts.navbar')
     
 
-    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen">
+    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16">
         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
-        <div class="relative z-10 w-full max-w-6xl mx-auto px-4">
+        <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6">
             
-                <div class="text-2xl inconsolata-font mt-4 text-justify p-8 rounded-lg text-white">
+                <!-- Bagian Gambar -->
+                @if($page->images && is_array($page->images) && count($page->images) > 0)
+                    <div class="mb-8 text-center">
+                        <div class="image-container p-6 bg-gray-700 bg-opacity-50 rounded-lg shadow-lg border border-gray-500">
+                            @foreach($page->images as $imageUrl)
+                                <img src="{{ asset('storage/' . str_replace('public/', '', $imageUrl)) }}" alt="{{ $page->title }}" class="mx-auto my-4 max-w-full h-auto rounded-lg shadow-lg">
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                
+                <!-- Bagian Konten -->
+                <div class="text-2xl inconsolata-font mt-6 text-justify p-8 rounded-lg text-white bg-gray-800 bg-opacity-50 border border-gray-600">
                     @if(!empty($page->source_code))
                         <div class="dynamic-content">
                             {!! $page->source_code !!}

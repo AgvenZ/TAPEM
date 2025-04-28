@@ -26,6 +26,7 @@ class PagesController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
+            'source_code' => 'nullable',
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer|min:0',
             'is_published' => 'boolean',
@@ -36,6 +37,7 @@ class PagesController extends Controller
         $page = new Page();
         $page->title = $validatedData['title'];
         $page->content = $validatedData['content'];
+        $page->source_code = $validatedData['source_code'] ?? null;
         $page->parent_page = $validatedData['parent_page'];
         $page->is_published = $validatedData['is_published'] ?? false;
 
@@ -80,18 +82,30 @@ class PagesController extends Controller
 
     public function update(Request $request, Page $page)
     {
+        // Validasi dengan pesan error kustom untuk field content
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'required|string',
+            'source_code' => 'nullable',
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer|min:0',
             'is_published' => 'boolean',
             'image' => 'nullable|image|max:2048',
             'selected_media_urls' => 'nullable|string'
+        ], [
+            'content.required' => 'Konten halaman tidak boleh kosong.'
         ]);
 
+        // Pastikan content tidak null sebelum menyimpan
+        if (empty($request->content)) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Konten halaman tidak boleh kosong.']);
+        }
+        
         $page->title = $validatedData['title'];
         $page->content = $validatedData['content'];
+        $page->source_code = $validatedData['source_code'] ?? null;
         $page->parent_page = $validatedData['parent_page'];
         $page->is_published = $validatedData['is_published'] ?? false;
 

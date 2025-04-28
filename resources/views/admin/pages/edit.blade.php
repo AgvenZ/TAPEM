@@ -217,10 +217,27 @@
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="updatePageBtn">
                         <i class="fas fa-save"></i> Update Page
                     </button>
                 </div>
+                
+                <script>
+                    // Memastikan nilai content tidak null saat form dikirim
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const form = document.querySelector('form');
+                        const contentField = document.getElementById('content');
+                        
+                        form.addEventListener('submit', function(e) {
+                            // Periksa apakah field content kosong
+                            if (!contentField.value || contentField.value.trim() === '') {
+                                e.preventDefault(); // Hentikan pengiriman form
+                                alert('Konten tidak boleh kosong!');
+                                contentField.focus();
+                            }
+                        });
+                    });
+                </script>
             </form>
         </div>
     </div>
