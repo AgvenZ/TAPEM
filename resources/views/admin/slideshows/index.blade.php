@@ -37,7 +37,7 @@
                                         {{ $slideshow->active ? 'Active' : 'Inactive' }}
                                     </span>
                                 </td>
-                                <td>{{ $slideshow->created_at->format('Y-m-d H:i') }}</td>
+                                <td>{{ $slideshow->created_at ? $slideshow->created_at->format('Y-m-d H:i') : 'N/A' }}</td>
                                 <td>
                                     <a href="{{ route('admin.slideshows.edit', $slideshow) }}"
                                        class="btn btn-sm btn-info">
