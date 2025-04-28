@@ -1,37 +1,65 @@
-const sqlite3 = require('sqlite3').verbose();
+const mysql = require('mysql2');
 const path = require('path');
 
 // Initialize database connection
 function initializeDatabase() {
-  // Adjust database path for Vercel environment
-  let dbPath;
+  // Determine environment and set connection parameters
+  let connection;
+
   if (process.env.VERCEL) {
-    // In Vercel, use an in-memory database
-    dbPath = ':memory:';
-    console.log('Running in Vercel environment, using in-memory database');
+    // In Vercel, use environment variables for MySQL connection
+    console.log('Running in Vercel environment, using MySQL database');
+
+    connection = mysql.createConnection({
+      host: process.env.MYSQL_HOST,
+      port: process.env.MYSQL_PORT || 3306,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+      ssl: process.env.MYSQL_SSL === 'true' ? true : undefined
+    });
   } else {
-    // In local environment, use the SQLite file
-    dbPath = path.resolve(__dirname, '../database/database.sqlite');
+    // In local environment, use local MySQL server
+    console.log('Running in local environment, using local MySQL database');
+
+    connection = mysql.createConnection({
+      host: process.env.MYSQL_HOST || 'localhost',
+      port: process.env.MYSQL_PORT || 3306,
+      user: process.env.MYSQL_USER || 'root',
+      password: process.env.MYSQL_PASSWORD || '',
+      database: process.env.MYSQL_DATABASE || 'tapem'
+    });
   }
 
-  const db = new sqlite3.Database(dbPath, (err) => {
+  // Connect to the database
+  connection.connect((err) => {
     if (err) {
-      console.error('Error connecting to database:', err.message);
-    } else {
-      console.log('Connected to the SQLite database');
+      console.error('Error connecting to MySQL database:', err.message);
+      return;
+    }
+    console.log('Connected to the MySQL database');
 
-      // If using in-memory database, initialize with schema and sample data
-      if (process.env.VERCEL) {
-        initializeInMemoryDatabase(db);
-      }
+    // If in Vercel environment, initialize database schema
+    if (process.env.VERCEL && process.env.MYSQL_INIT_DB === 'true') {
+      initializeDatabaseSchema(connection);
     }
   });
 
-  return db;
+  // Add promise-based query method for easier async/await usage
+  connection.queryPromise = (sql, params) => {
+    return new Promise((resolve, reject) => {
+      connection.query(sql, params, (err, results) => {
+        if (err) return reject(err);
+        resolve(results);
+      });
+    });
+  };
+
+  return connection;
 }
 
-// Initialize in-memory database with schema and sample data for Vercel environment
-function initializeInMemoryDatabase(db) {
+// Initialize database schema for Vercel environment
+function initializeDatabaseSchema(connection) {
   console.log('Initializing in-memory database with schema and sample data');
 
   // Create users table

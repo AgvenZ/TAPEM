@@ -6,7 +6,7 @@ const { db } = require('../server'); // Keep this import as server.js still expo
 router.get('/', (req, res) => {
   const sql = 'SELECT id, title, slug, content, image_path, is_published, published_at, created_at, updated_at FROM news ORDER BY published_at DESC';
 
-  db.all(sql, [], (err, rows) => {
+  db.query(sql, [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -21,16 +21,16 @@ router.get('/', (req, res) => {
 router.get('/:slug', (req, res) => {
   const sql = 'SELECT id, title, slug, content, image_path, is_published, published_at, created_at, updated_at FROM news WHERE slug = ?';
 
-  db.get(sql, [req.params.slug], (err, row) => {
+  db.query(sql, [req.params.slug], (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (!row) {
+    if (!results || results.length === 0) {
       return res.status(404).json({ error: 'News not found' });
     }
     res.json({
       message: 'News retrieved successfully',
-      data: row
+      data: results[0]
     });
   });
 });

@@ -6,7 +6,7 @@ const { db } = require('../server'); // Keep this import as server.js still expo
 router.get('/', (req, res) => {
   const sql = 'SELECT id, name, email, created_at, updated_at FROM users';
 
-  db.all(sql, [], (err, rows) => {
+  db.query(sql, [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -21,16 +21,16 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const sql = 'SELECT id, name, email, created_at, updated_at FROM users WHERE id = ?';
 
-  db.get(sql, [req.params.id], (err, row) => {
+  db.query(sql, [req.params.id], (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (!row) {
+    if (!results || results.length === 0) {
       return res.status(404).json({ error: 'User not found' });
     }
     res.json({
       message: 'User retrieved successfully',
-      data: row
+      data: results[0]
     });
   });
 });

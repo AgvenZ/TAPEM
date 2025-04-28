@@ -52,7 +52,7 @@ module.exports = app;
 
 // Handle process termination
 process.on('SIGINT', () => {
-  db.close((err) => {
+  db.end((err) => {
     if (err) {
       console.error('Error closing database connection:', err.message);
     } else {
