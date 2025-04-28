@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { db } = require('../server');
+const { db } = require('../server'); // Keep this import as server.js still exports db
 
 // Get all users
 router.get('/', (req, res) => {

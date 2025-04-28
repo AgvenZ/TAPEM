@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const { initializeDatabase } = require('./database');
 
 // Initialize express app
 const app = express();
@@ -11,15 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to SQLite database
-const dbPath = path.resolve(__dirname, '../database/database.sqlite');
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Error connecting to database:', err.message);
-  } else {
-    console.log('Connected to the SQLite database');
-  }
-});
+// Initialize database
+const db = initializeDatabase();
 
 // Export db for use in route files
 exports.db = db;
