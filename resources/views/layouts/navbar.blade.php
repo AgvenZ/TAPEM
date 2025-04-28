@@ -13,7 +13,7 @@
             <a class="text-black text-lg" href="/kontak">KONTAK</a>
             @if(request()->is('/'))
             <div class="flex flex-col items-center">
-                <a class="text-black text-lg flex items-center" href="#">SLIDESHOW</a>
+                <a class="text-black text-lg flex items-center">SLIDESHOW</a>
                 <label class="relative inline-flex items-center cursor-pointer mt-2">
                     <input checked class="sr-only peer no-outline" id="slideshowToggle" onclick="toggleSlideshow()" type="checkbox" />
                     <div class="w-12 h-7 bg-gray-400 rounded-full peer peer-focus:ring-0 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-[#760000]"></div>
@@ -76,20 +76,20 @@
                     const now = new Date();
                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     const dateString = now.toLocaleDateString('id-ID', options);
-                    
+
                     let hours = now.getHours();
                     let minutes = now.getMinutes();
                     let seconds = now.getSeconds();
-                    
+
                     // Add leading zeros
                     hours = hours < 10 ? '0' + hours : hours;
                     minutes = minutes < 10 ? '0' + minutes : minutes;
                     seconds = seconds < 10 ? '0' + seconds : seconds;
-                    
+
                     const timeString = `${hours}:${minutes}:${seconds}`;
                     document.getElementById('realtime-clock').innerHTML = `<i class="far fa-clock mr-1"></i> ${dateString} | ${timeString}`;
                 }
-                
+
                 // Update clock immediately and then every second
                 updateClock();
                 setInterval(updateClock, 1000);
@@ -108,14 +108,14 @@
                 $currentTitle = '';
                 $parentTitle = '';
                 $currentSlug = request()->path();
-                
+
                 // Cek apakah ini halaman dinamis
                 $currentPage = \App\Models\Page::where('slug', $currentSlug)->first();
-                
+
                 if ($currentPage) {
                     // Menghilangkan format tanggal dari judul
                     $currentTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $currentPage->title);
-                    
+
                     // Jika halaman memiliki parent
                     if ($currentPage->parent_page) {
                         $parentTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $currentPage->parent_page);
