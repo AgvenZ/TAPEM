@@ -28,9 +28,13 @@
             align-items: center;
             transition: all 0.3s;
         }
-        .sidebar-link:hover {
+        .sidebar-link:hover, .sidebar-link.active {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
+        }
+        .sidebar-link.active {
+            border-left: 4px solid #0d6efd;
+            background: rgba(255, 255, 255, 0.15);
         }
         .sidebar-link i {
             margin-right: 10px;
@@ -76,33 +80,26 @@
                 <h3 class="text-white">Admin Panel</h3>
             </div>
             <div class="nav flex-column">
-                <a href="{{ route('admin.dashboard') }}" class="sidebar-link">
+                <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-                <a href="{{ route('admin.slideshows.index') }}" class="sidebar-link">
-                    <i class="fas fa-film"></i> Slideshow
+                <a href="{{ route('admin.pages.index') }}" class="sidebar-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+                    <i class="fas fa-file-alt"></i> Pages
                 </a>
-                <a href="#" class="sidebar-link" data-bs-toggle="collapse" data-bs-target="#pagesSubmenu" aria-expanded="false">
-                    <i class="fas fa-file-alt"></i> Pages <i class="fas fa-chevron-down ms-auto"></i>
-                </a>
-                <div class="collapse" id="pagesSubmenu">
-                    <a href="{{ route('admin.pages.index') }}" class="sidebar-link ps-4">
-                        <i class="fas fa-list"></i> Manage Navbar Pages
-                    </a>
-                    <a href="{{ route('admin.pages.create') }}" class="sidebar-link ps-4">
-                        <i class="fas fa-plus"></i> Add New Page
-                    </a>
-                </div>
-                <a href="{{ route('admin.news.index') }}" class="sidebar-link">
+                <a href="{{ route('admin.news.index') }}" class="sidebar-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
                     <i class="fas fa-newspaper"></i> News
                 </a>
-                <a href="{{ route('admin.media.index') }}" class="sidebar-link">
+                <a href="{{ route('admin.media.index') }}" class="sidebar-link {{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
                     <i class="fas fa-images"></i> Media Library
                 </a>
-                <a href="{{ route('admin.users.index') }}" class="sidebar-link">
+                <a href="{{ route('admin.slideshows.index') }}" class="sidebar-link {{ request()->routeIs('admin.slideshows.*') ? 'active' : '' }}">
+                    <i class="fas fa-film"></i> Slideshow
+                </a>
+                <div class="border-top border-secondary my-2"></div>
+                <a href="{{ route('admin.users.index') }}" class="sidebar-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                     <i class="fas fa-users"></i> Users
                 </a>
-                <a href="{{ route('admin.settings.index') }}" class="sidebar-link">
+                <a href="{{ route('admin.settings.index') }}" class="sidebar-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="border-top border-secondary my-2"></div>
