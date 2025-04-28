@@ -84,7 +84,7 @@
                                         <span class="badge bg-warning">Draft</span>
                                     @endif
                                 </td>
-                                <td>{{ $page->created_at->format('Y-m-d H:i') }}</td>
+                                <td>{{ $page->created_at ? $page->created_at->format('Y-m-d H:i') : 'N/A' }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('pages.show', $page->slug) }}" class="btn btn-info btn-sm">

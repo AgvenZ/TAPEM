@@ -155,7 +155,7 @@
                         </h1>
                         <div class="flex justify-center arvo-font items-center text-white mt-2">
                             <span class="mr-2">
-                                {{ $news->created_at->format('Y-m-d') }}
+                                {{ $news->created_at ? $news->created_at->format('Y-m-d H:i') : 'N/A' }}
                             </span>
                             <span class="mr-2">|</span>
                             <span>tapem</span>
