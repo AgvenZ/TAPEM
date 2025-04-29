@@ -85,7 +85,7 @@ class PagesController extends Controller
         // Validasi dengan pesan error kustom untuk field content
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'nullable|string', // Ubah dari required menjadi nullable
             'source_code' => 'nullable',
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer|min:0',
@@ -97,14 +97,13 @@ class PagesController extends Controller
         ]);
 
         // Pastikan content tidak null sebelum menyimpan
-        if (empty($request->content)) {
-            return redirect()->back()
-                ->withInput()
-                ->withErrors(['content' => 'Konten halaman tidak boleh kosong.']);
+        // Jika content kosong, gunakan string kosong sebagai default
+        if (!isset($validatedData['content']) || $validatedData['content'] === null) {
+            $validatedData['content'] = '';
         }
-        
+
         $page->title = $validatedData['title'];
-        $page->content = $validatedData['content'];
+        $page->content = $validatedData['content']; // Sekarang content tidak akan pernah null
         $page->source_code = $validatedData['source_code'] ?? null;
         $page->parent_page = $validatedData['parent_page'];
         $page->is_published = $validatedData['is_published'] ?? false;

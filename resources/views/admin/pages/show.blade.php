@@ -130,7 +130,7 @@
             font-family: 'Andika New Basic', sans-serif;
         }
 
-        
+
     </style>
 
     <script>
@@ -171,11 +171,11 @@
 </html>
     {{-- <body class="font-sans" onclick="closeAllDropdowns(event)"> --}}
     @include('layouts.navbar')
-    
+
 
     <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16" style="background-image: url('{{ asset('img/background4.png') }}'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6 bg-gray bg-opacity-500">
-            
+
                 <!-- Bagian Gambar -->
                 @if($page->images && is_array($page->images) && count($page->images) > 0)
                     <div class="mb-8 text-center">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 @endif
-                
+
                 <!-- Bagian Konten -->
                 <div class="text-2xl inconsolata-font mt-6 text-white text-justify p-8">
                     @if(!empty($page->source_code))
