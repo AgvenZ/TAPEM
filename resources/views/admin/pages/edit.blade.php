@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content', $page->content) }}</textarea>
+                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10">{{ old('content', $page->content) }}</textarea>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -217,13 +217,13 @@
                         <i class="fas fa-save"></i> Update Page
                     </button>
                 </div>
-                
+
                 <script>
                     // Memastikan nilai content tidak null saat form dikirim
                     document.addEventListener('DOMContentLoaded', function() {
                         const form = document.querySelector('form');
                         const contentField = document.getElementById('content');
-                        
+
                         form.addEventListener('submit', function(e) {
                             // Periksa apakah field content kosong
                             if (!contentField.value || contentField.value.trim() === '') {

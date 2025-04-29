@@ -25,7 +25,7 @@ class PagesController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'nullable|string',
             'source_code' => 'nullable',
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer|min:0',
@@ -36,7 +36,7 @@ class PagesController extends Controller
 
         $page = new Page();
         $page->title = $validatedData['title'];
-        $page->content = $validatedData['content'];
+        $page->content = $validatedData['content'] ?? '';
         $page->source_code = $validatedData['source_code'] ?? null;
         $page->parent_page = $validatedData['parent_page'];
         $page->is_published = $validatedData['is_published'] ?? false;
