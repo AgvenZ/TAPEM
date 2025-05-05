@@ -12,13 +12,13 @@
 
     <style>
         .hover-grow {
-    display: inline-block;
-}
+            display: inline-block;
+        }
 
-.hover-grow:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
+        .hover-grow:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -33,8 +33,8 @@
             color: white;
         }
         .hover-underline:hover {
-    text-decoration: underline; /* Menampilkan underline saat hover */
-}
+            text-decoration: underline;
+        }
         /* CSS untuk navbar normal */
         header.sticky {
             transition: all 0.5s ease-in-out;
@@ -52,16 +52,16 @@
         }
 
         header.shrink img {
-            height: 60px; /* Ubah ukuran logo */
-            width: 200px; /* Ubah ukuran logo */
+            height: 60px;
+            width: 200px;
         }
 
         header.shrink .text-lg {
-            font-size: 1rem; /* Ubah ukuran font */
+            font-size: 1rem;
         }
 
         header.shrink .inconsolata-font {
-            font-size: 1rem; /* Ubah ukuran font */
+            font-size: 1rem;
         }
 
         header.sticky img {
@@ -167,6 +167,17 @@
             transition: transform 2s ease, box-shadow 2s ease;
         }
 
+        /* Animasi floating untuk gambar profil */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
         .card-transition:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -196,6 +207,37 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+
+        /* New styles for aligned layout */
+        .main-content-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .profile-image-container {
+            width: 90%;
+            max-width: 565px;
+            margin: 0 auto;
+        }
+        .profile-image {
+            width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+        }
+        .content-box {
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-image {
+                max-height: 300px;
+            }
+        }
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
@@ -210,31 +252,47 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background3.png');">
-        <div class="p-28 rounded-lg max-w-6xl text-white">
-            <div class="custom-bg flex items-center justify-center min-h-screen">
-                <div class="bg-gray-800 bg-opacity-90 text-white inconsolata-font p-8 rounded-3xl max-w-5xl mx-auto">
-                    <!-- Container untuk gambar dan teks -->
-                    <div class="flex flex-col items-center">
-                        <!-- Gambar dengan corner radius 125 dan dimensi 447x298 -->
-                        <div class="overflow-hidden mb-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)]" style="width: 447px; height: 298px; border-radius: 125px;">
-                            <img alt="Portrait of Yoga Tamtomo, S.STP" class="w-full h-full object-cover" src="img/balkot-tentang.png"/>
-                        </div>
-                        <!-- Teks -->
-                        <div class="text-xl text-justify space-y-4">
-                            <p>
+    <div class="flex items-center justify-center bg-cover bg-center" style="background-image: url('img/background3.png');">
+        <div class="main-content-container">
+            <br>
+
+            <!-- Profile Section -->
+            <section id="profile">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+
+
+
+                </div>
+                <br>
+
+                <div class="profile-image-container slide-in">
+                    <div class="relative floating">
+                        <div class="absolute inset-0 bg-gradient-to-r from-rose-600/20 to-amber-500/20 rounded-xl blur-xl animate-pulse"></div>
+                        <img alt="Balai Kota Semarang" class="relative z-10 profile-image shadow-2xl border-4 border-white" src="img/balkot-tentang.png"/>
+                    </div>
+                </div>
+
+                <div class="content-box zoom-in">
+                    <div class="bg-white p-8 rounded-xl shadow-lg bg-opacity-90">
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">Tata Pemerintahan Kota Semarang</h3>
+                        <div class="space-y-6">
+                            <p class="text-gray-600 text-lg text-justify">
                                 Tata pemerintahan Kota Semarang adalah sistem pengelolaan administrasi dan layanan publik yang dijalankan oleh Pemerintah Kota Semarang guna memastikan kesejahteraan masyarakat serta pembangunan kota yang berkelanjutan. Pemerintahan ini dipimpin oleh Wali Kota dan Wakil Wali Kota, serta didukung oleh berbagai Organisasi Perangkat Daerah (OPD) yang bertugas mengatur berbagai sektor, seperti pelayanan masyarakat, infrastruktur, ekonomi, pendidikan, dan lingkungan.
                             </p>
-                            <p>
+                            <p class="text-gray-600 text-lg text-justify">
                                 Pemerintah Kota Semarang menerapkan prinsip transparansi, akuntabilitas, dan partisipasi publik dalam setiap kebijakan dan programnya. Berbagai inovasi digital juga terus dikembangkan untuk meningkatkan efisiensi pelayanan, seperti e-Government dan platform layanan online yang memudahkan warga dalam mengakses informasi serta mengurus administrasi pemerintahan.
                             </p>
-                            <p>
+                            <p class="text-gray-600 text-lg text-justify">
                                 Dengan semangat pembangunan yang inklusif dan berkelanjutan, tata pemerintahan Kota Semarang berupaya mewujudkan kota yang lebih maju, nyaman, dan berdaya saing tinggi di tingkat nasional maupun global.
                             </p>
                         </div>
                     </div>
                 </div>
-            </div>
+                <br>
+                <br>
+                <br>
+            </section>
         </div>
     </div>
     @include('layouts.footer')
@@ -272,20 +330,52 @@
                 }
             }
 
-             // Mendapatkan elemen header
-        const header = document.querySelector('header');
+            // Mendapatkan elemen header
+            const header = document.querySelector('header');
 
-// Fungsi untuk menangani scroll
-function handleScroll() {
-    if (window.scrollY > 50) { // Ubah nilai 50 sesuai kebutuhan
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
-}
+            // Fungsi untuk menangani scroll
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('shrink');
+                } else {
+                    header.classList.remove('shrink');
+                }
+            }
 
-// Menambahkan event listener untuk scroll
-window.addEventListener('scroll', handleScroll);
+            // Menambahkan event listener untuk scroll
+            window.addEventListener('scroll', handleScroll);
+
+            // Animasi untuk elemen-elemen dengan kelas fade-in, slide-in, zoom-in
+            document.addEventListener('DOMContentLoaded', function() {
+                // Fungsi untuk mendeteksi elemen dalam viewport
+                function isInViewport(element) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.bottom >= 0
+                    );
+                }
+
+                // Fungsi untuk menambahkan kelas visible pada elemen yang terlihat
+                function handleAnimation() {
+                    const fadeElements = document.querySelectorAll('.fade-in');
+                    const slideElements = document.querySelectorAll('.slide-in');
+                    const zoomElements = document.querySelectorAll('.zoom-in');
+                    const zoomOutElements = document.querySelectorAll('.zoom-out');
+
+                    [...fadeElements, ...slideElements, ...zoomElements, ...zoomOutElements].forEach(element => {
+                        if (isInViewport(element)) {
+                            element.classList.add('visible');
+                        }
+                    });
+                }
+
+                // Jalankan saat halaman dimuat
+                handleAnimation();
+
+                // Jalankan saat scroll
+                window.addEventListener('scroll', handleAnimation);
+            });
     </script>
 </body>
 </html>

@@ -45,14 +45,14 @@
             padding-bottom: 1rem;
         }
         header.shrink img {
-            height: 60px; /* Ubah ukuran logo */
-            width: 200px; /* Ubah ukuran logo */
+            height: 60px;
+            width: 200px;
         }
         header.shrink .text-lg {
-            font-size: 1rem; /* Ubah ukuran font */
+            font-size: 1rem;
         }
         header.shrink .inconsolata-font {
-            font-size: 1rem; /* Ubah ukuran font */
+            font-size: 1rem;
         }
         header.sticky img {
             transition: all 0.3s ease-in-out;
@@ -85,11 +85,17 @@
             position: relative;
             width: 100%;
             height: 288px;
+            overflow: hidden;
+            transition: opacity 0.5s ease, all 0.5s ease;
         }
         .slideshow-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         .prev, .next {
             cursor: pointer;
@@ -104,6 +110,8 @@
             transition: 0.6s ease;
             border-radius: 0 3px 3px 0;
             user-select: none;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 100;
         }
         .next {
             right: 0;
@@ -120,9 +128,8 @@
             transform: translateY(20px);
             transition: opacity 2s ease-out, transform 2s ease-out;
         }
-        /* Gaya saat cursor berada di atas teks */
         .hover-underline:hover {
-            text-decoration: underline; /* Menampilkan underline saat hover */
+            text-decoration: underline;
         }
         .fade-in.visible {
             opacity: 1;
@@ -158,17 +165,13 @@
         .card-transition {
             transition: transform 2s ease, box-shadow 2s ease;
         }
-
         .card-transition:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
         .card-transition:active {
             transform: scale(0.95);
         }
-
-        /* Animasi muncul bertahap */
         .card {
             opacity: 0;
             transform: scale(0.95);
@@ -182,101 +185,187 @@
             opacity: 1;
             transform: scale(1);
         }
+
+        /* New Unified Animated Background with Red Topology */
+        .unified-section {
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .topology-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Floating animation */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Glow effect */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(254, 255, 1, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(254, 255, 1, 0.8);
+            }
+        }
+
+        /* Toggle button for slideshow */
+        .toggle-slideshow {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-slideshow:hover {
+            background: rgba(0,0,0,0.9);
+        }
     </style>
+</head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar')
-</body>
+
+    <!-- Slideshow Section -->
     <div class="slideshow-container relative z-0" id="slideshowContainer">
         @php
             $slideshows = \App\Models\Slideshow::where('active', true)->orderBy('order')->get();
         @endphp
         @if($slideshows->count() > 0)
-            <img alt="{{ $slideshows->first()->title }}" class="slideshow-image" id="slideshowImage" src="{{ asset('storage/' . $slideshows->first()->image_path) }}"/>
+            @foreach($slideshows as $index => $slideshow)
+                <img alt="{{ $slideshow->title }}" class="slideshow-image {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
+                     data-index="{{ $index }}"
+                     src="{{ asset('storage/' . $slideshow->image_path) }}"/>
+            @endforeach
             <a class="prev" onclick="changeSlide(-1)">❮</a>
             <a class="next" onclick="changeSlide(1)">❯</a>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    let slideIndex = 0;
-                    const slides = @json($slideshows->map(function($slideshow) {
-                        return [
-                            'image' => asset('storage/' . $slideshow->image_path),
-                            'title' => $slideshow->title
-                        ];
-                    }));
-
-                    function changeSlide(n) {
-                        slideIndex += n;
-                        if (slideIndex >= slides.length) slideIndex = 0;
-                        if (slideIndex < 0) slideIndex = slides.length - 1;
-                        const image = document.getElementById('slideshowImage');
-                        if(image) {
-                            image.src = slides[slideIndex].image;
-                            image.alt = slides[slideIndex].title;
-                        }
-                    }
-
-                    // Auto change slide every 5 seconds
-                    if(slides.length > 0) {
-                        setInterval(() => changeSlide(1), 5000);
-                    }
-                });
-            </script>
+            <button class="toggle-slideshow" onclick="toggleSlideshow()"></button>
         @endif
     </div>
-    <div class="bg-red-900 flex items-center justify-center min-h-screen relative py-20" id="contentContainer">
-        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="img/background1.png" width="1920"/>
-        <div class="relative z-10 text-center text-white px-6">
-            <h1 class="text-5xl font-bold mb-10 arvo-font text-center fade-in">BAGIAN TATA PEMERINTAHAN</h1>
-            <div class="inline-block rounded-full overflow-hidden mb-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] zoom-in">
-                <!-- Menghapus border dan border-white -->
-                <img alt="Portrait of Yoga Tamtomo, S.STP" class="w-64 h-80 object-cover" height="400" src="img/kabag.png" width="300"/>
-            </div>
-            <h2 class="text-6xl font-bold mt-8 inconsolata-font slide-in">YOGA TAMTOMO, S.STP</h2>
-            <p class="text-2xl inconsolata-font slide-in">Kepala Bagian Tata Pemerintahan</p>
-        </div>
-    </div>
-    <div class="bg-red-600 flex items-center justify-center min-h-screen relative py-16" id="contentContainer">
-        <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-1000" src="img/background5.png"/>
-        <div class="relative z-10 text-center text-white px-4 w-full">
-            <h1 class="text-2xl inconsolata-font"></h1>
-            <div class="relative container mx-auto py-8 max-w-screen-lg">
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4 w-full">
-                    <div class="bg-white p-6 shadow-lg w-3/4 md:w-5/6 lg:w-2/3 zoom-out">
-                        <div class="text-center inconsolata-font text-black text-2xl mb-4">Alamat Kantor Bagian</div>
-                        <div class="text-center inconsolata-font text-black text-2xl mb-4">Tata Pemerintahan Kota Semarang</div>
-                        <iframe allowfullscreen="" height="400" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.229282343342!2d110.41032621415985!3d-6.982247794955957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ba87e15e37b%3A0xb6685e7f890af6d9!2sBalai%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1677037557628!5m2!1sid!2sid" style="border:0;" width="100%"></iframe>
+
+    <!-- Unified Sections with Red Topology Background -->
+    <div class="unified-section">
+        <!-- Topology Canvas Background -->
+        <canvas id="topologyCanvas" class="topology-canvas"></canvas>
+
+        <!-- Profile Section -->
+        <section id="profile" class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="text-gray-800">Kepala Bagian Tata Pemerintahan</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-rose-600 to-amber-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Memimpin dengan integritas dan komitmen untuk pelayanan publik yang berkualitas
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/3 flex justify-center slide-in">
+                        <div class="relative floating">
+                            <div class="absolute inset-0 bg-gradient-to-r from-rose-600/20 to-amber-500/20 rounded-full blur-xl animate-pulse"></div>
+                            <img alt="Portrait of Yoga Tamtomo, S.STP" class="relative z-10 w-64 h-80 md:w-80 md:h-96 object-cover rounded-xl shadow-2xl border-4 border-white" src="img/kabag.png"/>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 shadow-lg w-3/4 md:w-5/6 lg:w-2/3 zoom-out">
-                        <div class="text-center inconsolata-font text-black text-2xl mb-4">Channel Youtube Bagian</div>
-                        <div class="text-center inconsolata-font text-black text-2xl mb-4">Tata Pemerintahan Kota Semarang</div>
-                        <div class="panel-body" style="padding: 0;">
-                            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="400" src="https://www.youtube.com/embed/lz2e61sfxO0" title="YouTube video player" width="100%"></iframe>
+
+                    <div class="w-full md:w-2/3 zoom-in">
+                        <div class="bg-white p-8 rounded-xl shadow-lg bg-opacity-90">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">YOGA TAMTOMO, S.STP</h3>
+                            <p class="text-lg text-rose-600 font-medium mb-6">Kepala Bagian Tata Pemerintahan</p>
+
+                            <div class="space-y-4">
+                                <p class="text-gray-600">
+                                    Selamat datang di website resmi Bagian Tata Pemerintahan Kota Semarang. Kami berkomitmen untuk memberikan pelayanan terbaik dalam tata kelola pemerintahan yang efektif dan efisien.
+                                </p>
+                                <p class="text-gray-600">
+                                    Pada situs web ini kami isi dengan berita-berita seputar kegiatan Bagian Tata Pemerintahan Setda Kota Semarang.  Tak kalah menariknya, di situs web ini senantiasa kami update info-info terbaru dan penting yang perlu diketahui oleh masyarakat.  Oleh karena itu, masyarakat perlu sering melihat situs web ini agar tidak ketinggalan informasi penting khususnya untuk kegiatan dan layanan di Bagian Tata Pemerintahan. Kritik dan saran selalu kami nantikan, agar panyajian informasi di situs web ini dapat memberikan manfaat yang sebesar-besarnya bagi masyarakat.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <body class="bg-black text-white">
-        <div class="relative min-h-screen flex items-center justify-center">
-            <div class="absolute inset-0 w-full h-full">
-                <img alt="Batik pattern background" class="absolute inset-0 w-full h-full object-cover opacity-100" height="1080" src="img/background3.png" width="1920"/>
+        </section>
+
+        <!-- Info Section -->
+        <section id="info" class="py-16 px-4">
+            <div class="container mx-auto max-w-6xl relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg h-full zoom-out bg-opacity-90">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-map-marker-alt text-rose-600 mr-3"></i>
+                            Lokasi Kantor
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Jl. Pemuda No.148, Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132
+                        </p>
+                        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                            <iframe class="w-full h-64" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.229282343342!2d110.41032621415985!3d-6.982247794955957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ba87e15e37b%3A0xb6685e7f890af6d9!2sBalai%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1677037557628!5m2!1sid!2sid"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg h-full zoom-out bg-opacity-90" style="transition-delay: 0.2s;">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fab fa-youtube text-rose-600 mr-3"></i>
+                            Channel YouTube
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Ikuti perkembangan terbaru Bagian Tata Pemerintahan Kota Semarang melalui channel YouTube resmi kami.
+                        </p>
+                        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                            <iframe class="w-full h-64" src="https://www.youtube.com/embed/lz2e61sfxO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
-                <!-- Konten -->
-                <div class="relative container mx-auto py-8 px-4">
-                  <div class="text-black p-6 md:p-10 rounded-xl max-w-3xl mx-auto">
-                    <h1 class="text-2xl md:text-6xl font-semibold mb-2 headline-font text-center zoom-in">
-                        <i class="fas fa-newspaper text-yellow-400 mr-2 text-base md:text-6xl"></i>
-                        BERITA TERBARU
-                      </h1>
-                    <div class="text-4xl md:text-3xl inconsolata-font font-bold text-red-700 italic text-center zoom-in" style="animation-delay: 0.3s;">
-                        BAGIAN TATA PEMERINTAHAN
-                      </div>
-                    <div class="w-24 h-1 bg-yellow-300 mx-auto mt-4 mb-2 rounded-full fade-up" style="animation-delay: 0.5s;"></div>
-                  </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+                        Berita Terkini
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-rose-600 to-amber-500 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Informasi terbaru seputar kegiatan Bagian Tata Pemerintahan Kota Semarang
+                    </p>
+                </div>
                 <div class="flex justify-center gap-8 flex-wrap md:flex-nowrap">
                     @foreach($latestNews as $news)
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col" onclick="window.location.href='{{ route('news.show', $news->slug) }}'">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer card-transition card hover:scale-105 transition-transform duration-300 ease-in-out h-full flex flex-col bg-opacity-90" onclick="window.location.href='{{ route('news.show', $news->slug) }}'">
                         @if($news->images)
                             @php
                                 $images = json_decode($news->images, true);
@@ -300,166 +389,263 @@
                     </div>
                     @endforeach
                 </div>
-                <br>
-                <br>
             </div>
-        </div>
-    </body>
-    @include('layouts.footer')
-        <script>
-            var slideIndex = 0;
-            var slides = @json($slideshows->map(function($slideshow) {
-                return asset('storage/' . $slideshow->image_path);
-            }));
+        </section>
+    </div>
 
-            function changeSlide(n) {
-                slideIndex += n;
-                if (slideIndex >= slides.length) {
-                    slideIndex = 0;
-                } else if (slideIndex < 0) {
-                    slideIndex = slides.length - 1;
-                }
-                document.getElementById("slideshowImage").src = slides[slideIndex];
+    @include('layouts.footer')
+
+    <script>
+        // Slideshow functionality
+        let currentSlide = 0;
+        let slideshowInterval;
+        const slides = document.querySelectorAll('.slideshow-image');
+        const totalSlides = slides.length;
+        let slideshowActive = true;
+
+        function showSlide(index) {
+            // Wrap around if index is out of bounds
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
             }
 
-            function toggleDropdown(event, id) {
-                event.stopPropagation();
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                for (var i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].id !== id) {
-                        dropdowns[i].style.display = 'none';
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('opacity-100');
+                slide.classList.add('opacity-0');
+            });
+
+            // Show current slide
+            slides[currentSlide].classList.remove('opacity-0');
+            slides[currentSlide].classList.add('opacity-100');
+        }
+
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+            resetSlideshowInterval();
+        }
+
+        function startSlideshow() {
+            if (slideshowActive && totalSlides > 0) {
+                slideshowInterval = setInterval(() => changeSlide(1), 5000);
+            }
+        }
+
+        function resetSlideshowInterval() {
+            clearInterval(slideshowInterval);
+            startSlideshow();
+        }
+
+        function toggleSlideshow() {
+            const slideshowContainer = document.getElementById('slideshowContainer');
+            const toggleButton = document.querySelector('.toggle-slideshow');
+
+            if (slideshowActive) {
+                // Hide slideshow
+                slideshowContainer.style.opacity = '0';
+                setTimeout(() => {
+                    slideshowContainer.style.display = 'none';
+                }, 500); // Wait for fade out transition
+                toggleButton.textContent = '';
+                clearInterval(slideshowInterval);
+                slideshowActive = false;
+            } else {
+                // Show slideshow
+                slideshowContainer.style.display = 'block';
+                // Memaksa browser untuk melakukan reflow sebelum mengubah opacity
+                slideshowContainer.offsetHeight;
+                // Mengatur opacity ke 1 untuk menampilkan slideshow
+                slideshowContainer.style.opacity = '1';
+                toggleButton.textContent = '';
+                slideshowActive = true;
+                startSlideshow();
+            }
+        }
+
+        // Red Topology Canvas Animation
+        function initTopologyAnimation() {
+            const canvas = document.getElementById('topologyCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            function resizeCanvas() {
+                const container = document.querySelector('.unified-section');
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+            }
+
+            // Initial resize
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Animation settings
+            const settings = {
+                lineColor: '#e63946', // Bright red color
+                lineWidth: 2,
+                lineCount: 80,
+                maxAmplitude: 80,
+                speed: 0.02,
+                segments: 100,
+                opacity: 0.7
+            };
+
+            // Create nodes
+            const nodes = [];
+            for (let i = 0; i < settings.lineCount; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: Math.random() * 0.5 - 0.25,
+                    vy: Math.random() * 0.5 - 0.25,
+                    radius: Math.random() * 3 + 1,
+                    amplitude: Math.random() * settings.maxAmplitude + 20,
+                    frequency: Math.random() * 0.01 + 0.005,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            // Animation loop
+            let time = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Update time
+                time += settings.speed;
+
+                // Draw wavy lines between nodes
+                ctx.strokeStyle = settings.lineColor;
+                ctx.lineWidth = settings.lineWidth;
+                ctx.globalAlpha = settings.opacity;
+
+                for (let i = 0; i < nodes.length; i++) {
+                    const nodeA = nodes[i];
+
+                    // Update node position with smooth movement
+                    nodeA.x += nodeA.vx;
+                    nodeA.y += nodeA.vy;
+
+                    // Bounce off edges
+                    if (nodeA.x < 0 || nodeA.x > canvas.width) nodeA.vx *= -1;
+                    if (nodeA.y < 0 || nodeA.y > canvas.height) nodeA.vy *= -1;
+
+                    // Draw connections to nearby nodes
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const nodeB = nodes[j];
+                        const dx = nodeB.x - nodeA.x;
+                        const dy = nodeB.y - nodeA.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        // Only draw lines between nearby nodes
+                        if (distance < 150) {
+                            // Create wavy line effect
+                            ctx.beginPath();
+                            ctx.moveTo(nodeA.x, nodeA.y);
+
+                            // Draw wavy line with multiple segments
+                            for (let s = 1; s <= settings.segments; s++) {
+                                const t = s / settings.segments;
+                                const x = nodeA.x + dx * t;
+                                const y = nodeA.y + dy * t;
+
+                                // Add wave effect
+                                const waveOffset = Math.sin(time + t * Math.PI * 1) *
+                                                  (nodeA.amplitude + nodeB.amplitude) / 1 *
+                                                  Math.sin(t * Math.PI);
+
+                                // Perpendicular direction for the wave
+                                const perpX = -dy / distance;
+                                const perpY = dx / distance;
+
+                                const waveX = x + perpX * waveOffset;
+                                const waveY = y + perpY * waveOffset;
+
+                                ctx.lineTo(waveX, waveY);
+                            }
+
+                            ctx.stroke();
+                        }
                     }
                 }
-                var dropdown = document.getElementById(id);
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                } else {
-                    dropdown.style.display = 'block';
-                }
+
+                requestAnimationFrame(animate);
             }
 
-            function closeAllDropdowns(event) {
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                for (var i = 0; i < dropdowns.length; i++) {
+            // Start animation
+            animate();
+        }
+
+        // Initialize slideshow and background animation
+        document.addEventListener('DOMContentLoaded', function() {
+            if(totalSlides > 0) {
+                showSlide(0);
+                startSlideshow();
+            }
+
+            // Initialize topology animation
+            initTopologyAnimation();
+        });
+
+        function toggleDropdown(event, id) {
+            event.stopPropagation();
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].id !== id) {
                     dropdowns[i].style.display = 'none';
                 }
             }
-
-             // Mendapatkan elemen header
-        const header = document.querySelector('header');
-
-// Fungsi untuk menangani scroll
-function handleScroll() {
-    if (window.scrollY > 50) { // Ubah nilai 50 sesuai kebutuhan
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
-}
-
-// Menambahkan event listener untuk scroll
-window.addEventListener('scroll', handleScroll);
-
-            function toggleSlideshow() {
-    var slideshowContainer = document.getElementById("slideshowContainer");
-    var contentContainer = document.getElementById("contentContainer");
-    var slideshowToggle = document.getElementById("slideshowToggle");
-
-    if (slideshowToggle.checked) {
-        slideshowContainer.style.display = "block";
-        contentContainer.classList.add("min-h-screen");
-        contentContainer.classList.remove("py-16");
-    } else {
-        slideshowContainer.style.display = "none";
-        contentContainer.classList.remove("min-h-screen");
-        contentContainer.classList.add("py-16");
-    }
-    document.querySelector('.hover-underline').addEventListener('mouseenter', function() {
-    this.style.textDecoration = 'underline';
-});
-
-document.querySelector('.hover-underline').addEventListener('mouseleave', function() {
-    this.style.textDecoration = 'none';
-});
-
-    // Re-observe elements to trigger animations
-    document.querySelectorAll('.fade-in, .slide-in, .zoom-out, .zoom-in').forEach(element => {
-        observer.observe(element);
-    });
-    }
-
-    function toggleSlideshowMobile() {
-    var slideshowContainer = document.getElementById("slideshowContainer");
-    var contentContainer = document.getElementById("contentContainer");
-    var slideshowToggleMobile = document.getElementById("slideshowToggleMobile");
-
-    if (slideshowToggleMobile.checked) {
-        slideshowContainer.style.display = "block";
-        contentContainer.classList.add("min-h-screen");
-        contentContainer.classList.remove("py-16");
-    } else {
-        slideshowContainer.style.display = "none";
-        contentContainer.classList.remove("min-h-screen");
-        contentContainer.classList.add("py-16");
-    }
-
-    // Re-observe elements to trigger animations
-    document.querySelectorAll('.fade-in, .slide-in, .zoom-out, .zoom-in').forEach(element => {
-        observer.observe(element);
-    });
-    }
-
-    window.onload = function() {
-    document.getElementById("slideshowToggle").checked = true;
-    toggleSlideshow();
-    };
-
-    const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        } else {
-            entry.target.classList.remove('visible'); // Optional: Remove visible class if element is not in viewport
-        }
-    });
-    }, {
-
-    threshold: 0.1 // Adjust this value as needed
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-    const cards = document.querySelectorAll('.card');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Saat card masuk ke viewport
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 200); // Stagger the animation
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
             } else {
-                // Saat card keluar dari viewport
-                entry.target.classList.remove('visible');
+                dropdown.style.display = 'block';
             }
+        }
+
+        function closeAllDropdowns(event) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = 'none';
+            }
+        }
+
+        // Header shrink on scroll
+        const header = document.querySelector('header');
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        }
+        window.addEventListener('scroll', handleScroll);
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
         });
-    }, {
-        threshold: 0.1 // Trigger saat 30% card terlihat
-    });
 
-    cards.forEach((card) => {
-        observer.observe(card); // Mulai mengamati setiap card
-    });
-});
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card) => {
+                observer.observe(card);
+            });
 
-    document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.fade-in, .slide-in, .zoom-out, .zoom-in').forEach(element => {
-        observer.observe(element);
-    });
-    });
-            window.onload = function() {
-                document.getElementById("slideshowToggle").checked = true;
-                toggleSlideshow();
-            };
-        </script>
-    </body>
-    </html>
+            document.querySelectorAll('.fade-in, .slide-in, .zoom-out, .zoom-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
