@@ -69,7 +69,7 @@
             <div class="flex items-center space-x-3">
                 <div id="realtime-clock" class="mr-4 inconsolata-font text-lg text-black"></div>
                 <i class="fas fa-envelope text-red-600 text-lg"></i>
-                <a class="text-red-600 inconsolata-font text-lg hover-underline" href="mailto:tapemkotasmg@gmail.com">tapemkotasmg@gmail.com</a>
+                <a class="text-red-600 inconsolata-font text-lg hover-underline" href="mailto:bagtapem@semarangkota.go.id">bagtapem@semarangkota.go.id</a>
             </div>
             <script>
                 function updateClock() {
