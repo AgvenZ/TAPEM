@@ -84,7 +84,7 @@
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 288px;
+            height: 500px;
             overflow: hidden;
             transition: opacity 0.5s ease, all 0.5s ease;
         }
@@ -251,6 +251,101 @@
         .toggle-slideshow:hover {
             background: rgba(0,0,0,0.9);
         }
+
+        /* Cloud Gradient Overlay */
+        .cloud-gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.9) 80%, #ffffff 100%);
+            z-index: 10;
+            pointer-events: none;
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 C200,60 400,100 500,30 C600,70 800,40 1000,80 L1000,100 L0,100 Z" /></svg>');
+            mask-size: 100% 100%;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 C200,60 400,100 500,30 C600,70 800,40 1000,80 L1000,100 L0,100 Z" /></svg>');
+            -webkit-mask-size: 100% 100%;
+            animation: cloudFloat 15s ease-in-out infinite alternate;
+        }
+
+        /* Add a second cloud layer for more depth */
+        .cloud-gradient-overlay::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9;
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,20 C150,5 300,50 500,10 C700,40 850,10 1000,30 L1000,100 L0,100 Z" /></svg>');
+            mask-size: 120% 100%;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,20 C150,5 300,50 500,10 C700,40 850,10 1000,30 L1000,100 L0,100 Z" /></svg>');
+            -webkit-mask-size: 120% 100%;
+            animation: cloudFloatReverse 20s ease-in-out infinite alternate;
+            opacity: 0.7;
+        }
+
+        /* Third cloud layer for more realistic effect */
+        .cloud-layer-three {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,0.7) 90%, #ffffff 100%);
+            z-index: 8;
+            pointer-events: none;
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,40 C100,10 250,60 400,20 C550,40 750,5 900,30 C950,45 980,25 1000,40 L1000,100 L0,100 Z" /></svg>');
+            mask-size: 150% 100%;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,40 C100,10 250,60 400,20 C550,40 750,5 900,30 C950,45 980,25 1000,40 L1000,100 L0,100 Z" /></svg>');
+            -webkit-mask-size: 150% 100%;
+            animation: cloudFloatSlow 25s ease-in-out infinite alternate;
+            opacity: 0.6;
+        }
+
+        @keyframes cloudFloat {
+            0% {
+                mask-position: 0% 0%;
+                -webkit-mask-position: 0% 0%;
+            }
+            100% {
+                mask-position: 100% 0%;
+                -webkit-mask-position: 100% 0%;
+            }
+        }
+
+        @keyframes cloudFloatReverse {
+            0% {
+                mask-position: 100% 0%;
+                -webkit-mask-position: 100% 0%;
+            }
+            100% {
+                mask-position: 0% 0%;
+                -webkit-mask-position: 0% 0%;
+            }
+        }
+
+        @keyframes cloudFloatSlow {
+            0% {
+                mask-position: 30% 0%;
+                -webkit-mask-position: 30% 0%;
+            }
+            100% {
+                mask-position: 70% 0%;
+                -webkit-mask-position: 70% 0%;
+            }
+        }
+
+        /* Ensure smooth transition between slideshow and content */
+        #slideshowContainer {
+            margin-bottom: -2px; /* Remove any gap between slideshow and content */
+        }
+
+        .unified-section {
+            margin-top: -2px; /* Ensure no gap with slideshow */
+        }
     </style>
 </head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
@@ -270,6 +365,8 @@
             <a class="prev" onclick="changeSlide(-1)">❮</a>
             <a class="next" onclick="changeSlide(1)">❯</a>
             <button class="toggle-slideshow" onclick="toggleSlideshow()"></button>
+            <!-- Cloud Gradient Overlay -->
+            <div class="cloud-gradient-overlay"></div>
         @endif
     </div>
 

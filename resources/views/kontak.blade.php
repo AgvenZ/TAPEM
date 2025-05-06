@@ -286,9 +286,9 @@
     <div class="bg-black bg-opacity-80 py-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
             <div class="text-2xl font-bold text-white mb-4 md:mb-0">
-                <span class="text-2xl font-bold andika-font ml-2">KONTAK</span>
+                <span class="text-2xl font-bold andika-font -ml-10">KONTAK</span>
             </div>
-            <div class="flex items-center space-x-2 text-gray-300 inconsolata-font">
+            <div class="flex items-center space-x-2 text-white inconsolata-font mr-20">
                 <span class="cursor-pointer hover:" onclick="window.location.href='/'">BERANDA</span>
                 <i class="fas fa-chevron-right text-sm"></i>
                 <span class="text-white-300">KONTAK</span>

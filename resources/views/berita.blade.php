@@ -219,7 +219,7 @@
             <div class="text-white p-6 md:p-10 rounded-xl max-w-3xl mx-auto">
               <h1 class="text-2xl md:text-6xl font-semibold mb-2 headline-font text-center zoom-in">
                   <i class="fas fa-newspaper text-yellow-400 mr-2 text-base md:text-6xl"></i>
-                  BERITA TERBARU
+                  KUMPULAN BERITA
                 </h1>
               <div class="text-4xl md:text-3xl inconsolata-font font-bold text-red-700 italic text-center zoom-in" style="animation-delay: 0.3s;">
                   BAGIAN TATA PEMERINTAHAN
