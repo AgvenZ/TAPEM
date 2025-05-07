@@ -109,7 +109,8 @@ class PageController extends Controller
             'content' => 'nullable',
             'source_code' => 'nullable',
             'is_published' => 'boolean',
-            'selected_media_urls' => 'nullable|string',          
+            'selected_media_urls' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',          
         ]);
 
         // Add source_code to validated data
@@ -149,7 +150,20 @@ class PageController extends Controller
 
         // Handle direct file upload
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/images');
+            $file = $request->file('image');
+            
+            // Pastikan file adalah gambar yang valid
+            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+            }
+            
+            // Periksa ekstensi file
+            $extension = strtolower($file->getClientOriginalExtension());
+            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+            }
+            
+            $path = $file->store('public/images');
             $validated['images'] = $validated['images'] ?? [];
             $validated['images'][] = str_replace('public/', '', $path);
         }
@@ -216,7 +230,20 @@ class PageController extends Controller
 
         // Handle direct file upload
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/images');
+            $file = $request->file('image');
+            
+            // Pastikan file adalah gambar yang valid
+            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+            }
+            
+            // Periksa ekstensi file
+            $extension = strtolower($file->getClientOriginalExtension());
+            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+            }
+            
+            $path = $file->store('public/images');
             $validated['images'] = $validated['images'] ?? [];
             $validated['images'][] = str_replace('public/', '', $path);
         }

@@ -29,6 +29,22 @@ class SlideshowController extends Controller
             'order' => 'nullable|integer|min:0',
             'active' => 'boolean'
         ]);
+        
+        // Validasi tambahan untuk mencegah backdoor pada file gambar
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            
+            // Pastikan file adalah gambar yang valid
+            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+            }
+            
+            // Periksa ekstensi file
+            $extension = strtolower($file->getClientOriginalExtension());
+            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+            }
+        }
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('slideshows', 'public');
@@ -65,6 +81,22 @@ class SlideshowController extends Controller
             'order' => 'nullable|integer|min:0',
             'active' => 'boolean'
         ]);
+        
+        // Validasi tambahan untuk mencegah backdoor pada file gambar
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            
+            // Pastikan file adalah gambar yang valid
+            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+            }
+            
+            // Periksa ekstensi file
+            $extension = strtolower($file->getClientOriginalExtension());
+            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+            }
+        }
 
         $data = [
             'title' => $request->title,
