@@ -340,7 +340,7 @@
                         </div>
 
                         <div class="social-card flex items-center space-x-4">
-                            <img alt="Envelope logo" class="social-icon" src="img/sosmed6.png"/>
+                            <i class="fas fa-envelope text-red-600 text-4xl"></i>
                             <a href="mailto:bagtapem@semarangkota.go.id" class="social-link">bagtapem@semarangkota.go.id</a>
                         </div>
                     </div>
