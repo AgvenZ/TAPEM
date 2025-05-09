@@ -312,8 +312,8 @@
                         <iframe allowfullscreen="" class="w-full" height="400" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.229282343342!2d110.41032621415985!3d-6.982247794955957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ba87e15e37b%3A0xb6685e7f890af6d9!2sBalai%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1677037557628!5m2!1sid!2sid" style="border:0;"></iframe>
                     </div>
                     <div class="mt-4 text-center text-gray-300">
-                        <p class="text-lg inconsolata-font">Kami siap melayani Anda dengan sebaik-baiknya</p>
-                        <p class="text-sm mt-2 inconsolata-font">Jam operasional:<br>Senin - Kamis, 08.00 - 16.00 WIB<br>Jumat, 07.30 - 14.00 WIB</p>
+                        <p class="text-lg poppins-font">Kami siap melayani Anda dengan sebaik-baiknya</p>
+                        <p class="text-lg mt-2 poppins-font">Jam operasional:<br>Senin - Kamis, 08.00 - 16.00 WIB<br>Jumat, 07.30 - 14.00 WIB</p>
                     </div>
                 </div>
 
