@@ -33,12 +33,6 @@
         header.sticky {
             transition: all 0.5s ease-in-out;
         }
-        body {
-            background-image: url('img/background2.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: 'Poppins', sans-serif;
-        }
         a:hover {
             text-decoration: underline;
         }
@@ -206,9 +200,9 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            padding: 1.5rem;
-            margin: 1rem auto;
-            max-width: 950px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 850px;
         }
 
         .contact-title {
@@ -229,10 +223,10 @@
 
         .social-card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 10px;
+            padding: 1rem;
             transition: all 0.3s ease;
-            border-left: 4px solid;
+            border-left: 3px solid;
             border-image: linear-gradient(to bottom, #000000, #FF0000) 1;
         }
 
@@ -242,8 +236,8 @@
         }
 
         .social-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
@@ -277,14 +271,14 @@
         .divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
     </style>
 </head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
 
-    <div class="bg-black bg-opacity-80 py-4">
+    <div class="bg-black py-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
             <div class="text-2xl font-bold text-white mb-4 md:mb-0">
                 <span class="text-2xl font-bold andika-font -ml-10">KONTAK</span>
@@ -296,63 +290,60 @@
             </div>
         </div>
     </div>
-
-    <div class="relative min-h-screen py-12">
-        <img alt="Background image of a cityscape" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background2.png" width="1920"/>
-
+    <div class="flex items-center justify-center bg-cover bg-center py-16" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg1.png');">
         <div class="contact-container relative z-10">
-            <div class="text-center mb-12">
+            <div class="text-center mb-8">
                 <h1 class="contact-title">HUBUNGI KAMI</h1>
                 <p class="contact-subtitle">Gd. Moch Ichsan Lt.6, Jl. Pemuda No. 148 Semarang</p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex flex-col lg:flex-row gap-6">
                 <div class="w-full lg:w-1/2">
                     <div class="map-container">
-                        <iframe allowfullscreen="" class="w-full" height="400" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.229282343342!2d110.41032621415985!3d-6.982247794955957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ba87e15e37b%3A0xb6685e7f890af6d9!2sBalai%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1677037557628!5m2!1sid!2sid" style="border:0;"></iframe>
+                        <iframe allowfullscreen="" class="w-full" height="350" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.229282343342!2d110.41032621415985!3d-6.982247794955957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708ba87e15e37b%3A0xb6685e7f890af6d9!2sBalai%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1677037557628!5m2!1sid!2sid" style="border:0;"></iframe>
                     </div>
-                    <div class="mt-4 text-center text-gray-300">
-                        <p class="text-lg poppins-font">Kami siap melayani Anda dengan sebaik-baiknya</p>
-                        <p class="text-lg mt-2 poppins-font">Jam operasional:<br>Senin - Kamis, 08.00 - 16.00 WIB<br>Jumat, 07.30 - 14.00 WIB</p>
+                    <div class="mt-3 text-center text-gray-300">
+                        <p class="text-base poppins-font">Kami siap melayani Anda dengan sebaik-baiknya</p>
+                        <p class="text-base mt-2 poppins-font">Jam operasional:<br>Senin - Kamis, 08.00 - 16.00 WIB<br>Jumat, 07.30 - 14.00 WIB</p>
                     </div>
                 </div>
 
                 <div class="w-full lg:w-1/2">
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="social-card flex items-center space-x-4">
-                            <img alt="Instagram logo" class="social-icon" src="img/sosmed1.png"/>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <img alt="Instagram logo" class="social-icon w-10 h-10" src="img/sosmed1.png"/>
                             <a href="https://www.instagram.com/bagtapemkotasmg" target="_blank" class="social-link">@bagtapemkotasmg</a>
                         </div>
 
-                        <div class="social-card flex items-center space-x-4">
-                            <img alt="Twitter logo" class="social-icon" src="img/sosmed2.png"/>
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <img alt="Twitter logo" class="social-icon w-10 h-10" src="img/sosmed2.png"/>
                             <a href="https://twitter.com/bagtapemkotasmg" target="_blank" class="social-link">@bagtapemkotasmg</a>
                         </div>
 
-                        <div class="social-card flex items-center space-x-4">
-                            <img alt="TikTok logo" class="social-icon" src="img/sosmed3.png"/>
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <img alt="TikTok logo" class="social-icon w-10 h-10" src="img/sosmed3.png"/>
                             <a href="https://www.tiktok.com/@bagtapemkotasmg" target="_blank" class="social-link">@bagtapemkotasmg</a>
                         </div>
 
-                        <div class="social-card flex items-center space-x-4">
-                            <img alt="Facebook logo" class="social-icon" src="img/sosmed4.png"/>
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <img alt="Facebook logo" class="social-icon w-10 h-10" src="img/sosmed4.png"/>
                             <a href="https://www.facebook.com/profile.php?id=100085015884271" target="_blank" class="social-link">Bagian Tata Pemerintahan Setda Kota Semarang</a>
                         </div>
 
-                        <div class="social-card flex items-center space-x-4">
-                            <img alt="YouTube logo" class="social-icon" src="img/sosmed5.png"/>
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <img alt="YouTube logo" class="social-icon w-10 h-10" src="img/sosmed5.png"/>
                             <a href="https://youtube.com/@bagiantatapemerintahansetd2949?si=CL0zivLNQYl37FEr" target="_blank" class="social-link">Bagian Tapem Setda Kota Semarang</a>
                         </div>
 
-                        <div class="social-card flex items-center space-x-4">
-                            <i class="fas fa-envelope text-red-600 text-4xl"></i>
+                        <div class="social-card flex items-center space-x-3 py-3">
+                            <i class="fas fa-envelope text-red-600 text-3xl"></i>
                             <a href="mailto:bagtapem@semarangkota.go.id" class="social-link">bagtapem@semarangkota.go.id</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider my-6"></div>
         </div>
     </div>
 

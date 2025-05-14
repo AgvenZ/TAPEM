@@ -252,7 +252,7 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center bg-cover bg-center" style="background-image: url('img/background3.png');">
+    <div class="flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg1.png');">
         <div class="main-content-container">
             <br>
 
