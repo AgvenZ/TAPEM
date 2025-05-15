@@ -173,7 +173,7 @@
     @include('layouts.navbar')
 
 
-    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16" style="background-image: url('{{ asset('img/background4.png') }}'); background-attachment: fixed; background-size: cover; background-position: center;">
+    <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('img/rev-bg2.png') }}'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6 bg-gray bg-opacity-500">
 
                 <!-- Bagian Gambar -->

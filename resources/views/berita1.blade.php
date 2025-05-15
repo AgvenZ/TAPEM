@@ -30,6 +30,7 @@
         }
         .carousel {
             position: relative;
+            z-index: 10;
         }
         .carousel-inner {
             overflow: hidden;
@@ -330,12 +331,12 @@
             </div>
         </div>
         <body class="bg-gray-100">
-            <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
-             <main class="container mx-auto py-8 relative z-10 rounded-lg">
+                <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6" style="position: relative; overflow: hidden;">
+             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('img/rev-bg2.png'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+             <main class="container mx-auto py-8 relative z-10 rounded-lg" style="position: relative;">
               <div class="flex flex-col md:flex-row">
                <div class="md:w-2/3 mx-auto p-4">
-                <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
+                <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10" style="position: relative;">
                 <h1 class="text-4xl judson-font font-bold text-center">
                  Doa Bersama Dan Serah Terima Jabatan Wali Kota Dan Wakil Wali Kota Semarang Periode 2025-2030
                 </h1>

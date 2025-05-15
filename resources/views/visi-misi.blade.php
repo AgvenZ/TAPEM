@@ -204,7 +204,7 @@
         </div>
     </div>
 </div>
-    <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('img/background4.png');">
+    <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="p-23 rounded-lg max-w-6xl text-white">
             <h1 class="text-5xl andika-font font-bold mb-4">VISI</h1>
             <p class="text-2xl arvo-font mb-8">“Terwujudnya Kota Semarang yang Semakin Hebat yang berlandaskan Pancasila, dalam bingkai NKRI ber-Bhineka Tunggal Ika”</p>
@@ -221,7 +221,7 @@
 </body>
 
 @include('layouts.footer')
-  
+
     <script>
          function changeSlide(n) {
                 slideIndex += n;

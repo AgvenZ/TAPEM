@@ -253,8 +253,9 @@
             </div>
         </div>
         <body class="bg-gray-100">
-            <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
+5            <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
+             <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
+        <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
              <main class="container mx-auto py-8 relative z-10 rounded-lg">
               <div class="flex flex-col md:flex-row">
                <div class="md:w-2/3 mx-auto p-4">

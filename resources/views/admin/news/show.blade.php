@@ -136,7 +136,7 @@
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">BERITA</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-16">
+            <div class="flex items-center space-x-1 inconsolata-font ml-auto -mr-33">
                 <span onclick="window.location.href='/'" class="cursor-pointer">BERANDA</span>
                 <i class="fas fa-chevron-right"></i>
                 <span>BERITA</span>
@@ -145,7 +145,8 @@
     </div>
 
     <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-        <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="{{ asset('img/background4.png') }}" width="1920"/>
+        <div class="absolute inset-0 w-full h-full" style="background-image: url('{{ asset('img/rev-bg2.png') }}'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+        <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
         <main class="container mx-auto py-8 relative z-10 rounded-lg">
             <div class="flex flex-col md:flex-row">
                 <div class="md:w-2/3 mx-auto p-4">
@@ -199,24 +200,7 @@
         </main>
     </div>
 
-    <div class="flex justify-center items-center py-10 bg-black">
-        <div class="flex items-center mx-8">
-            <img alt="Semarang Kota logo and text" class="h-20" src="/img/logo1.png"/>
-        </div>
-        <div class="flex items-center mx-8">
-            <img alt="Semarang Smart City logo and text" class="h-20" src="/img/logo2.png"/>
-        </div>
-        <div class="flex items-center mx-8 bg-white text-black p-4">
-            <img alt="Satu Data Kota Semarang logo and text" class="h-20" src="/img/logo3.png"/>
-        </div>
-        <div class="flex items-center mx-8">
-            <img alt="PPID logo and text" class="h-20" src="/img/logo4.png"/>
-        </div>
-    </div>
-
-    <footer class="text-center py-4 bg-white text-black text-lg inconsolata-font">
-        <p>© 2025 Bagian Tata Pemerintahan, Setda Kota Semarang All rights reserved</p>
-    </footer>
+    @include('layouts.footer')
 
 </body>
 </html>

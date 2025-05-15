@@ -219,7 +219,7 @@
       </div>
      </div>
     </div>
-    <body class="text-white font-sans bg-cover bg-no-repeat bg-fixed flex items-center justify-center min-h-screen" style="background-image: url('img/background4.png');">
+    <body class="text-white font-sans bg-cover bg-no-repeat flex items-center justify-center min-h-screen" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="text-white container mx-auto p-4 arvo-font">
             <div class="p-14 rounded-lg">
                 <ol class="list-decimal list-inside text-lg md:text-xl lg:text-2xl leading-relaxed text-justify">

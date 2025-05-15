@@ -212,8 +212,8 @@
 </div>
 <body class="bg-black text-white">
     <div class="relative min-h-screen flex items-center justify-center">
-        <div class="absolute inset-0 w-full h-full">
-            <img alt="Background image" class="w-full h-full object-cover" src="img/background4.png"/>
+        <div class="absolute inset-0 w-full h-full" style="background-image: url('img/rev-bg2.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-black opacity-70"></div>
         </div>
         <div class="relative container mx-auto py-8 px-4">
             <div class="text-white p-6 md:p-10 rounded-xl max-w-3xl mx-auto">

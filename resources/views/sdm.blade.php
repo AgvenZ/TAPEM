@@ -224,7 +224,7 @@
         </div>
     </div>
         <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-         <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
+         <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
          <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
           <h1 class="andika-font text-center text-xl font-bold mb-4">
            DATA KEPEGAWAIAN BAGIAN TATA PEMERINTAHAN SETDA KOTA SEMARANG

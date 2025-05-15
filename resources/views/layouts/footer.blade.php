@@ -26,7 +26,7 @@
                 </div>
                 <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-red-600 text-white px-3 py-1 rounded-md text-sm font-medium whitespace-nowrap shadow-lg">
                     Satu Data Kota Semarang
-                    <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-red-600"></div>
+                    <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-white"></div>
                 </div>
             </div>
 

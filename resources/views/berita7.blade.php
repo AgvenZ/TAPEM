@@ -332,7 +332,7 @@
         </div>
         <body class="bg-gray-100">
             <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
-             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
+             <img alt="Background image of a cityscape with buildings and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/rev-bg2.png" width="1920"/>
              <main class="container mx-auto py-8 relative z-10 rounded-lg">
               <div class="flex flex-col md:flex-row">
                <div class="md:w-2/3 mx-auto p-4">

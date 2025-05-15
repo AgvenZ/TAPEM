@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center min-h-screen bg-repeat bg-center bg-[length:auto]" style="background-image: url('img/background4.png');">
+    <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="p-20 rounded-lg max-w-6xl text-white">
             <img alt="Descriptive image related to Kecamatan and Kelurahan" class="mb-8 w-full h-auto transition-zoom" height="1920" src="img/poster1.png" width="1080"/>
             <p class="text-2xl arvo-font mb-8 text-justify">

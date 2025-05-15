@@ -224,7 +224,8 @@
      </div>
     </div>
     <div class="relative flex items-center justify-center min-h-screen bg-cover bg-center">
-     <img alt="Background image of a scenic view with mountains and a clear sky" class="absolute inset-0 w-full h-full object-cover z-0" height="1080" src="img/background4.png" width="1920"/>
+     <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
+
      <div class="relative p-20 rounded-lg max-w-6xl text-white z-10">
       <p class="text-2xl arvo-font mb-8 text-justify">
        Relaas/surat panggilan merupakan penyampaian secara resmi (official) dan patut (properly) kepada pihak-pihak yang terlibat dalam suatu perkara di pengadilan. Tujuan relaas adalah agar para pihak memenuhi dan melaksanakan hal-hal yang diminta dan diperintahkan pengadilan.
