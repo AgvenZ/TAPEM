@@ -233,7 +233,7 @@
         }
 
         /* Toggle button for slideshow */
-        .toggle-slideshow {
+        /* .toggle-slideshow {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -245,7 +245,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; */
         }
 
         .toggle-slideshow:hover {
