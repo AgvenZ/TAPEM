@@ -122,8 +122,8 @@
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10" required>{{ old('content') }}</textarea>
-                    <small class="text-muted">Content cannot be empty</small>
+                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10">{{ old('content') }}</textarea>
+                    <small class="text-muted">Content can be left blank if Source Code is filled in</small>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -148,8 +148,6 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     const sourceCodeEditor = document.getElementById('source_code');
                     // Live preview functionality has been removed
-                });
-
                 });
                 </script>
 

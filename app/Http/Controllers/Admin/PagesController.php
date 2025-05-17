@@ -34,6 +34,18 @@ class PagesController extends Controller
             'selected_media_urls' => 'nullable|string'
         ]);
 
+        // Jika source_code disediakan, content bisa kosong
+        if ($request->has('source_code') && !empty($request->source_code)) {
+            if (empty($validatedData['content'])) {
+                $validatedData['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
+            }
+        } else if (empty($validatedData['content'])) {
+            // Jika tidak ada source_code dan content kosong, kembalikan error
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
+        }
+
         $page = new Page();
         $page->title = $validatedData['title'];
         $page->content = $validatedData['content'] ?? '';
@@ -85,16 +97,26 @@ class PagesController extends Controller
         // Validasi dengan pesan error kustom untuk field content
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string', // Ubah dari required menjadi nullable
+            'content' => 'nullable|string',
             'source_code' => 'nullable',
             'parent_page' => 'nullable|string|max:255',
             'menu_order' => 'nullable|integer|min:0',
             'is_published' => 'boolean',
             'image' => 'nullable|image|max:2048',
             'selected_media_urls' => 'nullable|string'
-        ], [
-            'content.required' => 'Konten halaman tidak boleh kosong.'
         ]);
+
+        // Jika source_code disediakan, content bisa kosong
+        if ($request->has('source_code') && !empty($request->source_code)) {
+            if (empty($validatedData['content'])) {
+                $validatedData['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
+            }
+        } else if (empty($validatedData['content'])) {
+            // Jika tidak ada source_code dan content kosong, kembalikan error
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
+        }
 
         // Pastikan content tidak null sebelum menyimpan
         // Jika content kosong, gunakan string kosong sebagai default

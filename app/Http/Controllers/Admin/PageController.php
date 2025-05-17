@@ -110,11 +110,11 @@ class PageController extends Controller
             'source_code' => 'nullable',
             'is_published' => 'boolean',
             'selected_media_urls' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',          
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Add source_code to validated data
-        if ($request->has('source_code')) {
+        if ($request->has('source_code') && !empty($request->source_code)) {
             $validated['source_code'] = $request->source_code;
             // Jika source_code disediakan, content bisa kosong
             if (empty($validated['content'])) {
@@ -151,18 +151,18 @@ class PageController extends Controller
         // Handle direct file upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            
+
             // Pastikan file adalah gambar yang valid
             if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
                 return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
             }
-            
+
             // Periksa ekstensi file
             $extension = strtolower($file->getClientOriginalExtension());
             if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
                 return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
             }
-            
+
             $path = $file->store('public/images');
             $validated['images'] = $validated['images'] ?? [];
             $validated['images'][] = str_replace('public/', '', $path);
@@ -201,6 +201,18 @@ class PageController extends Controller
             'old_parent_name' => 'nullable|string'
         ]);
 
+        // Jika source_code disediakan, content bisa kosong
+        if ($request->has('source_code') && !empty($request->source_code)) {
+            if (empty($validated['content'])) {
+                $validated['content'] = ' '; // Mengisi content dengan spasi untuk memenuhi constraint NOT NULL
+            }
+        } else if (empty($validated['content'])) {
+            // Jika tidak ada source_code dan content kosong, kembalikan error
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['content' => 'Either Content or Source Code must be provided.']);
+        }
+
         // Update parent_page name for all related pages if it was changed
         if (!empty($validated['old_parent_name']) && $validated['old_parent_name'] !== $validated['parent_page']) {
             Page::where('parent_page', $validated['old_parent_name'])
@@ -231,18 +243,18 @@ class PageController extends Controller
         // Handle direct file upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            
+
             // Pastikan file adalah gambar yang valid
             if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
                 return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
             }
-            
+
             // Periksa ekstensi file
             $extension = strtolower($file->getClientOriginalExtension());
             if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
                 return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
             }
-            
+
             $path = $file->store('public/images');
             $validated['images'] = $validated['images'] ?? [];
             $validated['images'][] = str_replace('public/', '', $path);

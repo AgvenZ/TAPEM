@@ -127,16 +127,13 @@
         }
         window.addEventListener('scroll', handleScroll);
     </script>
-</body>
-</html>
-
+</head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-<body class="bg-gray-100">
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">BERITA</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto -mr-33">
+            <div class="flex items-center space-x-1 inconsolata-font mr-40">
                 <span onclick="window.location.href='/'" class="cursor-pointer">BERANDA</span>
                 <i class="fas fa-chevron-right"></i>
                 <span>BERITA</span>
@@ -201,6 +198,5 @@
     </div>
 
     @include('layouts.footer')
-
 </body>
 </html>
