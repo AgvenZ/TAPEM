@@ -217,7 +217,7 @@
                     @php
                         $parentTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->parent_page);
                     @endphp
-                    <span class="hover-underline">{{ strtoupper($parentTitle) }}</span>
+                    <a href="http://127.0.0.1:8000/" class="hover-underline text-white">{{ strtoupper($parentTitle) }}</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>{{ strtoupper(preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->title)) }}</span>
                 </div>

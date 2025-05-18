@@ -57,12 +57,24 @@
         .login-wrapper {
             min-height: 100vh;
         }
+
+        .logo-container img {
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
     <div class="container login-wrapper d-flex justify-content-center align-items-center">
         <div class="col-md-5">
             <div class="login-card">
+                <div class="text-center mb-4 logo-container">
+                    <img src="{{ asset('img/logo-pemkot.png') }}" alt="Logo TAPEM" class="img-fluid" style="max-height: 100px;">
+                </div>
                 <h2 class="text-center login-title mb-4">Admin Login</h2>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
