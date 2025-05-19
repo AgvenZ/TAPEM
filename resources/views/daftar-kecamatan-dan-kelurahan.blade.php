@@ -1,4 +1,202 @@
-<div class="p-35 rounded-lg max-w-6xl text-white">
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tata Pemerintahan Kota Semarang</title>
+    <link rel="icon" type="image/png" href="img/rel.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
+
+    <style>
+        .hover-grow {
+    display: inline-block;
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            z-index: 20;
+            background-color: #333;
+            color: white;
+        }
+        .dropdown-content a {
+            color: white;
+        }
+
+        .hover-underline:hover {
+    text-decoration: underline; /* Menampilkan underline saat hover */
+}
+        /* CSS untuk navbar normal */
+        header.sticky {
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* CSS untuk navbar yang diperkecil */
+        header.shrink {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        header.shrink .container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        header.shrink img {
+            height: 60px; /* Ubah ukuran logo */
+            width: 200px; /* Ubah ukuran logo */
+        }
+
+        header.shrink .text-lg {
+            font-size: 1rem; /* Ubah ukuran font */
+        }
+
+        header.shrink .inconsolata-font {
+            font-size: 1rem; /* Ubah ukuran font */
+        }
+
+        header.sticky img {
+            transition: all 0.3s ease-in-out;
+        }
+
+        header.sticky .text-lg {
+            transition: all 0.3s ease-in-out;
+        }
+
+        header.sticky .inconsolata-font {
+            transition: all 0.3s ease-in-out;
+        }
+        header.sticky {
+            transition: all 0.3s ease-in-out;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .dropdown-content a:hover {
+            background-color: #FEFF01;
+            color: black;
+        }
+        .judson-font {
+            font-family: 'Judson', serif;
+        }
+        .inconsolata-font {
+            font-family: 'Inconsolata', monospace;
+        }
+        .arvo-font {
+            font-family: 'Arvo', serif;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 288px;
+        }
+        .slideshow-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .no-outline:focus {
+            outline: none;
+        }
+
+        .andika-font {
+            font-family: 'Andika New Basic', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .table-row {
+            opacity: 0;
+        }
+
+        .card-transition {
+            transition: transform 2s ease, box-shadow 2s ease;
+        }
+
+        .card-transition:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-transition:active {
+            transform: scale(0.95);
+        }
+
+        /* Animasi muncul bertahap */
+        .card {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+        .card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+<body class="font-sans" onclick="closeAllDropdowns(event)">
+    @include('layouts.navbar2')
+
+    <div class="bg-black text-white">
+        <div class="flex justify-between items-center p-4">
+            <div class="text-2xl font-bold andika-font ml-20">DAFTAR KECAMATAN DAN KELURAHAN</div>
+            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer">INFORMASI & LAYANAN</span>
+                <i class="fas fa-chevron-right"></i>
+                <span>DAFTAR KECAMATAN DAN KELURAHAN</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
+        <div class="relative z-10 p-6 rounded-lg w-full max-w-6xl text-white mx-auto">
+    <br>
+    <br>
+    <br>
     <div class="text-center mb-8">
         <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
         <h2 class="andika-font text-center text-3xl font-bold mb-1 text-red-500">KECAMATAN SEMARANG TIMUR</h2>
@@ -20,72 +218,72 @@
     <tbody>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">1</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Bugangan</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Dra. LILIS MUGI RAHAYU, M.M.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Citandui Selatan No. 30</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Bugangan</td>
+            <td class="border border-gray-500 px-4 py-2 ">Dra. LILIS MUGI RAHAYU, M.M.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Citandui Selatan No. 30</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3556490</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">2</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Karangtempel</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">SUHARYATI,S.IP.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Halmahera II No.12 </td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Karangtempel</td>
+            <td class="border border-gray-500 px-4 py-2 ">SUHARYATI,S.IP.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Halmahera II No.12 </td>
             <td class="border border-gray-500 px-4 py-2 text-center">8412649</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">3</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Karangturi</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">SUGIARTINI, S.Sos.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Kampung Baris </td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Karangturi</td>
+            <td class="border border-gray-500 px-4 py-2 ">SUGIARTINI, S.Sos.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Kampung Baris </td>
             <td class="border border-gray-500 px-4 py-2 text-center">8416960</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">4</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Kebonagung</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">PETRUS SETYO WIDODO, S.A.P.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center"> Jalan Kp. Utri, Kebonagung</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Kebonagung</td>
+            <td class="border border-gray-500 px-4 py-2 ">PETRUS SETYO WIDODO, S.A.P.</td>
+            <td class="border border-gray-500 px-4 py-2 "> Jalan Kp. Utri, Kebonagung</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3561255</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">5</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Kemijen</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">BAMBANG SUMBODO, S.H.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Penjaringan 1 No.1 </td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Kemijen</td>
+            <td class="border border-gray-500 px-4 py-2 ">BAMBANG SUMBODO, S.H.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Penjaringan 1 No.1 </td>
             <td class="border border-gray-500 px-4 py-2 text-center">86042448</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">6</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Mlatibaru</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">PRIYO SARJONO, S.T.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Mlatiharjo Raya No. 16</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Mlatibaru</td>
+            <td class="border border-gray-500 px-4 py-2 ">PRIYO SARJONO, S.T.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Mlatiharjo Raya No. 16</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3515400</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">7</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Mlatiharjo</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">FITRIA AFRIYANI, S.E., M.M. (PLT)</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Citandui Raya III/2</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Mlatiharjo</td>
+            <td class="border border-gray-500 px-4 py-2 ">FITRIA AFRIYANI, S.E., M.M. (PLT)</td>
+            <td class="border border-gray-500 px-4 py-2 ">Citandui Raya III/2</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3559340</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">8</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Rejomulyo</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">DWI SULISTIONO, S.E.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Raden Patah 176 A</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Rejomulyo</td>
+            <td class="border border-gray-500 px-4 py-2 ">DWI SULISTIONO, S.E.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Raden Patah 176 A</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3559844</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">9</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Rejosari</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">EMA NURHAYATI, S.E, M.M.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Kridangga Raya No. 1 </td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Rejosari</td>
+            <td class="border border-gray-500 px-4 py-2 ">EMA NURHAYATI, S.E, M.M.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Kridangga Raya No. 1 </td>
             <td class="border border-gray-500 px-4 py-2 text-center">3559646</td>
         </tr>
         <tr class="table-row">
             <td class="border border-gray-500 px-4 py-2 text-center">10</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Sarirejo</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">DUDUNG RIFAI, S.E.</td>
-            <td class="border border-gray-500 px-4 py-2 text-center">Jalan Karangsana No.25 Semarang</td>
+            <td class="border border-gray-500 px-4 py-2 ">Kelurahan Sarirejo</td>
+            <td class="border border-gray-500 px-4 py-2 ">DUDUNG RIFAI, S.E.</td>
+            <td class="border border-gray-500 px-4 py-2 ">Jalan Karangsana No.25 Semarang</td>
             <td class="border border-gray-500 px-4 py-2 text-center">3521207</td>
         </tr>
     </tbody>
@@ -116,51 +314,51 @@
                 <tbody>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">1</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Gayamsari</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">LINA BUDIARTI, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Slamet Riyadi No. 4</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Gayamsari</td>
+                        <td class="border border-gray-500 px-4 py-2 ">LINA BUDIARTI, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Slamet Riyadi No. 4</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6715327</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">2</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Kaligawe</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SUKAMTI, S.E., M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Sawah Besar XIII Kaligawe</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Kaligawe</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SUKAMTI, S.E., M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Sawah Besar XIII Kaligawe</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">76585015</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">3</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Pandean Lamper</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SUMARDI, S.E., M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Padepokan Ganesa Raya No.1</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Pandean Lamper</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SUMARDI, S.E., M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Padepokan Ganesa Raya No.1</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6731575</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">4</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Sambirejo</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">AGUSTINUS KRISTIYONO, S.Pd, M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Medoho Raya RT. 04 RW. 07</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Sambirejo</td>
+                        <td class="border border-gray-500 px-4 py-2 ">AGUSTINUS KRISTIYONO, S.Pd, M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Medoho Raya RT. 04 RW. 07</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6732928</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">5</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Sawah Besar</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">JOKO SUMARNO, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Tambak Dalam No. 36</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Sawah Besar</td>
+                        <td class="border border-gray-500 px-4 py-2 ">JOKO SUMARNO, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Tambak Dalam No. 36</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">76580143</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">6</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Siwalan</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">NIKEN NUGRAHAENI, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Plewan II RT 04 RW 03</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Siwalan</td>
+                        <td class="border border-gray-500 px-4 py-2 ">NIKEN NUGRAHAENI, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Plewan II RT 04 RW 03</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">3571953</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">7</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Tambakrejo</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SUKISWO, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Purwosari IV</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Tambakrejo</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SUKISWO, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Purwosari IV</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6594127</td>
                     </tr>
                 </tbody>
@@ -192,93 +390,93 @@
                 <tbody>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">1</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Bangetayu Kulon</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">CHUMAIDI, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Banget Prasetya VI</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Bangetayu Kulon</td>
+                        <td class="border border-gray-500 px-4 py-2 ">CHUMAIDI, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Banget Prasetya VI</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6585117</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">2</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Bangetayu Wetan</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">TAUFIQ RIZKYANA, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Wolter Monginsisdi RT 05 RW 01</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Bangetayu Wetan</td>
+                        <td class="border border-gray-500 px-4 py-2 ">TAUFIQ RIZKYANA, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Wolter Monginsisdi RT 05 RW 01</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">76586651</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">3</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Banjardowo</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">ENDANG SUNTI HANDAYANI, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Ratan Cilik No. 5 RT 06 RW 02</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Banjardowo</td>
+                        <td class="border border-gray-500 px-4 py-2 ">ENDANG SUNTI HANDAYANI, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Ratan Cilik No. 5 RT 06 RW 02</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">3585299</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">4</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Gebangsari</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">MUDZAKIR, S.E. (PLT)</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Widuri Krajan No.1</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Gebangsari</td>
+                        <td class="border border-gray-500 px-4 py-2 ">MUDZAKIR, S.E. (PLT)</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Widuri Krajan No.1</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6593151</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">5</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Genuksari</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">YATNO, S.Pd, M.Si</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Genuksari NO 1. RT 05 RW 01</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Genuksari</td>
+                        <td class="border border-gray-500 px-4 py-2 ">YATNO, S.Pd, M.Si</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Genuksari NO 1. RT 05 RW 01</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6595400</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">6</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Karangroto</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">WALUYO BUDI UTOMO, S.T.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Zainudin Raya No. 5</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Karangroto</td>
+                        <td class="border border-gray-500 px-4 py-2 ">WALUYO BUDI UTOMO, S.T.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Zainudin Raya No. 5</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6583299</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">7</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Kudu</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SUHARTONO, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Kaumandowo Rt 05 Rw 04</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Kudu</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SUHARTONO, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Kaumandowo Rt 05 Rw 04</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">76450141</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">8</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Muktiharjo Lor</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">EKO FITRI ARIYANTO, S.Sos., M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Muktiharjo Raya no 51</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Muktiharjo Lor</td>
+                        <td class="border border-gray-500 px-4 py-2 ">EKO FITRI ARIYANTO, S.Sos., M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Muktiharjo Raya no 51</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6594493</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">9</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Penggaron Lor</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SRI HARTATI, S.Sos, M.A.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Raya kudu No. 2</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Penggaron Lor</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SRI HARTATI, S.Sos, M.A.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Raya kudu No. 2</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6590955</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">10</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Sembungharjo</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">ENDANG NOORDIANAWATI, S.E. (PLT)</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Widoro Raya Nomor 1</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Sembungharjo</td>
+                        <td class="border border-gray-500 px-4 py-2 ">ENDANG NOORDIANAWATI, S.E. (PLT)</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Widoro Raya Nomor 1</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">70600543</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">11</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Terboyo Kulon</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">BAMBANG BAGYO SOEHARDIYANTO, S.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Alteri Utara Yos Sudarso No. 1</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Terboyo Kulon</td>
+                        <td class="border border-gray-500 px-4 py-2 ">BAMBANG BAGYO SOEHARDIYANTO, S.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Alteri Utara Yos Sudarso No. 1</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">70239193</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">12</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Terboyo Wetan</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">FAIZIN, SE</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Terboyo Industri Raya 15A</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Terboyo Wetan</td>
+                        <td class="border border-gray-500 px-4 py-2 ">FAIZIN, SE</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Terboyo Industri Raya 15A</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6593986</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">13</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Trimulyo</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SUGITO, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Raya Trimulyo Raya No. 01</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Trimulyo</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SUGITO, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Raya Trimulyo Raya No. 01</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">3584878</td>
                     </tr>
                 </tbody>
@@ -310,44 +508,44 @@
                 <tbody>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">1</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Gemah</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">BAGUS SANTOSO, S.STP, M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Brigjend Sudiarto No 349 A</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Gemah</td>
+                        <td class="border border-gray-500 px-4 py-2 ">BAGUS SANTOSO, S.STP, M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Brigjend Sudiarto No 349 A</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6730769</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">2</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Kalicari</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">CATARINA NEVY HERAWATI, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Supriyadi No. 20</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Kalicari</td>
+                        <td class="border border-gray-500 px-4 py-2 ">CATARINA NEVY HERAWATI, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Supriyadi No. 20</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6725029</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">3</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Muktiharjo Kidul</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SOFIA ERNAWATI, S.E., M.M.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Sidomukti I No.24</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Muktiharjo Kidul</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SOFIA ERNAWATI, S.E., M.M.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Sidomukti I No.24</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6709534</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">4</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Palebon</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">ANDI ARIANA FITRIAN SUKONYONO, S.Sos</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Panda Raya no. 86</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Palebon</td>
+                        <td class="border border-gray-500 px-4 py-2 ">ANDI ARIANA FITRIAN SUKONYONO, S.Sos</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Panda Raya no. 86</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6731813</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">5</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Pedurungan Kidul</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">SITI NUR ALFIYAH, S.E.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Sapta Prasetya Raya No. 1</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Pedurungan Kidul</td>
+                        <td class="border border-gray-500 px-4 py-2 ">SITI NUR ALFIYAH, S.E.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Sapta Prasetya Raya No. 1</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">6712856</td>
                     </tr>
                     <tr class="table-row">
                         <td class="border border-gray-500 px-4 py-2 text-center">6</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Kelurahan Pedurungan Lor</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">NGADIRIN, S.T.,M.H.</td>
-                        <td class="border border-gray-500 px-4 py-2 text-center">Jalan Isbaryadi RT.02 RW.05</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Kelurahan Pedurungan Lor</td>
+                        <td class="border border-gray-500 px-4 py-2 ">NGADIRIN, S.T.,M.H.</td>
+                        <td class="border border-gray-500 px-4 py-2 ">Jalan Isbaryadi RT.02 RW.05</td>
                         <td class="border border-gray-500 px-4 py-2 text-center">7641187</td>
                     </tr>
                     <tr class="table-row">
@@ -1665,5 +1863,71 @@
             </table>
         </div>
     </div>
+    <br>
 </div>
 </div>
+</div>
+</div>
+</div>
+
+@include('layouts.footer')
+    <script>
+         function changeSlide(n) {
+                slideIndex += n;
+                if (slideIndex >= slides.length) {
+                    slideIndex = 0;
+                } else if (slideIndex < 0) {
+                    slideIndex = slides.length - 1;
+                }
+                document.getElementById("slideshowImage").src = slides[slideIndex];
+            }
+
+            function toggleDropdown(event, id) {
+                event.stopPropagation();
+                var dropdowns = document.getElementsByClassName('dropdown-content');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].id !== id) {
+                        dropdowns[i].style.display = 'none';
+                    }
+                }
+                var dropdown = document.getElementById(id);
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                } else {
+                    dropdown.style.display = 'block';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+            const rows = document.querySelectorAll('.table-row');
+            rows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.classList.add('fade-in-up');
+                }, index * 100);
+            });
+        });
+
+            function closeAllDropdowns(event) {
+                var dropdowns = document.getElementsByClassName('dropdown-content');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].style.display = 'none';
+                }
+            }
+
+             // Mendapatkan elemen header
+        const header = document.querySelector('header');
+
+// Fungsi untuk menangani scroll
+function handleScroll() {
+    if (window.scrollY > 50) { // Ubah nilai 50 sesuai kebutuhan
+        header.classList.add('shrink');
+    } else {
+        header.classList.remove('shrink');
+    }
+}
+
+// Menambahkan event listener untuk scroll
+window.addEventListener('scroll', handleScroll);
+    </script>
+</body>
+</html>
