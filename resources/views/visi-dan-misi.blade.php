@@ -124,20 +124,7 @@
         .no-outline:focus {
             outline: none;
         }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 2s ease-out, transform 2s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .slide-in {
-            opacity: 0;
-            transform: translateX(-100%);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-        }
+
         .andika-font {
             font-family: 'Andika New Basic', sans-serif;
         }
@@ -193,83 +180,100 @@
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-</body>
-<div class="bg-black text-white">
-    <div class="flex justify-between items-center p-4">
-        <div class="text-2xl font-bold andika-font ml-20">VISI DAN MISI</div>
-        <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
-            <span onclick="window.location.href='/'" class="cursor-pointer">PROFIL</span>
-            <i class="fas fa-chevron-right"></i>
-            <span>VISI DAN MISI</span>
+
+    <div class="bg-black text-white">
+        <div class="flex justify-between items-center p-4">
+            <div class="text-2xl font-bold andika-font ml-20">VISI DAN MISI</div>
+            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer">PROFIL</span>
+                <i class="fas fa-chevron-right"></i>
+                <span>VISI DAN MISI</span>
+            </div>
         </div>
     </div>
-</div>
-    <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
-        <div class="p-23 rounded-lg max-w-6xl text-white">
-            <h1 class="text-5xl andika-font font-bold mb-4">VISI</h1>
-            <p class="text-2xl arvo-font mb-8">“Terwujudnya Kota Semarang yang Semakin Hebat yang berlandaskan Pancasila, dalam bingkai NKRI ber-Bhineka Tunggal Ika”</p>
-            <h2 class="text-5xl andika-font font-bold mb-4">MISI</h2>
-            <ol class="arvo-font list-decimal list-inside text-2xl space-y-4">
-                <li>Meningkatkan kualitas dan kapasitas sumber daya manusia yang unggul dan produktif untuk mencapai kesejahteraan dan keadilan</li>
-                <li>Meningkatkan potensi ekonomi lokal yang berdaya saing dan stimulasi pembangunan industri, berlandaskan riset dan inovasi berdasar prinsip demokrasi ekonomi Pancasila</li>
-                <li>Menjamin kemerdekaan masyarakat menjalankan ibadah, pemenuhan hak dasar dan perlindungan kesejahteraan sosial serta hak asasi manusia bagi masyarakat secara berkeadilan</li>
-                <li>Mewujudkan infrastruktur berkualitas yang berwawasan lingkungan untuk mendukung kemajuan kota</li>
-                <li>Menjalankan reformasi birokrasi pemerintah secara dinamis dan menyusun produk hukum yang sesuai nilai-nilai Pancasila dalam kerangka Negara Kesatuan Republik Indonesia</li>
-            </ol>
+
+    <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
+        <div class="relative z-10 p-6 rounded-lg w-full max-w-6xl text-white">
+            <div class="fade-in">
+                <h1 class="text-5xl andika-font font-bold mb-4">VISI</h1>
+                <p class="text-2xl arvo-font mb-8 text-justify">"Terwujudnya Kota Semarang yang Semakin Hebat yang berlandaskan Pancasila, dalam bingkai NKRI ber-Bhineka Tunggal Ika"</p>
+            </div>
+
+            <div class="fade-in">
+                <h2 class="text-5xl andika-font font-bold mb-4 mt-8">MISI</h2>
+                <ol class="arvo-font list-decimal list-inside text-2xl space-y-4 text-justify pl-6">
+                    <li>Meningkatkan kualitas dan kapasitas sumber daya manusia yang unggul dan produktif untuk mencapai kesejahteraan dan keadilan</li>
+                    <li>Meningkatkan potensi ekonomi lokal yang berdaya saing dan stimulasi pembangunan industri, berlandaskan riset dan inovasi berdasar prinsip demokrasi ekonomi Pancasila</li>
+                    <li>Menjamin kemerdekaan masyarakat menjalankan ibadah, pemenuhan hak dasar dan perlindungan kesejahteraan sosial serta hak asasi manusia bagi masyarakat secara berkeadilan</li>
+                    <li>Mewujudkan infrastruktur berkualitas yang berwawasan lingkungan untuk mendukung kemajuan kota</li>
+                    <li>Menjalankan reformasi birokrasi pemerintah secara dinamis dan menyusun produk hukum yang sesuai nilai-nilai Pancasila dalam kerangka Negara Kesatuan Republik Indonesia</li>
+                </ol>
+            </div>
         </div>
     </div>
-</body>
 
 @include('layouts.footer')
 
     <script>
-         function changeSlide(n) {
-                slideIndex += n;
-                if (slideIndex >= slides.length) {
-                    slideIndex = 0;
-                } else if (slideIndex < 0) {
-                    slideIndex = slides.length - 1;
-                }
-                document.getElementById("slideshowImage").src = slides[slideIndex];
-            }
+        // Fungsi untuk animasi fade-in
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const slideElements = document.querySelectorAll('.slide-in');
+            const zoomInElements = document.querySelectorAll('.zoom-in');
+            const zoomOutElements = document.querySelectorAll('.zoom-out');
 
-            function toggleDropdown(event, id) {
-                event.stopPropagation();
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                for (var i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].id !== id) {
-                        dropdowns[i].style.display = 'none';
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
                     }
-                }
-                var dropdown = document.getElementById(id);
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                } else {
-                    dropdown.style.display = 'block';
-                }
-            }
+                });
+            }, { threshold: 0.1 });
 
-            function closeAllDropdowns(event) {
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                for (var i = 0; i < dropdowns.length; i++) {
+            fadeElements.forEach(el => observer.observe(el));
+            slideElements.forEach(el => observer.observe(el));
+            zoomInElements.forEach(el => observer.observe(el));
+            zoomOutElements.forEach(el => observer.observe(el));
+        });
+
+        function toggleDropdown(event, id) {
+            event.stopPropagation();
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].id !== id) {
                     dropdowns[i].style.display = 'none';
                 }
             }
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
 
-             // Mendapatkan elemen header
+        function closeAllDropdowns(event) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = 'none';
+            }
+        }
+
+        // Mendapatkan elemen header
         const header = document.querySelector('header');
 
-// Fungsi untuk menangani scroll
-function handleScroll() {
-    if (window.scrollY > 50) { // Ubah nilai 50 sesuai kebutuhan
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
-}
+        // Fungsi untuk menangani scroll
+        function handleScroll() {
+            if (window.scrollY > 50) { // Ubah nilai 50 sesuai kebutuhan
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        }
 
-// Menambahkan event listener untuk scroll
-window.addEventListener('scroll', handleScroll);
+        // Menambahkan event listener untuk scroll
+        window.addEventListener('scroll', handleScroll);
     </script>
 </body>
 </html>

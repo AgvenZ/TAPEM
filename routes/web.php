@@ -47,20 +47,20 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::put('/settings', [\App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('settings.update');
 });
 
-Route::get('/strukturorganisasi', function () {
-    return view('strukturorganisasi');
+Route::get('/struktur-organisasi', function () {
+    return view('struktur-organisasi');
 });
 
 Route::get('/sdm', function () {
     return view('sdm');
 });
 
-Route::get('/visi-misi', function () {
-    return view('visi-misi');
+Route::get('/visi-dan-misi', function () {
+    return view('visi-dan-misi');
 });
 
-Route::get('/tugas-fungsi', function () {
-    return view('tugas-fungsi');
+Route::get('/tugas-dan-fungsi', function () {
+    return view('tugas-dan-fungsi');
 });
 
 Route::get('/pembinaan-administrasi-kecamatan-dan-kelurahan', function () {
@@ -100,8 +100,8 @@ Route::get('/e-magang', function () {
     return view('e-magang');
 });
 
-Route::get('/daftar-kecamatan-kelurahan', function () {
-    return view('daftar-kecamatan-kelurahan');
+Route::get('/daftar-kecamatan-dan-kelurahan', function () {
+    return view('daftar-kecamatan-dan-kelurahan');
 });
 
 Route::get('/kontak', function () {
