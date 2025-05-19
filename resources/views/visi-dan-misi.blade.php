@@ -196,6 +196,8 @@
         <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
         <div class="relative z-10 p-6 rounded-lg w-full max-w-6xl text-white">
             <div class="fade-in">
+                <br>
+                <br>
                 <h1 class="text-5xl andika-font font-bold mb-4">VISI</h1>
                 <p class="text-2xl arvo-font mb-8 text-justify">"Terwujudnya Kota Semarang yang Semakin Hebat yang berlandaskan Pancasila, dalam bingkai NKRI ber-Bhineka Tunggal Ika"</p>
             </div>

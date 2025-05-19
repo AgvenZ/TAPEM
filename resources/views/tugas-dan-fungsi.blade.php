@@ -175,6 +175,7 @@
         <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>
         <div class="relative z-10 p-6 rounded-lg w-full max-w-6xl text-white">
             <div class="fade-in">
+                <br>
                 <h1 class="text-red-500 andika-font text-3xl font-bold mb-4 text-justify">
                     Menurut Peraturan Walikota Nomor 90 Tahun 2021
                     <span class="text-white">

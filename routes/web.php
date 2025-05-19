@@ -83,6 +83,10 @@ Route::get('/penamaan-dan-pendataan-rupa-bumi', function () {
     return view('penamaan-dan-pendataan-rupa-bumi');
 });
 
+Route::get('/daftar-kecamatan-dan-kelurahan', function () {
+    return view('daftar-kecamatan-dan-kelurahan');
+});
+
 Route::get('/berita', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 
@@ -100,9 +104,6 @@ Route::get('/e-magang', function () {
     return view('e-magang');
 });
 
-Route::get('/daftar-kecamatan-dan-kelurahan', function () {
-    return view('daftar-kecamatan-dan-kelurahan');
-});
 
 Route::get('/kontak', function () {
     return view('kontak');
