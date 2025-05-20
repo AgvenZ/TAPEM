@@ -64,42 +64,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <style>
-            .fade-in {
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 2s ease-out, transform 2s ease-out;
-            }
-            .fade-in.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            .slide-in {
-                opacity: 0;
-                transform: translateX(-100%);
-                transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-            }
-            .slide-in.visible {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            .zoom-in {
-                opacity: 0;
-                transform: scale(0.8);
-                transition: opacity 2s ease-out, transform 2s ease-out;
-            }
-            .zoom-out {
-                opacity: 0;
-                transform: scale(0.8);
-                transition: opacity 1s ease-out, transform 1s ease-out;
-            }
-            .zoom-in.visible {
-                opacity: 1;
-                transform: scale(1);
-            }
-            .zoom-out.visible {
-                opacity: 1;
-                transform: scale(1);
-            }
             .hover-grow {
                 display: inline-block;
             }
@@ -170,7 +134,9 @@
             }
             .dropdown-content a:hover {
                 background-color: #FEFF01;
-                color: black;
+                color: white;
+                position: relative;
+                padding-left: 24px;
             }
             .judson-font {
                 font-family: 'Judson', serif;
@@ -271,14 +237,14 @@
         @include('layouts.navbar2')
 
         <!-- Navbar judul halaman -->
-        <div class="bg-black text-white">
+        <div class="bg-black text-white" style="margin-top: 200px;">
             <div class="flex justify-between items-center p-4">
                 <div class="text-2xl font-bold andika-font ml-20">{{ strtoupper(preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->title)) }}</div>
                 <div class="flex items-center space-x-1 inconsolata-font mr-40">
                     @php
                         $parentTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->parent_page);
                     @endphp
-                    <a href="http://127.0.0.1:8000/" class="hover-underline text-white">{{ strtoupper($parentTitle) }}</a>
+                    <span onclick="window.location.href='/'" class="cursor-pointer">{{ strtoupper($parentTitle) }}</span>
                     <i class="fas fa-chevron-right"></i>
                     <span>{{ strtoupper(preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $page->title)) }}</span>
                 </div>
@@ -286,28 +252,61 @@
         </div>
 
         <!-- Konten utama dengan layout lengkap -->
-        <div class="relative w-full mx-auto flex items-center justify-center min-h-screen pt-20 pb-16" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('img/rev-bg2.png') }}'); background-attachment: fixed; background-size: cover; background-position: center;">
-            <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6 bg-gray bg-opacity-500">
-                <!-- Bagian Gambar -->
-                @if($page->images && is_array($page->images) && count($page->images) > 0)
-                    <div class="mb-8 text-center mt-4">
-                        <div class="image-container p-6 bg-gray-700 bg-opacity-50 rounded-lg shadow-lg border border-gray-500">
-                            @foreach($page->images as $imageUrl)
-                                <img src="{{ asset('storage/' . str_replace('public/', '', $imageUrl)) }}" alt="{{ $page->title }}" class="mx-auto my-4 max-w-full h-auto rounded-lg shadow-lg">
-                            @endforeach
+        <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-20">
+            <div class="absolute inset-0 w-full h-full" style="background-image: url('{{ asset('img/rev-bg2.png') }}'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
+            <main class="container mx-auto py-8 relative z-10 rounded-lg">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-2/3 mx-auto p-4">
+                        <div class="relative bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg w-full max-w-6xl text-white z-10">
+                            <!-- Bagian Gambar -->
+                            @if($page->images && is_array($page->images) && count($page->images) > 0)
+                                <div class="mb-8 text-center mt-4">
+                                    <div class="image-container p-6 bg-gray-700 bg-opacity-50 rounded-lg shadow-lg border border-gray-500">
+                                        @foreach($page->images as $imageUrl)
+                                            <img src="{{ asset('storage/' . str_replace('public/', '', $imageUrl)) }}" alt="{{ $page->title }}" class="mx-auto my-4 max-w-full h-auto rounded-lg shadow-lg">
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+
+                            <!-- Bagian Konten -->
+                            <div class="text-2xl inconsolata-font mt-4 text-white text-justify">
+                                {!! nl2br(e($page->content)) !!}
+                            </div>
                         </div>
                     </div>
-                @endif
-
-                <!-- Bagian Konten -->
-                <div class="text-2xl inconsolata-font mt-4 text-white text-justify p-8">
-                    {!! nl2br(e($page->content)) !!}
                 </div>
-            </div>
+            </main>
         </div>
 
         <!-- Include footer -->
         @include('layouts.footer')
+
+        <script>
+            // Pastikan efek hover pada logo di footer berfungsi dengan benar
+            document.addEventListener('DOMContentLoaded', function() {
+                // Inisialisasi efek hover pada logo footer
+                const logoContainers = document.querySelectorAll('.flex.justify-center.transform.hover\\:scale-105');
+                logoContainers.forEach(function(container) {
+                    container.addEventListener('mouseenter', function() {
+                        const tooltip = this.querySelector('div.opacity-0');
+                        if (tooltip) {
+                            tooltip.classList.remove('opacity-0');
+                            tooltip.classList.add('opacity-100');
+                        }
+                    });
+
+                    container.addEventListener('mouseleave', function() {
+                        const tooltip = this.querySelector('div.opacity-100');
+                        if (tooltip) {
+                            tooltip.classList.remove('opacity-100');
+                            tooltip.classList.add('opacity-0');
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
     </html>
 @endif

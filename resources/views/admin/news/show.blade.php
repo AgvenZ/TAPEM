@@ -82,8 +82,11 @@
         }
         .dropdown-content a:hover {
             background-color: #FEFF01;
-            color: black;
+            color: white;
+            position: relative;
+            padding-left: 24px;
         }
+
         .judson-font {
             font-family: 'Judson', serif;
         }
@@ -152,18 +155,18 @@
         });
     </script>
     @include('layouts.navbar2')
-    <div class="bg-black text-white">
+    <div class="bg-black text-white" style="margin-top: 200px;">
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">BERITA</div>
             <div class="flex items-center space-x-1 inconsolata-font mr-40">
-                <span onclick="window.location.href='/'" class="cursor-pointer">BERANDA</span>
+                <span onclick="window.location.href='/'" class="cursor-pointer">DASHBOARD</span>
                 <i class="fas fa-chevron-right"></i>
                 <span>BERITA</span>
             </div>
         </div>
     </div>
 
-    <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
+    <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-20">
         <div class="absolute inset-0 w-full h-full" style="background-image: url('{{ asset('img/rev-bg2.png') }}'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
         <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
         <main class="container mx-auto py-8 relative z-10 rounded-lg">

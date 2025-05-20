@@ -56,7 +56,7 @@
                         </span>
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-yellow-300 to-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     </button>
-                    <div class="absolute bg-[#8] shadow-lg mt-3 group-hover:block dropdown-content min-w-[200px] transform opacity-0 scale-95 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out z-50 border border-gray-600" id="dropdown_{{ $loop->index }}">
+                    <div class="absolute bg-[#333] shadow-lg mt-3 dropdown-content min-w-[200px] transform z-50 border border-gray-600" id="dropdown_{{ $loop->index }}" style="display: none;">
                         <ul class="py-2 text-sm">
                             @php
                                 $childPages = \App\Models\Page::where('parent_page', $parentMenu->parent_page)->where('is_published', true)->orderBy('order')->get();
@@ -67,8 +67,8 @@
                                 $childTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $childPage->title);
                             @endphp
                             <li class="hover:bg-[#A52A2A] transition-colors duration-200">
-                                <a class="block px-4 py-3 text-white hover:text-yellow-300 hover:bg-[#A52A2A] transition-all duration-200 border-l-2 border-transparent hover:border-yellow-300 flex items-center" href="/{{ $childPage->slug }}">
-                                    <i class="fas fa-chevron-right mr-2 text-red-500 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                                <a class="block px-4 py-3 text-white hover:text-white hover:bg-[#FEFF01] transition-all duration-200 border-l-2 border-transparent hover:border-yellow-300 flex items-center" href="/{{ $childPage->slug }}">
+                                    <i class="fas fa-chevron-right mr-2 text-red-500 opacity-100 transition-all duration-300"></i>
                                     {{ strtoupper($childTitle) }}
                                 </a>
                             </li>
