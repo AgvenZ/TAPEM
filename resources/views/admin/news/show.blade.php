@@ -32,6 +32,10 @@
         }
         header.sticky {
             transition: all 0.5s ease-in-out;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
         .hover-underline:hover {
             text-decoration: underline;
@@ -117,18 +121,36 @@
             }
         }
 
-        const header = document.querySelector('header');
-        function handleScroll() {
-            if (window.scrollY > 50) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('shrink');
+                } else {
+                    header.classList.remove('shrink');
+                }
             }
-        }
-        window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll);
+
+            // Inisialisasi status sticky pada load
+            handleScroll();
+        });
+
     </script>
 </head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
+    <script>
+        // Inisialisasi dropdown menu dan efek sticky navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pastikan dropdown menu berfungsi dengan benar
+            var dropdownButtons = document.querySelectorAll('.dropdown-content');
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
     @include('layouts.navbar2')
     <div class="bg-black text-white">
         <div class="flex justify-between items-center p-4">
@@ -153,10 +175,11 @@
                         </h1>
                         <div class="flex justify-center arvo-font items-center text-white mt-2">
                             <span class="mr-2">
-                                {{ $news->created_at ? $news->created_at->format('Y-m-d H:i') : 'N/A' }}
+                                <i class="fas fa-calendar-alt mr-1"></i>
+                                {{ $news->created_at ? $news->created_at->format('d F Y') : 'N/A' }}
                             </span>
                             <span class="mr-2">|</span>
-                            <span>tapem</span>
+                            <span><i class="fas fa-user mr-1"></i>tapem</span>
                         </div>
 
                         @if($news->images)
@@ -198,5 +221,30 @@
     </div>
 
     @include('layouts.footer')
+
+    <script>
+        // Pastikan efek hover pada logo di footer berfungsi dengan benar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi efek hover pada logo footer
+            const logoContainers = document.querySelectorAll('.flex.justify-center.transform.hover\\:scale-105');
+            logoContainers.forEach(function(container) {
+                container.addEventListener('mouseenter', function() {
+                    const tooltip = this.querySelector('div.opacity-0');
+                    if (tooltip) {
+                        tooltip.classList.remove('opacity-0');
+                        tooltip.classList.add('opacity-100');
+                    }
+                });
+
+                container.addEventListener('mouseleave', function() {
+                    const tooltip = this.querySelector('div.opacity-100');
+                    if (tooltip) {
+                        tooltip.classList.remove('opacity-100');
+                        tooltip.classList.add('opacity-0');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

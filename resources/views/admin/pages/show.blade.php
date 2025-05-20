@@ -28,7 +28,19 @@
             }
         </style>
     </head>
-    <body>
+    <body class="font-sans" onclick="closeAllDropdowns(event)">
+    <script>
+        // Inisialisasi dropdown menu dan efek sticky navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pastikan dropdown menu berfungsi dengan benar
+            var dropdownButtons = document.querySelectorAll('.dropdown-content');
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
         <!-- Canvas kosong untuk source_code -->
         <div class="dynamic-content">
             {!! $page->source_code !!}
@@ -108,6 +120,10 @@
             }
             header.sticky {
                 transition: all 0.5s ease-in-out;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
             }
             .hover-underline:hover {
                 text-decoration: underline;
@@ -194,18 +210,63 @@
                 }
             }
 
-            const header = document.querySelector('header');
-            function handleScroll() {
-                if (window.scrollY > 50) {
-                    header.classList.add('shrink');
-                } else {
-                    header.classList.remove('shrink');
+            document.addEventListener('DOMContentLoaded', function() {
+                const header = document.querySelector('header');
+                function handleScroll() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('shrink');
+                    } else {
+                        header.classList.remove('shrink');
+                    }
                 }
-            }
-            window.addEventListener('scroll', handleScroll);
+                window.addEventListener('scroll', handleScroll);
+
+                // Inisialisasi status sticky pada load
+                handleScroll();
+
+                // Pastikan dropdown menu berfungsi dengan benar
+                var dropdownButtons = document.querySelectorAll('.dropdown-content');
+                dropdownButtons.forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                });
+
+                // Inisialisasi efek hover pada logo footer
+                const logoContainers = document.querySelectorAll('.flex.justify-center.transform.hover\\:scale-105');
+                logoContainers.forEach(function(container) {
+                    container.addEventListener('mouseenter', function() {
+                        const tooltip = this.querySelector('div.opacity-0');
+                        if (tooltip) {
+                            tooltip.classList.remove('opacity-0');
+                            tooltip.classList.add('opacity-100');
+                        }
+                    });
+
+                    container.addEventListener('mouseleave', function() {
+                        const tooltip = this.querySelector('div.opacity-100');
+                        if (tooltip) {
+                            tooltip.classList.remove('opacity-100');
+                            tooltip.classList.add('opacity-0');
+                        }
+                    });
+                });
+            });
         </script>
     </head>
-    <body>
+    <body class="font-sans" onclick="closeAllDropdowns(event)">
+    <script>
+        // Inisialisasi dropdown menu dan efek sticky navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pastikan dropdown menu berfungsi dengan benar
+            var dropdownButtons = document.querySelectorAll('.dropdown-content');
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
         <!-- Include navbar -->
         @include('layouts.navbar2')
 
@@ -229,7 +290,7 @@
             <div class="relative z-10 w-full max-w-6xl mx-auto px-8 py-6 bg-gray bg-opacity-500">
                 <!-- Bagian Gambar -->
                 @if($page->images && is_array($page->images) && count($page->images) > 0)
-                    <div class="mb-8 text-center">
+                    <div class="mb-8 text-center mt-4">
                         <div class="image-container p-6 bg-gray-700 bg-opacity-50 rounded-lg shadow-lg border border-gray-500">
                             @foreach($page->images as $imageUrl)
                                 <img src="{{ asset('storage/' . str_replace('public/', '', $imageUrl)) }}" alt="{{ $page->title }}" class="mx-auto my-4 max-w-full h-auto rounded-lg shadow-lg">
@@ -239,7 +300,7 @@
                 @endif
 
                 <!-- Bagian Konten -->
-                <div class="text-2xl inconsolata-font mt-6 text-white text-justify p-8">
+                <div class="text-2xl inconsolata-font mt-4 text-white text-justify p-8">
                     {!! nl2br(e($page->content)) !!}
                 </div>
             </div>
