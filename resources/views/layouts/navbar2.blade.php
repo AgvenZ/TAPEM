@@ -40,7 +40,7 @@
     @php
     $uniqueParentMenus = \App\Models\Page::whereNotNull('parent_page')->select('parent_page')->distinct()->where('is_published', true)->orderBy('order')->get();
     @endphp
-    <nav class="bg-[#8B0000] border-t border-b border-gray-600">
+    <nav class="bg-gradient-to-r from-[#8B0000] to-[#A52A2A] border-t border-b border-gray-300 shadow-md">
         <div class="container mx-auto flex justify-between items-center py-3">
             <div class="flex items-center space-x-6 inconsolata-font">
                 @foreach($uniqueParentMenus as $parentMenu)
@@ -56,7 +56,7 @@
                         </span>
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-yellow-300 to-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                     </button>
-                    <div class="absolute bg-[#333] shadow-lg mt-3 dropdown-content min-w-[200px] transform z-50 border border-gray-600" id="dropdown_{{ $loop->index }}" style="display: none;">
+                    <div class="absolute bg-[#333] rounded-md shadow-xl mt-3 group-hover:block dropdown-content min-w-[220px] transform z-50 border border-gray-200" id="dropdown_{{ $loop->index }}" style="display: none;">
                         <ul class="py-2 text-sm">
                             @php
                                 $childPages = \App\Models\Page::where('parent_page', $parentMenu->parent_page)->where('is_published', true)->orderBy('order')->get();
@@ -67,7 +67,7 @@
                                 $childTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $childPage->title);
                             @endphp
                             <li class="hover:bg-[#A52A2A] transition-colors duration-200">
-                                <a class="block px-4 py-3 text-white hover:text-white hover:bg-[#FEFF01] transition-all duration-200 border-l-2 border-transparent hover:border-yellow-300 flex items-center" href="/{{ $childPage->slug }}">
+                                <a class="block px-4 py-2 text-white hover:text-yellow-300 hover:bg-[#A52A2A] transition-all duration-200 border-l-2 border-transparent hover:border-yellow-300 flex items-center" href="/{{ $childPage->slug }}">
                                     <i class="fas fa-chevron-right mr-2 text-red-500 opacity-100 transition-all duration-300"></i>
                                     {{ strtoupper($childTitle) }}
                                 </a>
@@ -79,7 +79,7 @@
                 @endforeach
             </div>
             <div class="flex items-center space-x-3">
-                <div id="realtime-clock" class="mr-4 inconsolata-font text-lg text-white bg-black bg-opacity-40 px-3 py-1 rounded-lg shadow-sm border border-gray-200"></div>
+                <div id="realtime-clock" class="mr-4 inconsolata-font text-lg text-white bg-[rgba(0,0,0,0.4)] px-3 py-1 rounded-lg shadow-sm border border-gray-200"></div>
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="focus:outline-none">
                         <i class="fas fa-envelope text-white text-lg bg-red-600 p-2 rounded-full shadow-md hover:bg-red-700 transition-all duration-300 transform hover:scale-110 cursor-pointer"></i>

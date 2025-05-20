@@ -134,7 +134,7 @@
             }
             .dropdown-content a:hover {
                 background-color: #FEFF01;
-                color: white;
+                color: rgb(0, 0, 0) !important;
                 position: relative;
                 padding-left: 24px;
             }
@@ -252,7 +252,7 @@
         </div>
 
         <!-- Konten utama dengan layout lengkap -->
-        <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-20">
+        <div class="relative w-full p-12 mx-auto flex items-start justify-center min-h-screen pt-4">
             <div class="absolute inset-0 w-full h-full" style="background-image: url('{{ asset('img/rev-bg2.png') }}'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
             <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
             <main class="container mx-auto py-8 relative z-10 rounded-lg">
