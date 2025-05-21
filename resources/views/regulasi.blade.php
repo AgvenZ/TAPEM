@@ -209,7 +209,7 @@
       </div>
       <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-48">
        <span class="cursor-pointer" onclick="window.location.href='/'">
-        BERANDA
+        DASHBOARD
        </span>
        <i class="fas fa-chevron-right">
        </i>

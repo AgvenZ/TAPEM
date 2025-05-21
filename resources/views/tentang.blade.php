@@ -246,7 +246,7 @@
         <div class="flex justify-between items-center p-4">
             <div class="text-2xl font-bold andika-font ml-20">TENTANG</div>
             <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-44">
-                <span onclick="window.location.href='/'" class="cursor-pointer">BERANDA</span>
+                <span onclick="window.location.href='/'" class="cursor-pointer">DASHBOARD</span>
                 <i class="fas fa-chevron-right"></i>
                 <span>TENTANG</span>
             </div>

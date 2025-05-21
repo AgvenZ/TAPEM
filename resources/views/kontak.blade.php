@@ -284,7 +284,7 @@
                 <span class="text-2xl font-bold andika-font -ml-10">KONTAK</span>
             </div>
             <div class="flex items-center space-x-2 text-white inconsolata-font mr-20">
-                <span class="cursor-pointer hover:" onclick="window.location.href='/'">BERANDA</span>
+                <span class="cursor-pointer hover:" onclick="window.location.href='/'">DASHBOARD</span>
                 <i class="fas fa-chevron-right text-sm"></i>
                 <span class="text-white-300">KONTAK</span>
             </div>
