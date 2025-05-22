@@ -380,18 +380,16 @@
 
             function toggleDropdown(event, id) {
                 event.stopPropagation();
+                // Hanya menutup dropdown lain, tidak menutup dropdown yang sedang diklik
                 var dropdowns = document.getElementsByClassName('dropdown-content');
                 for (var i = 0; i < dropdowns.length; i++) {
                     if (dropdowns[i].id !== id) {
                         dropdowns[i].style.display = 'none';
                     }
                 }
+                // Selalu tampilkan dropdown yang diklik
                 var dropdown = document.getElementById(id);
-                if (dropdown.style.display === 'block') {
-                    dropdown.style.display = 'none';
-                } else {
-                    dropdown.style.display = 'block';
-                }
+                dropdown.style.display = 'block';
             }
 
             document.addEventListener('DOMContentLoaded', function () {
