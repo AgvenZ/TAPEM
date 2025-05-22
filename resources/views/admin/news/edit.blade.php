@@ -42,7 +42,7 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Images</label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image[]" accept="image/*" multiple>
                     <div class="mt-3">
                         <button type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 py-2 hover-shadow transition" onclick="openMediaSelector()" style="border: 1px dashed #0d6efd;">
                             <i class="fas fa-photo-video"></i>
@@ -87,7 +87,7 @@
                     const previewGrid = document.getElementById('selected-images-grid');
                     const urlInput = document.getElementById('selected-media-urls');
                     const selectedUrls = JSON.parse(urlInput.value || '[]').filter(url => url !== urlToRemove);
-                    
+
                     if (selectedUrls.length === 0) {
                         previewContainer.style.display = 'none';
                         previewGrid.innerHTML = '';
@@ -130,12 +130,12 @@
             const mediaPagination = document.getElementById('mediaPagination');
             const mediaLoadSuccess = document.getElementById('mediaLoadSuccess');
             const selectedMediaUrls = JSON.parse(document.getElementById('selected-media-urls').value || '[]');
-            
+
             // Remove existing event listener from confirm button to prevent duplicates
             const confirmButton = document.getElementById('confirmSelection');
             const newConfirmButton = confirmButton.cloneNode(true);
             confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-            
+
             mediaItems.innerHTML = '';
             mediaLoader.style.display = 'flex';
             mediaLoader.querySelector('.spinner-border').style.display = 'block';
@@ -181,14 +181,14 @@
                         const previewGrid = document.getElementById('selected-images-grid');
                         const urlInput = document.getElementById('selected-media-urls');
                         const fileInput = document.getElementById('image');
-                        
+
                         if (selectedUrls.length > 0) {
                             const existingUrls = JSON.parse(urlInput.value || '[]');
                             const mergedUrls = [...new Set([...existingUrls, ...selectedUrls])];
-                            
+
                             // Clear existing grid content
                             previewGrid.innerHTML = '';
-                            
+
                             // Add each image to the grid
                             mergedUrls.forEach(url => {
                                 const imageDiv = document.createElement('div');
@@ -203,12 +203,12 @@
                                 `;
                                 previewGrid.appendChild(imageDiv);
                             });
-                            
+
                             urlInput.value = JSON.stringify(mergedUrls);
                             previewContainer.style.display = 'block';
                             fileInput.value = '';
                         }
-                        
+
                         bootstrap.Modal.getInstance(document.getElementById('mediaModal')).hide();
                     });
                 });

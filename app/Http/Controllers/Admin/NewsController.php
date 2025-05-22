@@ -31,7 +31,7 @@ class NewsController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|max:2048',
+            'image.*' => 'nullable|image|max:2048',
             'selected_media_urls' => 'nullable|string',
             'is_published' => 'boolean',
             'published_at' => 'nullable|date'
@@ -57,7 +57,10 @@ class NewsController extends Controller
         // Handle image uploads and media library selections
         $images = [];
         if ($request->hasFile('image')) {
-            $images[] = $request->file('image')->store('news', 'public');
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $images[] = $file->store('news', 'public');
+            }
         }
         if ($request->filled('selected_media_urls')) {
             $selectedUrls = json_decode($request->selected_media_urls, true);
@@ -94,7 +97,7 @@ class NewsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'slug' => 'required',
-            'image' => 'nullable|image|max:2048',
+            'image.*' => 'nullable|image|max:2048',
             'selected_media_url' => 'nullable|string',
             'is_published' => 'required|in:0,1',
             'published_at' => 'nullable|date'
@@ -106,7 +109,10 @@ class NewsController extends Controller
         // Handle image uploads and media library selections
         $images = [];
         if ($request->hasFile('image')) {
-            $images[] = $request->file('image')->store('news', 'public');
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $images[] = $file->store('news', 'public');
+            }
         }
         if ($request->filled('selected_media_urls')) {
             $selectedUrls = json_decode($request->selected_media_urls, true);

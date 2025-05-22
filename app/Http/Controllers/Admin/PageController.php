@@ -110,7 +110,7 @@ class PageController extends Controller
             'source_code' => 'nullable',
             'is_published' => 'boolean',
             'selected_media_urls' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Add source_code to validated data
@@ -148,24 +148,27 @@ class PageController extends Controller
             }
         }
 
-        // Handle direct file upload
+        // Handle direct file upload - multiple images
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-
-            // Pastikan file adalah gambar yang valid
-            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
-                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
-            }
-
-            // Periksa ekstensi file
-            $extension = strtolower($file->getClientOriginalExtension());
-            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
-                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
-            }
-
-            $path = $file->store('public/images');
+            $files = $request->file('image');
             $validated['images'] = $validated['images'] ?? [];
-            $validated['images'][] = str_replace('public/', '', $path);
+
+            // Handle multiple files
+            foreach ($files as $file) {
+                // Pastikan file adalah gambar yang valid
+                if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                    return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+                }
+
+                // Periksa ekstensi file
+                $extension = strtolower($file->getClientOriginalExtension());
+                if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                    return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+                }
+
+                $path = $file->store('public/images');
+                $validated['images'][] = str_replace('public/', '', $path);
+            }
         }
 
         // Set the order value based on parent_page
@@ -240,24 +243,27 @@ class PageController extends Controller
             }
         }
 
-        // Handle direct file upload
+        // Handle direct file upload - multiple images
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-
-            // Pastikan file adalah gambar yang valid
-            if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
-                return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
-            }
-
-            // Periksa ekstensi file
-            $extension = strtolower($file->getClientOriginalExtension());
-            if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
-                return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
-            }
-
-            $path = $file->store('public/images');
+            $files = $request->file('image');
             $validated['images'] = $validated['images'] ?? [];
-            $validated['images'][] = str_replace('public/', '', $path);
+
+            // Handle multiple files
+            foreach ($files as $file) {
+                // Pastikan file adalah gambar yang valid
+                if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'])) {
+                    return redirect()->back()->withErrors(['image' => 'File harus berupa gambar (jpeg, png, jpg, gif).'])->withInput();
+                }
+
+                // Periksa ekstensi file
+                $extension = strtolower($file->getClientOriginalExtension());
+                if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+                    return redirect()->back()->withErrors(['image' => 'Ekstensi file tidak diizinkan.'])->withInput();
+                }
+
+                $path = $file->store('public/images');
+                $validated['images'][] = str_replace('public/', '', $path);
+            }
         }
 
         $page->update($validated);
