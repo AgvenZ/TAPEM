@@ -271,9 +271,9 @@
                 <br>
 
                 <div class="profile-image-container slide-in">
-                    <div class="relative floating">
+                    <div class="relative floating" style="position: relative; border-radius: 20px; padding: 4px; background: linear-gradient(to right, black, #ff0000); overflow: hidden;">
                         <div class="absolute inset-0 bg-gradient-to-r from-rose-600/20 to-amber-500/20 rounded-xl blur-xl animate-pulse"></div>
-                        <img alt="Balai Kota Semarang" class="relative z-10 profile-image shadow-2xl border-4 border-white" src="img/balkot-tentang.png"/>
+                        <img alt="Balai Kota Semarang" class="relative z-10 profile-image shadow-2xl rounded-lg" style="border-radius: 16px; width: 100%; height: auto;" src="img/balkot-tentang.png"/>
                     </div>
                 </div>
 
