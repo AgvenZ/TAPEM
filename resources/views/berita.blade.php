@@ -200,16 +200,10 @@
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-<div class="bg-black text-white">
-    <div class="flex justify-between items-center p-4">
-        <div class="text-2xl font-bold andika-font ml-20">BERITA</div>
-        <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
-            <span onclick="window.location.href='/'" class="cursor-pointer">INFORMASI & LAYANAN</span>
-            <i class="fas fa-chevron-right"></i>
-            <span>BERITA</span>
-        </div>
-    </div>
-</div>
+    @section('page-title', 'BERITA')
+    @section('page-subtitle', 'BERITA')
+    @section('parent-menu', 'INFORMASI & LAYANAN')
+    @include('layouts.navbar-hitam')
 <body class="bg-black text-white">
     <div class="relative min-h-screen flex items-center justify-center">
         <div class="absolute inset-0 w-full h-full" style="background-image: url('img/rev-bg2.png'); background-size: cover; background-position: center; background-attachment: fixed;">

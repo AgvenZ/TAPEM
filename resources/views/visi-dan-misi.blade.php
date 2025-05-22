@@ -181,16 +181,10 @@
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
 
-    <div class="bg-black text-white">
-        <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">VISI DAN MISI</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-40">
-                <span onclick="window.location.href='/'" class="cursor-pointer">PROFIL</span>
-                <i class="fas fa-chevron-right"></i>
-                <span>VISI DAN MISI</span>
-            </div>
-        </div>
-    </div>
+    @section('page-title', 'VISI DAN MISI')
+    @section('page-subtitle', 'VISI DAN MISI')
+    @section('parent-menu', 'PROFIL')
+    @include('layouts.navbar-hitam')
 
     <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
         <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>

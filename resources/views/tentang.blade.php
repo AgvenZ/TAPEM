@@ -242,13 +242,17 @@
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
 </body>
-    <div class="bg-black text-white">
-        <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">TENTANG</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-44">
-                <span onclick="window.location.href='/'" class="cursor-pointer">DASHBOARD</span>
-                <i class="fas fa-chevron-right"></i>
-                <span>TENTANG</span>
+    <!-- Navbar judul halaman dengan desain baru -->
+    <div class="bg-gradient-to-r from-gray-900 to-black text-white">
+        <div class="flex justify-between items-center p-6">
+            <div class="text-2xl font-bold andika-font ml-20 flex items-center">
+                <div class="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-600 mr-3"></div>
+                TENTANG
+            </div>
+            <div class="flex items-center space-x-2 inconsolata-font mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer hover:text-indigo-300 transition duration-300">DASHBOARD</span>
+                <i class="fas fa-chevron-right text-indigo-400"></i>
+                <span class="text-indigo-300">TENTANG</span>
             </div>
         </div>
     </div>
@@ -274,16 +278,16 @@
                 </div>
 
                 <div class="content-box zoom-in">
-                    <div class="bg-white p-8 rounded-xl shadow-lg bg-opacity-90">
-                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">Tata Pemerintahan Kota Semarang</h3>
+                    <div class="p-8 rounded-xl shadow-lg backdrop-filter blur-8px" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Tata Pemerintahan Kota Semarang</h3>
                         <div class="space-y-6">
-                            <p class="text-gray-600 text-lg text-justify">
+                            <p class="text-white text-lg text-justify">
                                 Tata pemerintahan Kota Semarang adalah sistem pengelolaan administrasi dan layanan publik yang dijalankan oleh Pemerintah Kota Semarang guna memastikan kesejahteraan masyarakat serta pembangunan kota yang berkelanjutan. Pemerintahan ini dipimpin oleh Wali Kota dan Wakil Wali Kota, serta didukung oleh berbagai Organisasi Perangkat Daerah (OPD) yang bertugas mengatur berbagai sektor, seperti pelayanan masyarakat, infrastruktur, ekonomi, pendidikan, dan lingkungan.
                             </p>
-                            <p class="text-gray-600 text-lg text-justify">
+                            <p class="text-white text-lg text-justify">
                                 Pemerintah Kota Semarang menerapkan prinsip transparansi, akuntabilitas, dan partisipasi publik dalam setiap kebijakan dan programnya. Berbagai inovasi digital juga terus dikembangkan untuk meningkatkan efisiensi pelayanan, seperti e-Government dan platform layanan online yang memudahkan warga dalam mengakses informasi serta mengurus administrasi pemerintahan.
                             </p>
-                            <p class="text-gray-600 text-lg text-justify">
+                            <p class="text-white text-lg text-justify">
                                 Dengan semangat pembangunan yang inklusif dan berkelanjutan, tata pemerintahan Kota Semarang berupaya mewujudkan kota yang lebih maju, nyaman, dan berdaya saing tinggi di tingkat nasional maupun global.
                             </p>
                         </div>

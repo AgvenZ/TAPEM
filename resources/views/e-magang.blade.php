@@ -243,15 +243,10 @@
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
 </body>
-    <div class="bg-black text-white">
-        <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">E-MAGANG</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-32">
-                <span onclick="window.location.href='/'" class="cursor-pointer">INFORMASI & LAYANAN</span>
-                <i class="fas fa-chevron-right"></i>
-                <span>E-MAGANG</span>
-            </div>
-        </div>
+@section('page-title', 'E-MAGANG')
+@section('page-subtitle', 'E-MAGANG')
+@section('parent-menu', 'INFORMASI & LAYANAN')
+@include('layouts.navbar-hitam')
         <body class="bg-gray-100">
             <div class="relative w-full p-12 mx-auto flex items-center justify-center min-h-screen pt-6">
              <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;"></div>

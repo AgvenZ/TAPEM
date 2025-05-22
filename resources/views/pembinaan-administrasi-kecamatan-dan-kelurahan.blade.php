@@ -204,19 +204,10 @@
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-    <div class="bg-black text-white">
-        <div class="flex justify-between items-center p-4">
-            <div class="text-2xl font-bold andika-font ml-20">PEMBINAAN ADMINISTRASI KECAMATAN DAN KELURAHAN</div>
-            <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-12">
-                <span onclick="window.location.href='/'" class="cursor-pointer">PROGRAM & KEGIATAN</span>
-                <i class="fas fa-chevron-right"></i>
-                <div class="flex flex-col">
-                    <span>PEMBINAAN ADMINISTRASI</span>
-                    <span>KECAMATAN DAN KELURAHAN</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    @section('page-title', 'PEMBINAAN ADMINISTRASI KECAMATAN DAN KELURAHAN')
+    @section('page-subtitle', 'PEMBINAAN ADMINISTRASI KECAMATAN DAN KELURAHAN')
+    @section('parent-menu', 'PROGRAM & KEGIATAN')
+    @include('layouts.navbar-hitam')
     <div class="flex items-center justify-center min-h-screen bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="p-20 rounded-lg max-w-6xl text-white">
             <img alt="Descriptive image related to Kecamatan and Kelurahan" class="mb-8 w-full h-auto transition-zoom" height="1920" src="img/poster1.png" width="1080"/>

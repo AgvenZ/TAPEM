@@ -277,19 +277,22 @@
 </head>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-
-    <div class="bg-black py-4">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
-            <div class="text-2xl font-bold text-white mb-4 md:mb-0">
-                <span class="text-2xl font-bold andika-font -ml-10">KONTAK</span>
+    <!-- Navbar judul halaman dengan desain baru -->
+    <div class="bg-gradient-to-r from-gray-900 to-black text-white">
+        <div class="flex justify-between items-center p-6">
+            <div class="text-2xl font-bold andika-font ml-20 flex items-center">
+                <div class="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-600 mr-3"></div>
+                KONTAK
             </div>
-            <div class="flex items-center space-x-2 text-white inconsolata-font mr-20">
-                <span class="cursor-pointer hover:" onclick="window.location.href='/'">DASHBOARD</span>
-                <i class="fas fa-chevron-right text-sm"></i>
-                <span class="text-white-300">KONTAK</span>
+            <div class="flex items-center space-x-2 inconsolata-font mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer hover:text-indigo-300 transition duration-300">DASHBOARD</span>
+                <i class="fas fa-chevron-right text-indigo-400"></i>
+                <span class="text-indigo-300">KONTAK</span>
             </div>
         </div>
     </div>
+
+
     <div class="flex items-center justify-center bg-cover bg-center py-16" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg1.png');">
         <div class="contact-container relative z-10">
             <div class="text-center mb-8">
