@@ -74,7 +74,7 @@
                             @endphp
                             <li class="hover:bg-[#A52A2A] transition-colors duration-200">
                                 <a class="block px-4 py-2 text-white hover:text-yellow-300 hover:bg-[#A52A2A] transition-all duration-200 border-l-2 border-transparent hover:border-yellow-300 flex items-center" href="/{{ $childPage->slug }}">
-                                    <i class="fas fa-chevron-right mr-2 text-red-500 opacity-100 transition-all duration-300"></i>
+                                    <i class="fas fa-chevron-right mr-2 text-red-500 opacity-100 transform -translate-x-2 transition-all duration-300"></i>
                                     {{ strtoupper($childTitle) }}
                                 </a>
                             </li>
