@@ -91,7 +91,7 @@
                             <div class="card mb-4">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Manage News</h5>
-                                    <p class="card-text">Create, edit, and delete news articles</p>
+                                    <p class="card-text">Create, edit, and delete news</p>
                                     <a href="{{ route('admin.news.index') }}" class="btn btn-success">Go to News</a>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="card mb-4">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Manage Slideshows</h5>
-                                    <p class="card-text">Create and manage slideshow images</p>
+                                    <p class="card-text">Create and manage slideshow</p>
                                     <a href="{{ route('admin.slideshows.index') }}" class="btn btn-warning">Go to Slideshows</a>
                                 </div>
                             </div>

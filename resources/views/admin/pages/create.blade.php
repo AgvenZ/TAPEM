@@ -153,7 +153,7 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Images</label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image[]" accept="image/*" multiple>
                     <div class="mt-3">
                         <button type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 py-2 hover-shadow transition" onclick="openMediaSelector()" style="border: 1px dashed #0d6efd;">
                             <i class="fas fa-photo-video"></i>

@@ -15,6 +15,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+    
+    <!-- Dropdown Hover CSS -->
+    <style>
+        .navbar .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            margin-top: 0;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -48,7 +58,7 @@
                             @endphp
                             @if($subPages->count() > 0)
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
                                         @php
                                             // Menghilangkan format tanggal dari judul
                                             $mainTitle = preg_replace('/^\d{4}-\d{2}-\d{2}\s*\|\s*/', '', $mainPage->title);
@@ -93,7 +103,7 @@
                             {{-- Remove register link --}}
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 

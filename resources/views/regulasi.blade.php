@@ -202,23 +202,21 @@
     </style>
 <body class="font-sans" onclick="closeAllDropdowns(event)">
     @include('layouts.navbar2')
-    <div class="bg-black text-white">
-     <div class="flex justify-between items-center p-4">
-      <div class="text-2xl font-bold andika-font ml-20">
-       REGULASI
-      </div>
-      <div class="flex items-center space-x-1 inconsolata-font ml-auto mr-48">
-       <span class="cursor-pointer" onclick="window.location.href='/'">
-        BERANDA
-       </span>
-       <i class="fas fa-chevron-right">
-       </i>
-       <span>
-        REGULASI
-       </span>
-      </div>
-     </div>
+    <!-- Navbar judul halaman dengan desain baru -->
+    <div class="bg-gradient-to-r from-gray-900 to-black text-white">
+        <div class="flex justify-between items-center p-6">
+            <div class="text-2xl font-bold andika-font ml-20 flex items-center">
+                <div class="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-600 mr-3"></div>
+                REGULASI
+            </div>
+            <div class="flex items-center space-x-2 inconsolata-font mr-40">
+                <span onclick="window.location.href='/'" class="cursor-pointer hover:text-indigo-300 transition duration-300">DASHBOARD</span>
+                <i class="fas fa-chevron-right text-indigo-400"></i>
+                <span class="text-indigo-300">REGULASI</span>
+            </div>
+        </div>
     </div>
+
     <body class="text-white font-sans bg-cover bg-no-repeat flex items-center justify-center min-h-screen" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/rev-bg2.png'); background-attachment: fixed; background-size: cover; background-position: center;">
         <div class="text-white container mx-auto p-4 arvo-font">
             <div class="p-14 rounded-lg">

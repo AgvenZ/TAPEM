@@ -9,48 +9,68 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     @yield('styles')
     <style>
+        :root {
+            --primary-color: #212529;
+            --accent-color: #3498db;
+            --hover-color: rgba(52, 152, 219, 0.1);
+            --text-color: #ecf0f1;
+            --border-color: rgba(236, 240, 241, 0.2);
+        }
         body {
-            background-color: #ffffff;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         #sidebar {
             min-height: 100vh;
             width: 250px;
-            transition: all 0.3s;
-            background-color: #212529 !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--primary-color);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
         #sidebar.collapsed {
             margin-left: -250px;
+            box-shadow: none;
         }
         .sidebar-link {
-            padding: 10px 15px;
-            color: #fff;
+            padding: 12px 20px;
+            color: var(--text-color);
             text-decoration: none;
             display: flex;
             align-items: center;
             transition: all 0.3s;
+            border-radius: 8px;
+            margin: 4px 8px;
         }
         .sidebar-link:hover, .sidebar-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background: var(--hover-color);
+            color: var(--accent-color);
+            transform: translateX(5px);
         }
         .sidebar-link.active {
-            border-left: 4px solid #0d6efd;
-            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid var(--accent-color);
+            background: var(--hover-color);
+            font-weight: 600;
         }
         .sidebar-link i {
-            margin-right: 10px;
+            margin-right: 12px;
             width: 20px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+        .sidebar-link:hover i {
+            transform: scale(1.1);
         }
         .nav.flex-column .border-top {
-            margin: 1rem 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-            height: 1px;
+            margin: 1.2rem 15px;
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
         }
         @media (max-width: 768px) {
             #sidebar {
                 margin-left: -250px;
+                position: fixed;
+                z-index: 1000;
             }
             #sidebar.active {
                 margin-left: 0;
@@ -58,18 +78,19 @@
         }
         #content {
             width: 100%;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #f8f9fa;
         }
-        /* Add these new styles */
         .navbar {
-            background-color: #212529 !important;
-        }
-        .btn-dark {
-            background-color: transparent;
-            border: none;
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .btn-dark:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--hover-color);
+            color: var(--accent-color)        
+        }
+        .container-fluid {
+            padding: 2px;
         }
     </style>
 </head>
@@ -112,8 +133,8 @@
 
         <!-- Content -->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--primary-color)">
+                <div class="container-fluid" style="background: var(--primary-color)">
                     <button type="button" id="sidebarCollapse" class="btn btn-dark">
                         <i class="fas fa-bars"></i>
                     </button>
