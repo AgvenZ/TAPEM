@@ -14,6 +14,74 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <style>
+            .judson-font {
+                font-family: 'Judson', serif;
+            }
+            .inconsolata-font {
+                font-family: 'Inconsolata', monospace;
+            }
+            .arvo-font {
+                font-family: 'Arvo', serif;
+            }
+            .andika-font {
+                font-family: 'Andika New Basic', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="font-sans" onclick="closeAllDropdowns(event)">
+    <script>
+        // Inisialisasi dropdown menu dan efek sticky navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pastikan dropdown menu berfungsi dengan benar
+            var dropdownButtons = document.querySelectorAll('.dropdown-content');
+            dropdownButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
+        <!-- Canvas kosong untuk source_code -->
+        <div class="dynamic-content">
+            {!! $page->source_code !!}
+        </div>
+    </body>
+    </html>
+@else
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>{{ $page->title }} - Tata Pemerintahan Kota Semarang</title>
+        <link rel="icon" type="image/png" href="/img/rel.png">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Judson:wght@700&family=Inconsolata:wght@400&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            .hover-grow {
+                display: inline-block;
+            }
+
+            .hover-grow:hover {
+                transform: scale(1.05);
+                transition: transform 0.3s ease-in-out;
+            }
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                z-index: 20;
+                background-color: #333;
+                color: white;
+            }
+            .dropdown-content a {
+                color: white;
+            }
             header.sticky {
                 transition: all 0.5s ease-in-out;
                 position: fixed;
@@ -27,12 +95,55 @@
 
             header.shrink {
                 padding-top: 10px;
+                padding-bottom: 10px;
+            }
 
-    <body>
-        <!-- Canvas kosong untuk source_code -->
+            header.shrink .container {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            header.shrink img {
+                height: 60px;
+                width: 200px;
+            }
+
+            header.shrink .text-lg {
+                font-size: 1rem;
+            }
+
+            header.shrink .inconsolata-font {
+                font-size: 1rem;
+            }
+
+            header.sticky img {
+                transition: all 0.3s ease-in-out;
+            }
+
+            header.sticky .text-lg {
+                transition: all 0.3s ease-in-out;
+            }
+
+            header.sticky .inconsolata-font {
                 transition: all 0.3s ease-in-out;
             }
             header.sticky {
+                transition: all 0.3s ease-in-out;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            .dropdown-content a:hover {
+                background-color: #FEFF01;
+                color: rgb(0, 0, 0) !important;
+                position: relative;
+                padding-left: 24px;
+            }
+            .judson-font {
+                font-family: 'Judson', serif;
+            }
+            .inconsolata-font {
+                font-family: 'Inconsolata', monospace;
+            }
             .arvo-font {
                 font-family: 'Arvo', serif;
             }
@@ -249,7 +360,7 @@
                 // Inisialisasi status sticky pada load
                 handleScroll();
 
-        @include('layouts.footer')
+                // Pastikan dropdown menu berfungsi dengan benar
                 var dropdownButtons = document.querySelectorAll('.dropdown-content');
                 dropdownButtons.forEach(function(button) {
                     button.addEventListener('click', function(e) {
